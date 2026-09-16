@@ -8,129 +8,142 @@
 <style>
 @font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Regular.ttf");font-weight:400;font-display:swap}
 @font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Medium.ttf");font-weight:500;font-display:swap}
-@font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Bold.ttf");font-weight:700;font-display:swap}
-:root{--campo:#111;--sobrecampo:#fff;--ink:#111;--soft:#6f6f6f;--linea:#dcdcdc;--col:1120px}
+@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-Light.otf");font-weight:300;font-display:swap}
+@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-Regular.otf");font-weight:400;font-display:swap}
+@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-RegularItalic.otf");font-weight:400;font-style:italic;font-display:swap}
+
+/* Saol Text para leer y para los titulos; Geist Mono solo para datos y etiquetas,
+   como en el CV. El negro es la base; --papel concentra el fondo. */
+:root{--papel:#0d0c0b;--tinta:#ece8e1;--suave:#8d867e;--linea:#262320;
+      --col:1180px;--medida:58ch;--gut:clamp(18px,4.2vw,44px)}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
-body{background:#fff;color:var(--ink);font-family:"Mono",ui-monospace,monospace;
-     font-size:13px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body{background:var(--papel);color:var(--tinta);
+     font-family:"Saol",Georgia,serif;font-size:16px;line-height:1.6;
+     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 a{color:inherit}
-.hash{color:var(--soft)}
+img{display:block}
+
+/* etiqueta: el registro de ficha, en mono */
+.etq,.meta,.cuenta-sec,.tapa .datos,.tapa .pie,nav .in,figcaption,.vacio,footer,h3 .barra{
+  font-family:"Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--suave);line-height:1.8}
 
 /* ---- caratula ---- */
-.tapa{background:var(--campo);color:var(--sobrecampo);min-height:100vh;
-      padding:clamp(24px,5vw,64px);
-      display:flex;flex-direction:column;justify-content:space-between}
-.tapa h1{font-size:clamp(30px,7.4vw,86px);font-weight:700;line-height:1.02;
-         letter-spacing:.02em;text-transform:uppercase}
-.tapa .qué{font-size:clamp(13px,1.5vw,17px);max-width:52ch;margin-top:clamp(18px,3vw,34px)}
-.tapa .datos{font-size:12px;line-height:1.9}
-.tapa .regla{border:0;border-top:1px dashed rgba(255,255,255,.34);margin:clamp(18px,3vw,30px) 0}
-.tapa .pie{display:flex;flex-wrap:wrap;gap:6px 28px;font-size:11.5px;color:rgba(255,255,255,.72)}
+.tapa{min-height:100vh;padding:clamp(26px,5vw,74px) var(--gut);display:flex;
+      flex-direction:column;justify-content:space-between}
+.tapa h1{font-weight:300;font-size:clamp(52px,12.5vw,170px);line-height:.92;
+         letter-spacing:-.022em}
+.tapa .qué{font-size:clamp(16px,1.55vw,20px);line-height:1.5;max-width:44ch;
+           margin-top:clamp(22px,3.4vw,42px);color:rgba(236,232,225,.84)}
+.tapa .regla{border:0;border-top:1px solid var(--linea);margin:clamp(24px,3.6vw,42px) 0}
+.tapa .pie{display:flex;flex-wrap:wrap;gap:4px 30px;text-transform:none;letter-spacing:.05em}
 
 /* ---- nav ---- */
-nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);
-    backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
-nav .in{max-width:var(--col);margin:0 auto;padding:11px clamp(16px,4vw,40px);
-        display:flex;flex-wrap:nowrap;align-items:baseline;gap:22px;font-size:11.5px;
+nav{position:sticky;top:0;z-index:40;background:rgba(13,12,11,.9);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+nav .in{max-width:var(--col);margin:0 auto;padding:14px var(--gut);
+        display:flex;flex-wrap:nowrap;align-items:baseline;gap:26px;
         overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
 nav .in::-webkit-scrollbar{display:none}
-nav a{white-space:nowrap}
-nav .yo{white-space:nowrap}
-nav .yo{font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-right:auto;color:var(--ink)}
-nav a{text-decoration:none;color:var(--soft)}
-nav a:hover{color:var(--ink)}
-nav .hash{color:#a8a8a8}
+nav .yo{color:var(--tinta);margin-right:auto;white-space:nowrap}
+nav a{text-decoration:none;white-space:nowrap;transition:color .18s}
+nav a:hover{color:var(--tinta)}
+nav .hash{color:#4d4741}
 
 /* ---- secciones ---- */
-main{max-width:var(--col);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
-section{padding:clamp(52px,9vw,110px) 0;border-bottom:1px dashed var(--linea)}
-section:last-child{border-bottom:0}
-.sec{margin-bottom:clamp(28px,5vw,52px)}
-h2{font-size:clamp(17px,2.6vw,27px);font-weight:700;text-transform:uppercase;letter-spacing:.01em}
-.meta{font-size:11.5px;color:var(--soft);margin-top:9px;letter-spacing:.02em}
-.bajada{max-width:62ch;margin-top:16px;font-size:13px}
-.cuenta-sec{font-size:11px;color:var(--soft);margin-top:14px;padding-top:9px;
-            border-top:1px solid var(--linea);display:inline-block;min-width:150px}
-h3{background:var(--campo);color:var(--sobrecampo);
-   /* sangra a todo el ancho pero el texto cae en el borde de la columna */
-   margin-inline:calc(50% - 50vw);
-   padding-block:15px;
-   padding-inline:calc(50vw - 50% + clamp(16px,4vw,40px));
-   margin-block:clamp(34px,5vw,54px) clamp(22px,3vw,34px);
-   font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.035em;
-   display:flex;align-items:baseline;gap:11px}
-.piezas + h3{margin-top:clamp(66px,9vw,112px)}
-h3 .barra{color:rgba(255,255,255,.5);font-weight:400}
-.vacio{color:var(--soft);font-size:13px;margin-top:clamp(34px,5vw,54px)}
+main{max-width:var(--col);margin:0 auto;padding:0 var(--gut)}
+section{padding:clamp(72px,11vw,152px) 0}
+section+section{border-top:1px solid var(--linea)}
+.sec{margin-bottom:clamp(34px,5.4vw,68px)}
+h2{font-weight:300;font-size:clamp(32px,5.6vw,66px);line-height:1.03;letter-spacing:-.018em}
+h2 .hash{display:block;font-family:"Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+         color:var(--suave);margin-bottom:clamp(12px,1.6vw,20px);font-weight:400}
+.meta{margin-top:clamp(14px,1.8vw,22px)}
+.bajada{max-width:var(--medida);margin-top:clamp(18px,2.4vw,30px);
+        font-size:clamp(15px,1.3vw,17.5px);line-height:1.62;color:rgba(236,232,225,.82)}
+.bajada i{font-style:italic}
+.cuenta-sec{margin-top:clamp(20px,2.6vw,30px);display:inline-block}
 
-/* ---- piezas: proporcion real, nada recortado ---- */
+/* separador de proyecto: un filete a todo el ancho y el nombre en serif */
+h3{margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50% + var(--gut));
+   margin-block:clamp(58px,8vw,108px) clamp(22px,3vw,36px);
+   padding-top:clamp(14px,1.8vw,20px);border-top:1px solid var(--linea);
+   font-weight:400;font-size:clamp(17px,2vw,25px);letter-spacing:-.008em;
+   display:flex;align-items:baseline;gap:14px}
+h3 .barra{flex:none}
+.vacio{margin-top:clamp(34px,5vw,54px);text-transform:none;letter-spacing:.05em}
+.falta{background:var(--tinta);color:var(--papel);padding:1px 7px;letter-spacing:.06em}
+
+/* ---- piezas: proporcion real, pegadas, un proyecto = una sabana ---- */
 .piezas{display:flex;flex-direction:column;gap:0}
 .pieza{display:block}
+.lupa{padding:0;border:0;background:#151311;cursor:zoom-in;display:block;line-height:0}
+.lupa img{width:100%;height:auto}
 .lupa img{margin:0;vertical-align:top}
-.lupa{padding:0;border:0;background:#fafafa;cursor:zoom-in;display:block;line-height:0}
-.lupa img{width:100%;height:auto;display:block}
-.falta{background:var(--campo);color:var(--sobrecampo);padding:0 6px}
 
-/* ---- pares: el dibujo original al costado de la imagen que lo reformula ---- */
-.pares{display:flex;flex-direction:column;gap:clamp(44px,7vw,86px)}
-.par-obra{display:grid;grid-template-columns:clamp(110px,14%,168px) 1fr;
-          gap:clamp(16px,2.4vw,32px);align-items:start}
-.fuente{display:flex;flex-direction:column;gap:9px;padding-top:2px}
-.fuente .lupa{background:none;border:0;padding:0;cursor:zoom-in;display:block;line-height:0}
-.fuente .lupa img{width:100%;height:auto;display:block}
-.fuente .epi{font-size:10px;color:var(--soft);letter-spacing:.03em;line-height:1.45}
-.obra .lupa{background:#fafafa;border:0;padding:0;cursor:zoom-in;display:block;line-height:0}
-.obra .lupa img{width:100%;height:auto;display:block}
-@media (max-width:620px){
-  .par-obra{grid-template-columns:1fr;gap:14px}
-  .fuente{flex-direction:row;align-items:flex-end;gap:12px}
-  .fuente .lupa{width:88px;flex:none}
+/* ---- pares: la inspiracion al lado de la recreacion, alternando el lado ---- */
+.pares{display:flex;flex-direction:column;gap:clamp(54px,8vw,112px)}
+.par-obra{display:grid;grid-template-columns:clamp(88px,12.5%,148px) 1fr;
+          gap:clamp(18px,2.8vw,40px);align-items:center}
+.par-obra:nth-child(even){grid-template-columns:1fr clamp(88px,12.5%,148px)}
+.par-obra:nth-child(even) .fuente{order:2}
+.par-obra:nth-child(even) .obra{order:1}
+.fuente .lupa{background:none}
+.obra .lupa{background:#151311}
+@media (max-width:640px){
+  .par-obra,.par-obra:nth-child(even){grid-template-columns:1fr;gap:14px}
+  .par-obra:nth-child(even) .fuente,.par-obra:nth-child(even) .obra{order:0}
+  .fuente{max-width:96px}
 }
 
-/* ---- grilla de dibujos: cada uno con su epigrafe ---- */
-.grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
-        gap:clamp(24px,3.4vw,46px) clamp(20px,2.6vw,36px)}
-.grilla figure{display:flex;flex-direction:column;gap:11px;margin:0}
-.grilla .lupa{height:clamp(148px,22vh,236px);display:flex;align-items:center;
-              justify-content:center;background:none;border:0;padding:0;cursor:zoom-in}
+/* ---- grilla de dibujos ---- */
+.grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+        gap:clamp(26px,3.6vw,50px) clamp(20px,2.6vw,38px)}
+.grilla figure{display:flex;flex-direction:column;gap:12px;margin:0}
+.grilla .lupa{height:clamp(140px,21vh,224px);display:flex;align-items:center;
+              justify-content:center;background:none}
 .grilla .lupa img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
-.grilla figcaption{font-size:10.5px;color:var(--soft);letter-spacing:.03em;line-height:1.5}
-.grilla + h3{margin-top:clamp(66px,9vw,112px)}
+.grilla figcaption{text-transform:none;letter-spacing:.04em;line-height:1.5}
+.grilla+h3{margin-top:clamp(58px,8vw,108px)}
 
 /* ---- embed: la pieza viva, a todo el ancho ---- */
 .embed{position:relative;margin-inline:calc(50% - 50vw);width:100vw;
-       height:clamp(300px,74vh,720px);background:#fff;overflow:hidden;
+       height:clamp(300px,74vh,720px);background:var(--papel);overflow:hidden;
        border-block:1px solid var(--linea)}
 .embed iframe{width:100%;height:100%;border:0;display:block;pointer-events:none}
 .embed .sobre{position:absolute;inset:0;display:flex;align-items:flex-end;
-              justify-content:flex-end;padding:14px 16px;border:0;background:none;
+              justify-content:flex-end;padding:16px 18px;border:0;background:none;
               font-family:inherit;cursor:zoom-in}
-.embed .sobre span{background:var(--campo);color:var(--sobrecampo);font-size:11px;
-                   padding:6px 10px;letter-spacing:.02em}
-.embed .sobre:hover span{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
-/* a pantalla completa: la pista se puede recorrer a mano y se sale con Esc */
+.embed .sobre span{background:var(--tinta);color:var(--papel);
+                   font-family:"Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+                   text-transform:uppercase;padding:7px 11px}
+.embed .sobre:hover span{background:var(--papel);color:var(--tinta);
+                         box-shadow:inset 0 0 0 1px var(--tinta)}
 .embed:fullscreen{height:100%;margin:0;width:100%;border:0}
 .embed:fullscreen iframe{pointer-events:auto}
-.embed:fullscreen .sobre{inset:auto 0 0 auto;padding:16px 18px;cursor:default}
+.embed:fullscreen .sobre{inset:auto 0 0 auto;padding:18px 20px;cursor:default}
 .embed.plena{position:fixed;inset:0;z-index:95;height:100%;width:100%;margin:0;border:0}
 .embed.plena iframe{pointer-events:auto}
-.embed .cerrar{position:absolute;top:14px;right:16px;display:none;background:var(--campo);
-               color:var(--sobrecampo);border:0;font-family:inherit;font-size:11px;padding:6px 10px;
+.embed .cerrar{position:absolute;top:16px;right:18px;display:none;background:var(--tinta);
+               color:var(--papel);border:0;font-family:"Mono",monospace;font-size:10.5px;
+               letter-spacing:.11em;text-transform:uppercase;padding:7px 11px;
                cursor:pointer;z-index:2}
 .embed:fullscreen .cerrar,.embed.plena .cerrar{display:block}
 .embed:fullscreen .sobre span,.embed.plena .sobre span{display:none}
 
 /* ---- visor tamano real ---- */
-.visor{position:fixed;inset:0;z-index:90;background:rgba(255,255,255,.98);
-       display:none;overflow:auto;cursor:zoom-out;padding:44px 0}
+.visor{position:fixed;inset:0;z-index:90;background:rgba(13,12,11,.985);
+       display:none;overflow:auto;cursor:zoom-out;padding:52px 0}
 .visor.on{display:block}
-.visor img{display:block;margin:0 auto;max-width:none}
-.visor .x{position:fixed;top:12px;right:16px;font-size:11.5px;color:var(--soft);
-          background:#fff;border:1px solid var(--linea);padding:5px 10px;cursor:pointer}
-footer{max-width:var(--col);margin:0 auto;padding:40px clamp(16px,4vw,40px) 80px;
-       font-size:11px;color:var(--soft);border-top:1px solid var(--linea)}
-@media (max-width:640px){body{font-size:12.5px}.piezas{gap:26px}}
+.visor img{margin:0 auto;max-width:none}
+.visor .x{position:fixed;top:14px;right:18px;font-family:"Mono",monospace;font-size:10.5px;
+          letter-spacing:.11em;text-transform:uppercase;color:var(--suave);
+          background:#151311;border:1px solid var(--linea);padding:7px 11px;cursor:pointer}
+
+footer{max-width:var(--col);margin:0 auto;padding:clamp(34px,5vw,56px) var(--gut) clamp(70px,9vw,110px);
+       border-top:1px solid var(--linea);text-transform:none;letter-spacing:.05em}
+@media (max-width:640px){body{font-size:15px}}
 </style>
 </head>
 <body>
@@ -150,24 +163,24 @@ footer{max-width:var(--col);margin:0 auto;padding:40px clamp(16px,4vw,40px) 80px
   <div class="datos">CLÍNICA DE DISEÑO · INSTITUTO PROA<br>SEPTIEMBRE 2026</div>
 </div>
 
-<nav><div class="in"><span class="yo">Maia Cheb Terrab</span><a href="#infancia"><span class="hash">##</span> Infancia</a><a href="#salto-de-fe"><span class="hash">##</span> Salto de Fe</a><a href="#manela"><span class="hash">##</span> Manela</a><a href="#espacios"><span class="hash">##</span> Espacios</a><a href="#medios"><span class="hash">##</span> Medios públicos</a></div></nav>
+<nav><div class="in"><span class="yo">Maia Cheb Terrab</span><a href="#bestiario"><span class="hash">##</span> Bestiario</a><a href="#salto-de-fe"><span class="hash">##</span> Salto de Fe</a><a href="#manela"><span class="hash">##</span> Manela</a><a href="#espacios"><span class="hash">##</span> Espacios</a><a href="#medios"><span class="hash">##</span> Medios públicos</a></div></nav>
 
 <main>
-<section id="infancia">
+<section id="bestiario">
   <header class="sec">
-    <h2><span class="hash">##</span> Infancia</h2>
+    <h2><span class="hash">##</span> Bestiario</h2>
     <div class="meta">@ Creadores de Imágenes, Julia Sbriller  ·  [2026]</div>
     <p class="bajada">Proyecto realizado en el marco de Creadores de Imágenes. Parte de los dibujos y la letra de mi infancia para llevarlos a otros universos: reformular hoy, con otras técnicas, lo que dibujé de chica.</p>
     <div class="cuenta-sec">13 piezas</div>
   </header>
-  <h3><span class="barra">/</span> Los dibujos y sus imágenes</h3><div class="pares"><div class="par-obra">
-      <div class="fuente"><button class="lupa" data-src="assets/00a-dibujos/04.jpg?v=7a4fe6d5" data-w="1600" data-h="941"><img src="assets/00a-dibujos/04.jpg?v=7a4fe6d5" width="1600" height="941" loading="lazy" decoding="async" alt=""></button><span class="epi">Casa</span></div>
+  <h3><span class="barra">/</span> Inspiración y recreación</h3><div class="pares"><div class="par-obra">
+      <div class="fuente"><button class="lupa" data-src="assets/00a-dibujos/04.jpg?v=7a4fe6d5" data-w="1600" data-h="941"><img src="assets/00a-dibujos/04.jpg?v=7a4fe6d5" width="1600" height="941" loading="lazy" decoding="async" alt=""></button></div>
       <div class="obra"><button class="lupa" data-src="assets/00d-imagenes/01.jpg?v=d4c7d10d" data-w="2400" data-h="1345"><img src="assets/00d-imagenes/01.jpg?v=d4c7d10d" width="2400" height="1345" loading="lazy" decoding="async" alt=""></button></div>
     </div><div class="par-obra">
-      <div class="fuente"><button class="lupa" data-src="assets/00a-dibujos/02.jpg?v=04dffa4e" data-w="1600" data-h="994"><img src="assets/00a-dibujos/02.jpg?v=04dffa4e" width="1600" height="994" loading="lazy" decoding="async" alt=""></button><span class="epi">Maia</span></div>
+      <div class="fuente"><button class="lupa" data-src="assets/00a-dibujos/02.jpg?v=04dffa4e" data-w="1600" data-h="994"><img src="assets/00a-dibujos/02.jpg?v=04dffa4e" width="1600" height="994" loading="lazy" decoding="async" alt=""></button></div>
       <div class="obra"><button class="lupa" data-src="assets/00d-imagenes/02.jpg?v=e618c39a" data-w="2400" data-h="1345"><img src="assets/00d-imagenes/02.jpg?v=e618c39a" width="2400" height="1345" loading="lazy" decoding="async" alt=""></button></div>
     </div><div class="par-obra">
-      <div class="fuente"><button class="lupa" data-src="assets/00a-dibujos/05.jpg?v=ae72088b" data-w="1600" data-h="1108"><img src="assets/00a-dibujos/05.jpg?v=ae72088b" width="1600" height="1108" loading="lazy" decoding="async" alt=""></button><span class="epi">La familia uniida de un hilo</span></div>
+      <div class="fuente"><button class="lupa" data-src="assets/00a-dibujos/05.jpg?v=ae72088b" data-w="1600" data-h="1108"><img src="assets/00a-dibujos/05.jpg?v=ae72088b" width="1600" height="1108" loading="lazy" decoding="async" alt=""></button></div>
       <div class="obra"><button class="lupa" data-src="assets/00d-imagenes/03.jpg?v=070ac040" data-w="2400" data-h="1345"><img src="assets/00d-imagenes/03.jpg?v=070ac040" width="2400" height="1345" loading="lazy" decoding="async" alt=""></button></div>
     </div></div><h3><span class="barra">/</span> Alfabeto</h3><div class="piezas"><figure class="pieza" data-pieza="00b-alfabeto/01" data-px="2400×1350"><button class="lupa" data-src="assets/00b-alfabeto/01.jpg?v=05888132" data-w="2400" data-h="1350" aria-label="Ver la pieza 01 en grande"><img src="assets/00b-alfabeto/01.jpg?v=05888132" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00b-alfabeto/02" data-px="2400×1697"><button class="lupa" data-src="assets/00b-alfabeto/02.jpg?v=332d3302" data-w="2400" data-h="1697" aria-label="Ver la pieza 02 en grande"><img src="assets/00b-alfabeto/02.jpg?v=332d3302" width="2400" height="1697" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00b-alfabeto/03" data-px="2400×2010"><button class="lupa" data-src="assets/00b-alfabeto/03.jpg?v=226f5163" data-w="2400" data-h="2010" aria-label="Ver la pieza 03 en grande"><img src="assets/00b-alfabeto/03.jpg?v=226f5163" width="2400" height="2010" loading="lazy" decoding="async" alt=""></button></figure></div><h3><span class="barra">/</span> Otros dibujos</h3><div class="grilla"><figure><button class="lupa" data-src="assets/00a-dibujos/01.jpg?v=daf109b3" data-w="1600" data-h="1387"><img src="assets/00a-dibujos/01.jpg?v=daf109b3" width="1600" height="1387" loading="lazy" decoding="async" alt=""></button><figcaption>Mamá</figcaption></figure><figure><button class="lupa" data-src="assets/00a-dibujos/03.jpg?v=7a1ea42c" data-w="1360" data-h="1600"><img src="assets/00a-dibujos/03.jpg?v=7a1ea42c" width="1360" height="1600" loading="lazy" decoding="async" alt=""></button><figcaption>Amor</figcaption></figure><figure><button class="lupa" data-src="assets/00a-dibujos/06.jpg?v=a391d1fd" data-w="1600" data-h="1416"><img src="assets/00a-dibujos/06.jpg?v=a391d1fd" width="1600" height="1416" loading="lazy" decoding="async" alt=""></button><figcaption>caos</figcaption></figure><figure><button class="lupa" data-src="assets/00a-dibujos/07.jpg?v=6df3753a" data-w="1187" data-h="1600"><img src="assets/00a-dibujos/07.jpg?v=6df3753a" width="1187" height="1600" loading="lazy" decoding="async" alt=""></button><figcaption>Muerte</figcaption></figure></div>
 </section>
