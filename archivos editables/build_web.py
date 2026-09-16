@@ -22,25 +22,28 @@ for v in by.values(): v.sort(key=lambda a: int(a["idx"]))
 
 # id, titulo, meta (None = pendiente), bajada (None = pendiente), proyectos
 SECCIONES = [
- {"grupo": "visuales", "id": "bestiario", "num": "01", "titulo": "Bestiario", "nav": "Bestiario",
-  "meta": "@ Creadores de Imágenes, Julia Sbriller  ·  [2026]",
-  "bajada": "Proyecto realizado en el marco de Creadores de Imágenes. Parte de los dibujos "
-            "y la letra de mi infancia para llevarlos a otros universos: reformular hoy, con "
-            "otras técnicas, lo que dibujé de chica.",
-  "proyectos": [("@pares",       "Recreación de los dibujos", None),
-                ("00b-alfabeto", "Alfabeto",                   None)]},
- {"grupo": "visuales", "id": "salto-de-fe", "num": "02", "titulo": "Salto de Fe", "nav": "Salto de Fe",
-  "meta": "@ maiucheb-oss.github.io/salto-de-fe  ·  [2025]",
-  "bajada": "Recopilación de fotografías propias sacadas en lo cotidiano. El nombre viene "
-            "de algo que me pasa: encuentro mensajes en lo que me rodea. Quise darles una "
-            "forma: en lo digital, esta página web; en lo material, un acordeón de fotos "
-            "impreso como pieza editorial.",
+ {"grupo": "visuales", "id": "bestiario", "num": "01", "titulo": "Bestiario",
+  "nav": "Bestiario",
+  "meta": "@ Destructores de Imágenes  ·  [2026]",
+  "bajada": "Proyecto realizado en el marco de Destructores de Imágenes. Partiendo de los "
+            "dibujos y la caligrafía de mi infancia con la idea de llevarlos a otros "
+            "universos: reformular hoy, con otras técnicas, lo que dibujé de chica.",
+  "proyectos": [("@pares",       "Imágenes", None),
+                ("00b-alfabeto", "Alfabeto", None)]},
+ {"grupo": "visuales", "id": "salto-de-fe", "num": "02", "titulo": "Salto de Fe",
+  "nav": "Salto de Fe",
+  "meta": "@ Creadores de Imágenes  ·  [2026]",
+  "bajada": "Proyecto creado en el marco del taller Creadores de Imágenes, a cargo de Julia "
+            "Sbriller. Recopilación de fotografías propias sacadas en lo cotidiano. El nombre "
+            "viene de algo que me sucede recurrentemente, el encuentro de mensajes oraculares "
+            "en lo que me rodea.",
   "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
   "proyectos": [("@embed", None, None)]},
  {"grupo": "editoriales", "id": "fasciculos", "num": "03", "titulo": "Fascículos coleccionables", "nav": "Fascículos",
   "meta": "@ Cátedra Ex-Manela, FADU  ·  [2023]",
-  "bajada": "Colección de fascículos a partir de columnas y ensayos de Leila Guerriero, "
-            "María Moreno y Juan Forn.",
+  "bajada": "Colección de fascículos coleccionables a partir de columnas y ensayos de "
+            "Leila Guerriero, "
+"María Moreno y Juan Forn.",
   "proyectos": [("02-fasciculos-coleccionables", None, None)]},
  {"grupo": "editoriales", "id": "libros", "num": "04", "titulo": "Colección de libros", "nav": "Colección de libros",
   "meta": "@ Cátedra Ex-Manela, FADU  ·  [2024]",
@@ -50,16 +53,17 @@ SECCIONES = [
   "meta": "@ Cátedra Ex-Manela, FADU  ·  [2023]",
   "bajada": "Plaquette a partir de un fragmento de <i>Pensar/Clasificar</i>, de Georges Perec.",
   "proyectos": [("06-plaquette-perec", None, None)]},
- {"grupo": "identidad", "id": "espacios", "num": "06", "titulo": "Espacios", "nav": "Espacios",
-  "meta": "@ MACBA  ·  [2021]",
+ {"grupo": "identidad", "id": "espacios", "num": "06", "titulo": "Especies de Espacios",
+  "nav": "Especies de Espacios",
+  "meta": "@ Tipografía, FADU  ·  [2021]",
   "bajada": "Identidad para una exposición de arte: sistema visual, piezas de comunicación "
             "y su aplicación en el espacio.",
   "proyectos": [("04-identidad-exposicion-arte", "Identidad para una exposición de arte", None)]},
- {"grupo": "identidad", "id": "medios", "num": "07", "titulo": "Televisión Pública",
-  "nav": "Televisión Pública",
-  "meta": "@ Cátedra Salomone, FADU  ·  [2023]",
-  "bajada": "Rediseño de identidad para la Televisión Pública. Proyecto realizado en la "
-            "FADU-UBA, en el marco de la materia de diseño, cátedra Salomone.",
+ {"grupo": "identidad", "id": "medios", "num": "07",
+  "titulo": "Diseño estratégico en medios públicos", "nav": "Medios públicos",
+  "meta": "@ Diseño Gráfico, FADU  ·  [2023]",
+  "bajada": "Estrategia de comunicación e identidad digital para TV Pública y Radio Nacional: "
+            "teaser, campaña, piezas institucionales y sistema para redes.",
   "proyectos": [("01-medios-publicos", None, None)]},
 ]
 
@@ -337,8 +341,10 @@ h3 .barra{flex:none}
           letter-spacing:.11em;text-transform:uppercase;color:var(--suave);
           background:#151311;border:1px solid var(--linea);padding:7px 11px;cursor:pointer}
 
-footer{max-width:var(--col);margin:0 auto;padding:clamp(34px,5vw,56px) var(--gut) clamp(70px,9vw,110px);
+footer{max-width:var(--col);margin:0 auto;padding:clamp(40px,5.4vw,64px) var(--gut) clamp(74px,9vw,116px);
        border-top:1px solid var(--linea);text-transform:none;letter-spacing:.05em}
+.pie-yo{color:var(--tinta)}
+.pie-dat{display:flex;flex-wrap:wrap;gap:4px 28px;margin-top:8px}
 @media (max-width:640px){body{font-size:12.5px}}
 """
 
@@ -474,7 +480,10 @@ doc = f"""<!doctype html>
 
 <main>{''.join(bloques)}</main>
 
-<footer>Clic en cualquier pieza para abrirla en tamaño completo.</footer>
+<footer>
+  <div class="pie-yo">Maia Cheb Terrab · Diseñadora gráfica (FADU-UBA) · Buenos Aires</div>
+  <div class="pie-dat"><span>maiucheb@gmail.com</span><span>+54 11 6946-3209</span></div>
+</footer>
 
 <div class="visor"><button class="x">cerrar ✕</button><img alt=""></div>
 <script>{JS}</script>
