@@ -27,11 +27,6 @@ SECCIONES = [
             "Las fotos se recorren de corrido, como una sola imagen que avanza.",
   "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
   "proyectos": []},
- {"id": "paradigma", "num": "01", "titulo": "Paradigma", "nav": "Paradigma", "meta": "@ PARADIGMA  ·  [2024 — 2026]",
-  "bajada": "Diseño gráfico y motion para la identidad digital de productoras audiovisuales "
-            "como Landia, Isla, Immigrant y Stink México. Adaptación de sistemas visuales a "
-            "web y redes, con foco en el craft: tipografía, color y detalle.",
-  "proyectos": []},
  {"id": "manela", "num": "02", "titulo": "Cátedra de Diseño Editorial Manela", "nav": "Manela",
   "meta": "@ FADU, UBA  ·  [2023]",
   "bajada": "Trabajos de diseño editorial para la cátedra: una colección de fascículos, "

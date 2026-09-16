@@ -594,17 +594,6 @@
   "oh": 13391
  },
  {
-  "proj": "00b-alfabeto",
-  "idx": "01",
-  "gif": false,
-  "src": "assets/00b-alfabeto/01.jpg",
-  "w": 2400,
-  "h": 1697,
-  "kb": 201,
-  "ow": 2400,
-  "oh": 1697
- },
- {
   "proj": "00d-imagenes",
   "idx": "01",
   "gif": false,
@@ -720,5 +709,38 @@
   "ow": 1187,
   "oh": 1600,
   "cap": "Muerte"
+ },
+ {
+  "proj": "00b-alfabeto",
+  "idx": "01",
+  "gif": false,
+  "src": "assets/00b-alfabeto/01.jpg",
+  "w": 2400,
+  "h": 1350,
+  "kb": 159,
+  "ow": 2400,
+  "oh": 1350
+ },
+ {
+  "proj": "00b-alfabeto",
+  "idx": "02",
+  "gif": false,
+  "src": "assets/00b-alfabeto/02.jpg",
+  "w": 2400,
+  "h": 1697,
+  "kb": 218,
+  "ow": 2400,
+  "oh": 1697
+ },
+ {
+  "proj": "00b-alfabeto",
+  "idx": "03",
+  "gif": false,
+  "src": "assets/00b-alfabeto/03.jpg",
+  "w": 2400,
+  "h": 1350,
+  "kb": 188,
+  "ow": 2400,
+  "oh": 1350
  }
 ]
