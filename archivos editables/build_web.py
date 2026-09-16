@@ -55,10 +55,11 @@ SECCIONES = [
   "bajada": "Identidad para una exposición de arte: sistema visual, piezas de comunicación "
             "y su aplicación en el espacio.",
   "proyectos": [("04-identidad-exposicion-arte", "Identidad para una exposición de arte", None)]},
- {"grupo": "identidad", "id": "medios", "num": "07", "titulo": "Diseño estratégico en medios públicos", "nav": "Medios públicos",
-  "meta": None,
-  "bajada": "Estrategia de comunicación e identidad digital para TV Pública y Radio Nacional: "
-            "teaser, campaña, piezas institucionales y sistema para redes.",
+ {"grupo": "identidad", "id": "medios", "num": "07", "titulo": "Televisión Pública",
+  "nav": "Televisión Pública",
+  "meta": "@ Cátedra Salomone, FADU  ·  [2023]",
+  "bajada": "Rediseño de identidad para la Televisión Pública. Proyecto realizado en la "
+            "FADU-UBA, en el marco de la materia de diseño, cátedra Salomone.",
   "proyectos": [("01-medios-publicos", None, None)]},
 ]
 
