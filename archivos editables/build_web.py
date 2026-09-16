@@ -6,8 +6,10 @@ la tapa, las bandas y los avisos; si más adelante entra un color, se cambia ah�
 """
 import hashlib, json, pathlib, html, sys
 
-CLARA  = "claro" in sys.argv[1:]
-SALIDA = "index-claro.html" if CLARA else "index.html"
+CLARA = "claro" in sys.argv[1:]
+SANS  = "sans" in sys.argv[1:]
+SALIDA = ("index-sans.html" if SANS else
+          "index-claro.html" if CLARA else "index.html")
 
 AQUI = pathlib.Path(__file__).resolve().parent
 WEB  = AQUI.parent
@@ -179,19 +181,15 @@ for s in SECCIONES:
 CSS = """
 @font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Regular.ttf");font-weight:400;font-display:swap}
 @font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Medium.ttf");font-weight:500;font-display:swap}
-@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-Light.otf");font-weight:300;font-display:swap}
-@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-Regular.otf");font-weight:400;font-display:swap}
-@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-RegularItalic.otf");font-weight:400;font-style:italic;font-display:swap}
-
-/* Saol Text para leer y para los titulos; Geist Mono solo para datos y etiquetas,
-   como en el CV. El negro es la base; --papel concentra el fondo. */
+/* Todo en Geist Mono, como el CV. La jerarquia la dan cuerpo, tracking y caja,
+   no un cambio de familia. El negro es la base; --papel concentra el fondo. */
 :root{--papel:#0d0c0b;--tinta:#ece8e1;--suave:#8d867e;--linea:#262320;
-      --col:1180px;--medida:58ch;--gut:clamp(18px,4.2vw,44px)}
+      --col:1180px;--medida:66ch;--gut:clamp(18px,4.2vw,44px)}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{background:var(--papel);color:var(--tinta);
-     font-family:"Saol",Georgia,serif;font-size:16px;line-height:1.6;
-     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+     font-family:"Mono",ui-monospace,monospace;font-size:13px;line-height:1.72;
+     -webkit-font-smoothing:antialiased}
 a{color:inherit}
 img{display:block}
 
@@ -203,9 +201,9 @@ img{display:block}
 /* ---- caratula ---- */
 .tapa{min-height:100vh;padding:clamp(26px,5vw,74px) var(--gut);display:flex;
       flex-direction:column;justify-content:space-between}
-.tapa h1{font-weight:300;font-size:clamp(52px,12.5vw,170px);line-height:.92;
-         letter-spacing:-.022em}
-.tapa .qué{font-size:clamp(16px,1.55vw,20px);line-height:1.5;max-width:44ch;
+.tapa h1{font-weight:700;font-size:clamp(32px,7.6vw,94px);line-height:1.02;
+         letter-spacing:.02em;text-transform:uppercase}
+.tapa .qué{font-size:clamp(13px,1.45vw,16px);line-height:1.66;max-width:54ch;
            margin-top:clamp(22px,3.4vw,42px);color:rgba(236,232,225,.84)}
 .tapa .regla{border:0;border-top:1px solid var(--linea);margin:clamp(24px,3.6vw,42px) 0}
 .tapa .pie{display:flex;flex-wrap:wrap;gap:4px 30px;text-transform:none;letter-spacing:.05em}
@@ -227,21 +225,20 @@ main{max-width:var(--col);margin:0 auto;padding:0 var(--gut)}
 section{padding:clamp(72px,11vw,152px) 0}
 section+section{border-top:1px solid var(--linea)}
 .sec{margin-bottom:clamp(34px,5.4vw,68px)}
-h2{font-weight:300;font-size:clamp(32px,5.6vw,66px);line-height:1.03;letter-spacing:-.018em}
-h2 .hash{display:block;font-family:"Mono",monospace;font-size:10.5px;letter-spacing:.13em;
-         color:var(--suave);margin-bottom:clamp(12px,1.6vw,20px);font-weight:400}
+h2{font-weight:700;font-size:clamp(18px,2.8vw,30px);line-height:1.22;
+   letter-spacing:.015em;text-transform:uppercase}
+h2 .hash{color:var(--suave);font-weight:400}
 .meta{margin-top:clamp(14px,1.8vw,22px)}
 .bajada{max-width:var(--medida);margin-top:clamp(18px,2.4vw,30px);
-        font-size:clamp(15px,1.3vw,17.5px);line-height:1.62;color:rgba(236,232,225,.82)}
-.bajada i{font-style:italic}
+        font-size:13px;line-height:1.72;color:rgba(236,232,225,.82)}
 .cuenta-sec{margin-top:clamp(20px,2.6vw,30px);display:inline-block}
 
 /* separador de proyecto: un filete a todo el ancho y el nombre en serif */
 h3{margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50% + var(--gut));
    margin-block:clamp(58px,8vw,108px) clamp(22px,3vw,36px);
    padding-top:clamp(14px,1.8vw,20px);border-top:1px solid var(--linea);
-   font-weight:400;font-size:clamp(17px,2vw,25px);letter-spacing:-.008em;
-   display:flex;align-items:baseline;gap:14px}
+   font-weight:700;font-size:clamp(13px,1.6vw,17px);letter-spacing:.05em;
+   text-transform:uppercase;display:flex;align-items:baseline;gap:13px}
 h3 .barra{flex:none}
 .vacio{margin-top:clamp(34px,5vw,54px);text-transform:none;letter-spacing:.05em}
 .falta{background:var(--tinta);color:var(--papel);padding:1px 7px;letter-spacing:.06em}
@@ -314,7 +311,31 @@ h3 .barra{flex:none}
 
 footer{max-width:var(--col);margin:0 auto;padding:clamp(34px,5vw,56px) var(--gut) clamp(70px,9vw,110px);
        border-top:1px solid var(--linea);text-transform:none;letter-spacing:.05em}
-@media (max-width:640px){body{font-size:15px}}
+@media (max-width:640px){body{font-size:12.5px}}
+"""
+
+GFONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
+          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2'
+          '?family=Geist:wght@300;400;500;700&display=swap">')
+
+SANS_CSS = """
+/* ---- Geist Sans para leer y titular; la Mono queda para datos y etiquetas ---- */
+body{font-family:"Geist","Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.62;
+     letter-spacing:.002em}
+.tapa h1{font-family:"Geist",sans-serif;font-weight:500;font-size:clamp(40px,9.6vw,124px);
+         line-height:.98;letter-spacing:-.025em;text-transform:none}
+.tapa .qué{font-size:clamp(15px,1.5vw,19px);line-height:1.5;max-width:46ch}
+h2{font-family:"Geist",sans-serif;font-weight:500;font-size:clamp(24px,4vw,44px);
+   line-height:1.08;letter-spacing:-.021em;text-transform:none}
+h2 .hash{display:block;font-family:"Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+         color:var(--suave);margin-bottom:clamp(10px,1.4vw,18px);font-weight:400}
+.bajada{font-family:"Geist",sans-serif;font-size:clamp(14.5px,1.25vw,16.5px);
+        line-height:1.58;max-width:60ch}
+h3{font-family:"Geist",sans-serif;font-weight:500;font-size:clamp(15px,1.8vw,21px);
+   letter-spacing:-.012em;text-transform:none}
+h3 .barra{font-family:"Mono",monospace;font-size:10.5px;letter-spacing:.13em}
+.grilla figcaption{font-family:"Geist",sans-serif;font-size:12px;letter-spacing:0}
 """
 
 CLARO = """
@@ -385,9 +406,9 @@ doc = f"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
+<meta name="robots" content="noindex,nofollow">{GFONTS if SANS else ""}
 <title>Maia Cheb Terrab — Portfolio</title>
-<style>{CSS}{CLARO if CLARA else ""}</style>
+<style>{CSS}{CLARO if CLARA else ""}{SANS_CSS if SANS else ""}</style>
 </head>
 <body>
 
