@@ -28,8 +28,7 @@ SECCIONES = [
             "y la letra de mi infancia para llevarlos a otros universos: reformular hoy, con "
             "otras técnicas, lo que dibujé de chica.",
   "proyectos": [("@pares",       "Inspiración y recreación",   None),
-                ("00b-alfabeto", "Alfabeto",                   None),
-                ("@resto",       "Otros dibujos",              None)]},
+                ("00b-alfabeto", "Alfabeto",                   None)]},
  {"id": "salto-de-fe", "num": "01", "titulo": "Salto de Fe", "nav": "Salto de Fe",
   "meta": "@ maiucheb-oss.github.io/salto-de-fe  ·  [2025]",
   "bajada": "Colección de imágenes de señales encontradas en lo cotidiano. "
@@ -72,11 +71,6 @@ PARES = [
     ("assets/00a-dibujos/02.jpg", "assets/00d-imagenes/02.jpg", "Maia"),
     ("assets/00a-dibujos/05.jpg", "assets/00d-imagenes/03.jpg", "La familia uniida de un hilo"),
 ]
-# los dibujos que todavía no tienen imagen
-RESTO = ["assets/00a-dibujos/01.jpg", "assets/00a-dibujos/03.jpg",
-         "assets/00a-dibujos/06.jpg", "assets/00a-dibujos/07.jpg"]
-
-
 def ficha(src):
     for a in assets:
         if a["src"] == src:
@@ -93,22 +87,14 @@ def lupa(a, extra=""):
 
 def pares():
     out = []
-    for src_dib, src_img, epi in PARES:
+    for n, (src_dib, src_img, epi) in enumerate(PARES, 1):
         d, i = ficha(src_dib), ficha(src_img)
-        out.append(f"""<div class="par-obra">
-      <div class="fuente">{lupa(d)}</div>
+        out.append(f"""<div class="par-obra p{n}">
       <div class="obra">{lupa(i)}</div>
+      <div class="fuente">{lupa(d)}</div>
     </div>""")
     return f'<div class="pares">{"".join(out)}</div>'
 
-
-def resto():
-    celdas = []
-    for src in RESTO:
-        a = ficha(src)
-        celdas.append(f'<figure>{lupa(a)}'
-                      f'<figcaption>{html.escape(a.get("cap", ""))}</figcaption></figure>')
-    return f'<div class="grilla">{"".join(celdas)}</div>'
 
 
 
@@ -142,7 +128,6 @@ bloques, nav = [], []
 for s in SECCIONES:
     nav.append(f'<a href="#{s["id"]}"><span class="hash">##</span> {html.escape(s["nav"])}</a>')
     n = sum(len(PARES) * 2 if p[0] == "@pares" else
-            len(RESTO) if p[0] == "@resto" else
             len(by.get(p[0], [])) for p in s["proyectos"])
     cuerpo = []
     for slug, sub, baj in s["proyectos"]:
@@ -150,8 +135,6 @@ for s in SECCIONES:
             cuerpo.append(f'<h3><span class="barra">/</span> {html.escape(sub)}</h3>')
         if slug == "@pares":
             cuerpo.append(pares())
-        elif slug == "@resto":
-            cuerpo.append(resto())
         elif slug in GRILLA:
             cuerpo.append(grilla(slug))
         else:
@@ -249,23 +232,36 @@ h3 .barra{flex:none}
 /* ---- piezas: proporcion real, pegadas, un proyecto = una sabana ---- */
 .piezas{display:flex;flex-direction:column;gap:0}
 .pieza{display:block}
-.lupa{padding:0;border:0;background:#151311;cursor:zoom-in;display:block;line-height:0}
+/* width:100% es necesario: un <button> se ajusta al contenido aunque sea
+   display:block, y las piezas mas chicas que la columna no la llenaban */
+.lupa{padding:0;border:0;background:#151311;cursor:zoom-in;display:block;
+      width:100%;line-height:0}
 .lupa img{width:100%;height:auto}
 .lupa img{margin:0;vertical-align:top}
 
-/* ---- pares: la inspiracion al lado de la recreacion, alternando el lado ---- */
-.pares{display:flex;flex-direction:column;gap:clamp(54px,8vw,112px)}
-.par-obra{display:grid;grid-template-columns:clamp(88px,12.5%,148px) 1fr;
-          gap:clamp(18px,2.8vw,40px);align-items:center}
-.par-obra:nth-child(even){grid-template-columns:1fr clamp(88px,12.5%,148px)}
-.par-obra:nth-child(even) .fuente{order:2}
-.par-obra:nth-child(even) .obra{order:1}
-.fuente .lupa{background:none}
+/* ---- pares: el dibujo original apoyado sobre la recreacion.
+       Cada par lo ubica distinto, para que no se lea como una ficha repetida. ---- */
+.pares{display:flex;flex-direction:column;gap:clamp(46px,7vw,104px)}
+.par-obra{position:relative}
 .obra .lupa{background:#151311}
+.fuente{position:absolute;z-index:2;width:clamp(86px,12.5%,164px)}
+.fuente .lupa{background:none;box-shadow:0 10px 30px rgba(0,0,0,.55)}
+
+/* 1 · colgando del borde de abajo, corrida a la izquierda */
+.par-obra.p1{padding-bottom:clamp(30px,5.2vw,86px)}
+.par-obra.p1 .fuente{left:5%;bottom:0;transform:rotate(-2.5deg)}
+/* 2 · asomando por arriba, hacia el centro */
+.par-obra.p2{padding-top:clamp(26px,4.4vw,74px)}
+.par-obra.p2 .fuente{left:42%;top:0;transform:rotate(1.8deg)}
+/* 3 · colgando abajo a la derecha */
+.par-obra.p3{padding-bottom:clamp(30px,5.2vw,86px)}
+.par-obra.p3 .fuente{right:6%;bottom:0;transform:rotate(3deg)}
+
 @media (max-width:640px){
-  .par-obra,.par-obra:nth-child(even){grid-template-columns:1fr;gap:14px}
-  .par-obra:nth-child(even) .fuente,.par-obra:nth-child(even) .obra{order:0}
-  .fuente{max-width:96px}
+  .par-obra,.par-obra.p1,.par-obra.p2,.par-obra.p3{padding:0}
+  .fuente,.par-obra.p1 .fuente,.par-obra.p2 .fuente,.par-obra.p3 .fuente{
+    position:static;width:92px;margin-top:12px;transform:none}
+  .fuente .lupa{box-shadow:none}
 }
 
 /* ---- grilla de dibujos ---- */
