@@ -27,21 +27,28 @@ SECCIONES = [
   "bajada": "Proyecto realizado en el marco de Creadores de Imágenes. Parte de los dibujos "
             "y la letra de mi infancia para llevarlos a otros universos: reformular hoy, con "
             "otras técnicas, lo que dibujé de chica.",
-  "proyectos": [("@pares",       "Inspiración y recreación",   None),
+  "proyectos": [("@pares",       None,                         None),
                 ("00b-alfabeto", "Alfabeto",                   None)]},
- {"id": "salto-de-fe", "num": "01", "titulo": "Salto de Fe", "nav": "Salto de Fe",
+ {"id": "salto-de-fe", "num": "02", "titulo": "Salto de Fe", "nav": "Salto de Fe",
   "meta": "@ maiucheb-oss.github.io/salto-de-fe  ·  [2025]",
-  "bajada": "Colección de imágenes de señales encontradas en lo cotidiano. "
-            "Las fotos se recorren de corrido, como una sola imagen que avanza.",
+  "bajada": "Recopilación de fotografías propias sacadas en lo cotidiano. El nombre viene "
+            "de algo que me pasa: encuentro mensajes en lo que me rodea. Quise darles una "
+            "forma. En lo digital es una página web; en lo material, un acordeón de fotos.",
   "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
   "proyectos": []},
- {"id": "manela", "num": "02", "titulo": "Cátedra de Diseño Editorial Manela", "nav": "Manela",
-  "meta": "@ FADU, UBA  ·  [2023]",
-  "bajada": "Trabajos de diseño editorial para la cátedra: una colección de fascículos, "
-            "una colección de libros y una plaquette sobre Georges Perec.",
-  "proyectos": [("02-fasciculos-coleccionables", "Fascículos coleccionables", None),
-                ("05-coleccion-de-libros",       "Colección de libros",       None),
-                ("06-plaquette-perec",           "Plaquette Georges Perec",   None)]},
+ {"id": "fasciculos", "num": "03", "titulo": "Fascículos coleccionables", "nav": "Fascículos",
+  "meta": "@ Cátedra Ex-Manela, FADU  ·  [2023]",
+  "bajada": "Colección de fascículos a partir de columnas y ensayos de Leila Guerriero, "
+            "María Moreno y Juan Forn.",
+  "proyectos": [("02-fasciculos-coleccionables", None, None)]},
+ {"id": "libros", "num": "04", "titulo": "Colección de libros", "nav": "Colección de libros",
+  "meta": "@ Cátedra Ex-Manela, FADU  ·  [2024]",
+  "bajada": "Colección de libros para las obras completas de Samanta Schweblin.",
+  "proyectos": [("05-coleccion-de-libros", None, None)]},
+ {"id": "perec", "num": "05", "titulo": "Plaquette Georges Perec", "nav": "Plaquette Perec",
+  "meta": "@ Cátedra Ex-Manela, FADU  ·  [2023]",
+  "bajada": "Plaquette a partir de un fragmento de <i>Pensar/Clasificar</i>, de Georges Perec.",
+  "proyectos": [("06-plaquette-perec", None, None)]},
  {"id": "espacios", "num": "03", "titulo": "Espacios", "nav": "Espacios",
   "meta": "@ MACBA  ·  [2021]",
   "bajada": "Identidad para una exposición de arte: sistema visual, piezas de comunicación "
@@ -71,24 +78,9 @@ PARES = [
     ("assets/00a-dibujos/02.jpg", "assets/00d-imagenes/02.jpg", "Naturaleza emocional"),
     ("assets/00a-dibujos/05.jpg", "assets/00d-imagenes/03.jpg", "Familia unida"),
 ]
-MEDIDAS = json.loads((WEB / "assets" / "letras" / "sizes.json").read_text())
-
-
 def rotulo(texto):
-    """El texto compuesto con las letras escaneadas. Van en blanco por CSS:
-    brightness(0) invert(1) deja el trazo blanco y respeta la transparencia,
-    asi que la forma y la textura del lapiz no se tocan."""
-    piezas = []
-    for ch in texto.upper():
-        if ch == " ":
-            piezas.append('<i class="esp"></i>')
-            continue
-        if ch not in MEDIDAS:
-            continue
-        w, h = MEDIDAS[ch]
-        piezas.append(f'<img src="{ver(f"assets/letras/{ch}.png")}" alt="" '
-                      f'style="width:calc(var(--alto) * {w / h:.3f})">')
-    return f'<div class="rotulo" aria-label="{html.escape(texto)}">{"".join(piezas)}</div>'
+    """El nombre de la pieza sobre la imagen, en la misma Mono que el resto."""
+    return f'<div class="rotulo">{html.escape(texto)}</div>'
 
 
 def ficha(src):
@@ -269,14 +261,11 @@ h3 .barra{flex:none}
 .fuente .lupa{background:#fff}
 
 /* rotulo en la letra propia, arriba a la izquierda, opuesto al dibujo */
-.rotulo{position:absolute;z-index:2;display:flex;align-items:flex-end;
-        gap:calc(var(--alto) * .12);
-        --alto:clamp(10px,1.12vw,15px);
+.rotulo{position:absolute;z-index:2;
         top:clamp(14px,2.2vw,34px);left:clamp(14px,2.2vw,34px);
-        max-width:62%;flex-wrap:wrap;row-gap:calc(var(--alto) * .42);
-        pointer-events:none}
-.rotulo img{height:var(--alto);display:block;filter:brightness(0) invert(1)}
-.rotulo .esp{width:calc(var(--alto) * .34)}
+        font-family:"Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+        text-transform:uppercase;color:#fff;max-width:60%;pointer-events:none;
+        text-shadow:0 1px 10px rgba(0,0,0,.6)}
 
 /* ---- grilla de dibujos ---- */
 .grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
@@ -381,13 +370,30 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); })
 const emb = document.querySelector('.embed');
 if (emb) {
   const f = emb.querySelector('iframe');
-  let salio = false;
+  const recargar = () => { f.src = f.src; };
+  let salio = false, enVista = false;
   new IntersectionObserver(es => es.forEach(e => {
+    enVista = e.isIntersecting;
     if (!e.isIntersecting) salio = true;
     else if (salio && !emb.classList.contains('plena') && !document.fullscreenElement) {
-      salio = false; f.src = f.src;
+      salio = false; recargar();
     }
   }), { threshold: 0.2 }).observe(emb);
+
+  // El acordeón recorre las fotos una vez y se detiene al final. Publicado en el
+  // mismo dominio podemos leer su scroll y reiniciarlo justo al terminar; desde
+  // otro origen no se puede leer, así que se recarga por tiempo.
+  let porTiempo = null;
+  setInterval(() => {
+    if (!enVista || emb.classList.contains('plena') || document.fullscreenElement) return;
+    try {
+      const v = f.contentWindow.document.querySelector('.viewport');
+      if (!v || !v.scrollWidth) return;
+      if (v.scrollLeft + v.offsetWidth >= v.scrollWidth - 4) recargar();
+    } catch (e) {
+      if (!porTiempo) porTiempo = setInterval(() => { if (enVista) recargar(); }, 210000);
+    }
+  }, 2000);
 
   // pantalla completa en el lugar: nunca se sale del portfolio
   const abrir = () => {
