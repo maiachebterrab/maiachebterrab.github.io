@@ -15,13 +15,12 @@ for v in by.values(): v.sort(key=lambda a: int(a["idx"]))
 SECCIONES = [
  {"id": "las-casas", "num": "01", "titulo": "Las casas no vuelan", "nav": "Las casas no vuelan",
   "meta": "@ proyecto propio  ·  [2026]",
-  "bajada": "Fanzine autobiográfico a partir de dibujos que hice en la infancia, "
-            "lápiz y crayón sobre papel. De esa misma letra salió <i>Maia</i>, un "
-            "alfabeto propio con el que están compuestos los títulos.",
-  "falta_piezas": ["Imágenes que parten de los dibujos"],
-  "proyectos": [("00a-dibujos",  "Dibujos de la infancia", None),
-                ("00b-alfabeto", "Alfabeto Maia",          None),
-                ("00c-fanzine",  "Fanzine",                None)]},
+  "bajada": "Dibujos que hice en la infancia, lápiz y crayón sobre papel. De esa "
+            "letra salió <i>Maia</i>, un alfabeto propio. Las imágenes son "
+            "representaciones de esos mismos dibujos llevadas a otras técnicas.",
+  "proyectos": [("00a-dibujos",   "Dibujos de la infancia", None),
+                ("00b-alfabeto",  "Alfabeto",               None),
+                ("00d-imagenes",  "Imágenes",               None)]},
  {"id": "salto-de-fe", "num": "01", "titulo": "Salto de Fe", "nav": "Salto de Fe",
   "meta": "@ maiucheb-oss.github.io/salto-de-fe", "fecha_falta": True,
   "bajada": "Colección de imágenes de señales encontradas en lo cotidiano. "
