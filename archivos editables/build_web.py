@@ -35,7 +35,8 @@ SECCIONES = [
             "de algo que me pasa: encuentro mensajes en lo que me rodea. Quise darles una "
             "forma. En lo digital es una página web; en lo material, un acordeón de fotos.",
   "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
-  "proyectos": []},
+  "proyectos": [("@embed",      "Página web", None),
+                ("07-acordeon", "Acordeón",   None)]},
  {"grupo": "editoriales", "id": "fasciculos", "num": "03", "titulo": "Fascículos coleccionables", "nav": "Fascículos",
   "meta": "@ Cátedra Ex-Manela, FADU  ·  [2023]",
   "bajada": "Colección de fascículos a partir de columnas y ensayos de Leila Guerriero, "
@@ -159,7 +160,14 @@ for s in SECCIONES:
     for slug, sub, baj in s["proyectos"]:
         if sub:
             cuerpo.append(f'<h3><span class="barra">/</span> {html.escape(sub)}</h3>')
-        if slug == "@pares":
+        if slug == "@embed":
+            cuerpo.append(f'''<div class="embed">
+      <iframe src="{s['embed']}" loading="lazy" title="{html.escape(s['titulo'])}"
+              scrolling="no" tabindex="-1"></iframe>
+      <button class="sobre" type="button"><span>ver a pantalla completa</span></button>
+      <button class="cerrar" type="button">salir ✕</button>
+    </div>''')
+        elif slug == "@pares":
             cuerpo.append(pares())
         elif slug in GRILLA:
             cuerpo.append(grilla(slug))
@@ -167,14 +175,7 @@ for s in SECCIONES:
             cuerpo.append(f'<div class="piezas">{piezas(slug)}</div>')
     for pend in s.get("falta_piezas", []):
         cuerpo.append(f'<p class="vacio">&gt; {PENDIENTE} {html.escape(pend)}</p>')
-    if s.get("embed"):
-        cuerpo.append(f'''<div class="embed">
-      <iframe src="{s['embed']}" loading="lazy" title="{html.escape(s['titulo'])}"
-              scrolling="no" tabindex="-1"></iframe>
-      <button class="sobre" type="button"><span>ver a pantalla completa</span></button>
-      <button class="cerrar" type="button">salir ✕</button>
-    </div>''')
-    elif not s["proyectos"]:
+    if not s["proyectos"]:
         cuerpo.append('<p class="vacio">&gt; Piezas por sumar.</p>')
     bloques.append(f"""
 <section id="{s['id']}">

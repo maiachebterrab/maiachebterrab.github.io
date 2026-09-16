@@ -4,9 +4,11 @@
 
 ## Material que falta de Maia
 
-- [ ] **Fotos del acordeón físico de Salto de Fe.** Es lo que cierra ese proyecto:
-      hoy la sección solo muestra la versión digital embebida. Dejarlas en una
-      carpeta y avisar.
+- [x] ~~Fotos del acordeón físico de Salto de Fe.~~ Entró una, recortada, en
+      `Salto de Fe/acordeon/`. **Mejorable**: está sobre una sábana arrugada y con
+      luz mezclada. Si se puede rehacer —fondo liso y oscuro, luz pareja, más de
+      un ángulo— la sección gana bastante. `sumar_acordeon.py` toma lo que haya
+      en esa carpeta.
 - [ ] **Medios públicos: comitente, año y rol.** Es la única marca `[ falta ]`
       que queda en la web. Importa el rol: en Behance el proyecto figura como
       *Multiple Owners* y es el único donde la autoría no queda clara.

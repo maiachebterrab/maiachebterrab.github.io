@@ -742,5 +742,16 @@
   "kb": 286,
   "ow": 2400,
   "oh": 2010
+ },
+ {
+  "proj": "07-acordeon",
+  "idx": "01",
+  "gif": false,
+  "src": "assets/07-acordeon/01.jpg",
+  "w": 2400,
+  "h": 1242,
+  "kb": 792,
+  "ow": 2400,
+  "oh": 1242
  }
 ]
