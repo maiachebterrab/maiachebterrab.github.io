@@ -594,17 +594,6 @@
   "oh": 13391
  },
  {
-  "proj": "00a-dibujos",
-  "idx": "01",
-  "gif": false,
-  "src": "assets/00a-dibujos/01.jpg",
-  "w": 1697,
-  "h": 2400,
-  "kb": 538,
-  "ow": 1697,
-  "oh": 2400
- },
- {
   "proj": "00b-alfabeto",
   "idx": "01",
   "gif": false,
@@ -625,5 +614,111 @@
   "kb": 930,
   "ow": 2912,
   "oh": 1632
+ },
+ {
+  "proj": "00d-imagenes",
+  "idx": "02",
+  "gif": false,
+  "src": "assets/00d-imagenes/02.jpg",
+  "w": 2400,
+  "h": 1345,
+  "kb": 563,
+  "ow": 2912,
+  "oh": 1632
+ },
+ {
+  "proj": "00d-imagenes",
+  "idx": "03",
+  "gif": false,
+  "src": "assets/00d-imagenes/03.jpg",
+  "w": 2400,
+  "h": 1345,
+  "kb": 1050,
+  "ow": 2912,
+  "oh": 1632
+ },
+ {
+  "proj": "00a-dibujos",
+  "idx": "01",
+  "gif": false,
+  "src": "assets/00a-dibujos/01.jpg",
+  "w": 1600,
+  "h": 1387,
+  "kb": 330,
+  "ow": 1600,
+  "oh": 1387,
+  "cap": "Mamá"
+ },
+ {
+  "proj": "00a-dibujos",
+  "idx": "02",
+  "gif": false,
+  "src": "assets/00a-dibujos/02.jpg",
+  "w": 1600,
+  "h": 994,
+  "kb": 266,
+  "ow": 1600,
+  "oh": 994,
+  "cap": "Maia"
+ },
+ {
+  "proj": "00a-dibujos",
+  "idx": "03",
+  "gif": false,
+  "src": "assets/00a-dibujos/03.jpg",
+  "w": 1360,
+  "h": 1600,
+  "kb": 415,
+  "ow": 1360,
+  "oh": 1600,
+  "cap": "Amor"
+ },
+ {
+  "proj": "00a-dibujos",
+  "idx": "04",
+  "gif": false,
+  "src": "assets/00a-dibujos/04.jpg",
+  "w": 1600,
+  "h": 941,
+  "kb": 261,
+  "ow": 1600,
+  "oh": 941,
+  "cap": "Casa"
+ },
+ {
+  "proj": "00a-dibujos",
+  "idx": "05",
+  "gif": false,
+  "src": "assets/00a-dibujos/05.jpg",
+  "w": 1600,
+  "h": 1108,
+  "kb": 204,
+  "ow": 1600,
+  "oh": 1108,
+  "cap": "La familia uniida de un hilo"
+ },
+ {
+  "proj": "00a-dibujos",
+  "idx": "06",
+  "gif": false,
+  "src": "assets/00a-dibujos/06.jpg",
+  "w": 1600,
+  "h": 1416,
+  "kb": 468,
+  "ow": 1600,
+  "oh": 1416,
+  "cap": "caos"
+ },
+ {
+  "proj": "00a-dibujos",
+  "idx": "07",
+  "gif": false,
+  "src": "assets/00a-dibujos/07.jpg",
+  "w": 1187,
+  "h": 1600,
+  "kb": 262,
+  "ow": 1187,
+  "oh": 1600,
+  "cap": "Muerte"
  }
 ]

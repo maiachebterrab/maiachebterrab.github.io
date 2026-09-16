@@ -41,6 +41,22 @@ SECCIONES = [
   "proyectos": [("01-medios-publicos", None, None)]},
 ]
 
+GRILLA = {"00a-dibujos"}
+
+
+def grilla(slug):
+    out = []
+    for a in by.get(slug, []):
+        out.append(
+          f'<figure>'
+          f'<button class="lupa" data-src="{a["src"]}" data-w="{a["w"]}" data-h="{a["h"]}" '
+          f'aria-label="Ver {html.escape(a.get("cap", ""))} en grande">'
+          f'<img src="{a["src"]}" width="{a["w"]}" height="{a["h"]}" loading="lazy" '
+          f'decoding="async" alt=""></button>'
+          f'<figcaption>{html.escape(a.get("cap", ""))}</figcaption></figure>')
+    return f'<div class="grilla">{"".join(out)}</div>'
+
+
 def piezas(slug):
     out = []
     for a in by.get(slug, []):
@@ -62,7 +78,10 @@ for s in SECCIONES:
     for slug, sub, baj in s["proyectos"]:
         if sub:
             cuerpo.append(f'<h3><span class="barra">/</span> {html.escape(sub)}</h3>')
-        cuerpo.append(f'<div class="piezas">{piezas(slug)}</div>')
+        if slug in GRILLA:
+            cuerpo.append(grilla(slug))
+        else:
+            cuerpo.append(f'<div class="piezas">{piezas(slug)}</div>')
     for pend in s.get("falta_piezas", []):
         cuerpo.append(f'<p class="vacio">&gt; {PENDIENTE} {html.escape(pend)}</p>')
     if s.get("embed"):
@@ -150,6 +169,16 @@ h3 .barra{color:rgba(17,17,17,.45);font-weight:400}
 .lupa{padding:0;border:0;background:#fafafa;cursor:zoom-in;display:block;line-height:0}
 .lupa img{width:100%;height:auto;display:block}
 .falta{background:var(--verde);color:var(--ink);padding:0 6px}
+
+/* ---- grilla de dibujos: cada uno con su epigrafe ---- */
+.grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
+        gap:clamp(24px,3.4vw,46px) clamp(20px,2.6vw,36px)}
+.grilla figure{display:flex;flex-direction:column;gap:11px;margin:0}
+.grilla .lupa{height:clamp(148px,22vh,236px);display:flex;align-items:center;
+              justify-content:center;background:none;border:0;padding:0;cursor:zoom-in}
+.grilla .lupa img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.grilla figcaption{font-size:10.5px;color:var(--soft);letter-spacing:.03em;line-height:1.5}
+.grilla + h3{margin-top:clamp(66px,9vw,112px)}
 
 /* ---- embed: la pieza viva, a todo el ancho ---- */
 .embed{position:relative;margin-inline:calc(50% - 50vw);width:100vw;
