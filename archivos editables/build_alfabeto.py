@@ -13,7 +13,7 @@ LETRAS = WEB.parent / "Las casas no vuelan" / "letras escaneadas (png)"
 PLACA  = WEB.parent / "Las casas no vuelan" / "pruebas" / "prueba-1-alfabeto.pdf"
 SALIDA = WEB.parent / "Las casas no vuelan" / "paneles alfabeto"
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-VERDE, TINTA = "#bbf0a5", "#111"
+CAMPO, TINTA = "#fff", "#111"   # blanco y negro: sin color por ahora
 F = "file:///Users/maiacheb/Library/Fonts/"
 
 SALIDA.mkdir(parents=True, exist_ok=True)
@@ -68,41 +68,40 @@ body{{font-family:"Mono",monospace;color:{TINTA};-webkit-font-smoothing:antialia
 W1, H1 = 2400, 1350
 hero = BASE + f"""
 <style>
-body{{background:{VERDE};width:{W1}px;height:{H1}px;padding:110px 130px;
+body{{background:{CAMPO};width:{W1}px;height:{H1}px;padding:110px 130px;
       display:flex;flex-direction:column;justify-content:center;position:relative}}
 .pie{{position:absolute;left:130px;bottom:96px}}
 .linea{{white-space:nowrap;line-height:1;margin-bottom:46px}}
-.pie{{font-size:30px;letter-spacing:.10em;text-transform:uppercase;color:rgba(17,17,17,.62)}}
+.pie{{font-size:30px;letter-spacing:.10em;text-transform:uppercase;color:rgba(17,17,17,.55)}}
 </style>
 <div>
-  <div class="linea">{palabra("LAS CASAS", 210)}</div>
-  <div class="linea">{palabra("NO VUELAN", 210)}</div>
+  <div class="linea">{palabra("BESTIARIO", 240)}</div>
 </div>
 <div class="pie">Maia · alfabeto a partir de la letra de la infancia</div>
 """
 p1 = render(hero, "01-hero", W1, H1)
 
 # ---- 03 · variantes: las dos versiones de cada letra ----
-PARES = ["A", "B", "D", "E", "G", "K", "M", "N", "O", "R", "S", "U"]
+PARES = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")   # sin la Ñ, a pedido
 celdas = []
 for c in PARES:
-    a = glifo(c, 150)
+    a = glifo(c, 130)
     wb, hb = sizes[f"lc_{c.lower()}"] if f"lc_{c.lower()}" in sizes else (None, None)
-    b = glifo(f"lc_{c.lower()}", 150) if wb else ""
+    b = glifo(f"lc_{c.lower()}", 130) if wb else ""
     celdas.append(f"""<div class="celda">
       <div class="par"><div class="caja">{a}</div><div class="caja">{b}</div></div>
       <div class="rot">{c}</div>
     </div>""")
 
-W3, H3 = 2400, 1350
+W3, H3 = 2400, 2010
 variantes = BASE + f"""
 <style>
 body{{background:#fff;width:{W3}px;height:{H3}px;padding:92px 120px;
       display:flex;flex-direction:column;justify-content:space-between}}
-.grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:34px 34px}}
-.par{{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
-.caja{{height:216px;background:#f4f2ef;display:flex;align-items:center;justify-content:center}}
-.rot{{margin-top:14px;font-size:26px;letter-spacing:.10em;color:rgba(17,17,17,.45)}}
+.grid{{display:grid;grid-template-columns:repeat(5,1fr);gap:30px 28px}}
+.par{{display:grid;grid-template-columns:1fr 1fr;gap:8px}}
+.caja{{height:196px;background:#f4f4f4;display:flex;align-items:center;justify-content:center}}
+.rot{{margin-top:11px;font-size:24px;letter-spacing:.10em;color:rgba(17,17,17,.45)}}
 .pie{{font-size:30px;letter-spacing:.10em;text-transform:uppercase;color:rgba(17,17,17,.5)}}
 </style>
 <div class="grid">{''.join(celdas)}</div>

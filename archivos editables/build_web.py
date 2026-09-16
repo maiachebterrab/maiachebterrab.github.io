@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Arma web/index.html: portfolio privado, key visual del CV verde (Geist Mono, #bbf0a5, tinta #111)."""
+"""Arma web/index.html: portfolio privado. Blanco y negro, Geist Mono.
+
+El color quedó afuera a propósito: primero la estructura. --campo es el negro de
+la tapa, las bandas y los avisos; si más adelante entra un color, se cambia ahí.
+"""
 import json, pathlib, html
 
 AQUI = pathlib.Path(__file__).resolve().parent
@@ -13,7 +17,7 @@ for v in by.values(): v.sort(key=lambda a: int(a["idx"]))
 
 # id, titulo, meta (None = pendiente), bajada (None = pendiente), proyectos
 SECCIONES = [
- {"id": "las-casas", "num": "01", "titulo": "Las casas no vuelan", "nav": "Las casas no vuelan",
+ {"id": "bestiario", "num": "01", "titulo": "Bestiario", "nav": "Bestiario",
   "meta": "@ proyecto propio  ·  [2026]",
   "bajada": "Dibujos que hice en la infancia, lápiz y crayón sobre papel. De esa "
             "letra salió <i>Maia</i>, un alfabeto propio. Las imágenes son "
@@ -113,7 +117,7 @@ CSS = """
 @font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Regular.ttf");font-weight:400;font-display:swap}
 @font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Medium.ttf");font-weight:500;font-display:swap}
 @font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Bold.ttf");font-weight:700;font-display:swap}
-:root{--verde:#bbf0a5;--ink:#111;--soft:#6f6f6f;--linea:#dcdcdc;--col:1120px}
+:root{--campo:#111;--sobrecampo:#fff;--ink:#111;--soft:#6f6f6f;--linea:#dcdcdc;--col:1120px}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{background:#fff;color:var(--ink);font-family:"Mono",ui-monospace,monospace;
@@ -122,18 +126,19 @@ a{color:inherit}
 .hash{color:var(--soft)}
 
 /* ---- caratula ---- */
-.tapa{background:var(--verde);min-height:100vh;padding:clamp(24px,5vw,64px);
+.tapa{background:var(--campo);color:var(--sobrecampo);min-height:100vh;
+      padding:clamp(24px,5vw,64px);
       display:flex;flex-direction:column;justify-content:space-between}
 .tapa h1{font-size:clamp(30px,7.4vw,86px);font-weight:700;line-height:1.02;
          letter-spacing:.02em;text-transform:uppercase}
 .tapa .qué{font-size:clamp(13px,1.5vw,17px);max-width:52ch;margin-top:clamp(18px,3vw,34px)}
 .tapa .datos{font-size:12px;line-height:1.9}
-.tapa .regla{border:0;border-top:1px dashed rgba(17,17,17,.42);margin:clamp(18px,3vw,30px) 0}
-.tapa .pie{display:flex;flex-wrap:wrap;gap:6px 28px;font-size:11.5px;color:#2c2c2c}
+.tapa .regla{border:0;border-top:1px dashed rgba(255,255,255,.34);margin:clamp(18px,3vw,30px) 0}
+.tapa .pie{display:flex;flex-wrap:wrap;gap:6px 28px;font-size:11.5px;color:rgba(255,255,255,.72)}
 
 /* ---- nav ---- */
-nav{position:sticky;top:0;z-index:40;background:var(--verde);
-    border-bottom:1px solid rgba(17,17,17,.2)}
+nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
 nav .in{max-width:var(--col);margin:0 auto;padding:11px clamp(16px,4vw,40px);
         display:flex;flex-wrap:nowrap;align-items:baseline;gap:22px;font-size:11.5px;
         overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
@@ -141,9 +146,9 @@ nav .in::-webkit-scrollbar{display:none}
 nav a{white-space:nowrap}
 nav .yo{white-space:nowrap}
 nav .yo{font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-right:auto;color:var(--ink)}
-nav a{text-decoration:none;color:rgba(17,17,17,.62)}
+nav a{text-decoration:none;color:var(--soft)}
 nav a:hover{color:var(--ink)}
-nav .hash{color:rgba(17,17,17,.4)}
+nav .hash{color:#a8a8a8}
 
 /* ---- secciones ---- */
 main{max-width:var(--col);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
@@ -155,7 +160,7 @@ h2{font-size:clamp(17px,2.6vw,27px);font-weight:700;text-transform:uppercase;let
 .bajada{max-width:62ch;margin-top:16px;font-size:13px}
 .cuenta-sec{font-size:11px;color:var(--soft);margin-top:14px;padding-top:9px;
             border-top:1px solid var(--linea);display:inline-block;min-width:150px}
-h3{background:var(--verde);color:var(--ink);
+h3{background:var(--campo);color:var(--sobrecampo);
    /* sangra a todo el ancho pero el texto cae en el borde de la columna */
    margin-inline:calc(50% - 50vw);
    padding-block:15px;
@@ -164,7 +169,7 @@ h3{background:var(--verde);color:var(--ink);
    font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.035em;
    display:flex;align-items:baseline;gap:11px}
 .piezas + h3{margin-top:clamp(66px,9vw,112px)}
-h3 .barra{color:rgba(17,17,17,.45);font-weight:400}
+h3 .barra{color:rgba(255,255,255,.5);font-weight:400}
 .vacio{color:var(--soft);font-size:13px;margin-top:clamp(34px,5vw,54px)}
 
 /* ---- piezas: proporcion real, nada recortado ---- */
@@ -173,7 +178,7 @@ h3 .barra{color:rgba(17,17,17,.45);font-weight:400}
 .lupa img{margin:0;vertical-align:top}
 .lupa{padding:0;border:0;background:#fafafa;cursor:zoom-in;display:block;line-height:0}
 .lupa img{width:100%;height:auto;display:block}
-.falta{background:var(--verde);color:var(--ink);padding:0 6px}
+.falta{background:var(--campo);color:var(--sobrecampo);padding:0 6px}
 
 /* ---- grilla de dibujos: cada uno con su epigrafe ---- */
 .grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
@@ -193,17 +198,17 @@ h3 .barra{color:rgba(17,17,17,.45);font-weight:400}
 .embed .sobre{position:absolute;inset:0;display:flex;align-items:flex-end;
               justify-content:flex-end;padding:14px 16px;border:0;background:none;
               font-family:inherit;cursor:zoom-in}
-.embed .sobre span{background:var(--verde);color:var(--ink);font-size:11px;
+.embed .sobre span{background:var(--campo);color:var(--sobrecampo);font-size:11px;
                    padding:6px 10px;letter-spacing:.02em}
-.embed .sobre:hover span{background:var(--ink);color:var(--verde)}
+.embed .sobre:hover span{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 /* a pantalla completa: la pista se puede recorrer a mano y se sale con Esc */
 .embed:fullscreen{height:100%;margin:0;width:100%;border:0}
 .embed:fullscreen iframe{pointer-events:auto}
 .embed:fullscreen .sobre{inset:auto 0 0 auto;padding:16px 18px;cursor:default}
 .embed.plena{position:fixed;inset:0;z-index:95;height:100%;width:100%;margin:0;border:0}
 .embed.plena iframe{pointer-events:auto}
-.embed .cerrar{position:absolute;top:14px;right:16px;display:none;background:var(--verde);
-               color:var(--ink);border:0;font-family:inherit;font-size:11px;padding:6px 10px;
+.embed .cerrar{position:absolute;top:14px;right:16px;display:none;background:var(--campo);
+               color:var(--sobrecampo);border:0;font-family:inherit;font-size:11px;padding:6px 10px;
                cursor:pointer;z-index:2}
 .embed:fullscreen .cerrar,.embed.plena .cerrar{display:block}
 .embed:fullscreen .sobre span,.embed.plena .sobre span{display:none}
