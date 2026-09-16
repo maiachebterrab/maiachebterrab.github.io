@@ -77,7 +77,7 @@ body{{background:{CAMPO};width:{W1}px;height:{H1}px;padding:110px 130px;
 <div>
   <div class="linea">{palabra("BESTIARIO", 240)}</div>
 </div>
-<div class="pie">Maia · alfabeto a partir de la letra de la infancia</div>
+<div class="pie">Bestiario · alfabeto a partir de la letra de la infancia</div>
 """
 p1 = render(hero, "01-hero", W1, H1)
 

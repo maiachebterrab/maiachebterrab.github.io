@@ -67,10 +67,30 @@ GRILLA = {"00a-dibujos"}
 
 # dibujo original  ->  imagen que lo reformula, en el orden que va en la página
 PARES = [
-    ("assets/00a-dibujos/04.jpg", "assets/00d-imagenes/01.jpg", "Casa"),
-    ("assets/00a-dibujos/02.jpg", "assets/00d-imagenes/02.jpg", "Maia"),
-    ("assets/00a-dibujos/05.jpg", "assets/00d-imagenes/03.jpg", "La familia uniida de un hilo"),
+    ("assets/00a-dibujos/04.jpg", "assets/00d-imagenes/01.jpg", "Mi casa"),
+    ("assets/00a-dibujos/02.jpg", "assets/00d-imagenes/02.jpg", "Naturaleza emocional"),
+    ("assets/00a-dibujos/05.jpg", "assets/00d-imagenes/03.jpg", "Familia unida"),
 ]
+MEDIDAS = json.loads((WEB / "assets" / "letras" / "sizes.json").read_text())
+
+
+def rotulo(texto):
+    """El texto compuesto con las letras escaneadas. Van en blanco por CSS:
+    brightness(0) invert(1) deja el trazo blanco y respeta la transparencia,
+    asi que la forma y la textura del lapiz no se tocan."""
+    piezas = []
+    for ch in texto.upper():
+        if ch == " ":
+            piezas.append('<i class="esp"></i>')
+            continue
+        if ch not in MEDIDAS:
+            continue
+        w, h = MEDIDAS[ch]
+        piezas.append(f'<img src="{ver(f"assets/letras/{ch}.png")}" alt="" '
+                      f'style="width:calc(var(--alto) * {w / h:.3f})">')
+    return f'<div class="rotulo" aria-label="{html.escape(texto)}">{"".join(piezas)}</div>'
+
+
 def ficha(src):
     for a in assets:
         if a["src"] == src:
@@ -87,10 +107,11 @@ def lupa(a, extra=""):
 
 def pares():
     out = []
-    for src_dib, src_img, epi in PARES:
+    for src_dib, src_img, texto in PARES:
         d, i = ficha(src_dib), ficha(src_img)
         out.append(f"""<div class="par-obra">
       <div class="obra">{lupa(i)}</div>
+      {rotulo(texto)}
       <div class="fuente">{lupa(d)}</div>
     </div>""")
     return f'<div class="pares">{"".join(out)}</div>'
@@ -250,6 +271,16 @@ h3 .barra{flex:none}
         background:#fff;padding:clamp(5px,.62vw,9px);
         box-shadow:0 10px 30px rgba(0,0,0,.45)}
 .fuente .lupa{background:#fff}
+
+/* rotulo en la letra propia, arriba a la izquierda, opuesto al dibujo */
+.rotulo{position:absolute;z-index:2;display:flex;align-items:flex-end;
+        gap:calc(var(--alto) * .12);
+        --alto:clamp(15px,2.15vw,34px);
+        top:clamp(14px,2.2vw,34px);left:clamp(14px,2.2vw,34px);
+        max-width:62%;flex-wrap:wrap;row-gap:calc(var(--alto) * .42);
+        pointer-events:none}
+.rotulo img{height:var(--alto);display:block;filter:brightness(0) invert(1)}
+.rotulo .esp{width:calc(var(--alto) * .34)}
 
 /* ---- grilla de dibujos ---- */
 .grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
