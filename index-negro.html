@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Maia Cheb Terrab — Portfolio</title>
+<style>
+@font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Regular.ttf");font-weight:400;font-display:swap}
+@font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Medium.ttf");font-weight:500;font-display:swap}
+@font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Bold.ttf");font-weight:700;font-display:swap}
+:root{--campo:#111;--sobrecampo:#fff;--ink:#111;--soft:#6f6f6f;--linea:#dcdcdc;--col:1120px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:#fff;color:var(--ink);font-family:"Mono",ui-monospace,monospace;
+     font-size:13px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.hash{color:var(--soft)}
+
+/* ---- caratula ---- */
+.tapa{background:var(--campo);color:var(--sobrecampo);min-height:100vh;
+      padding:clamp(24px,5vw,64px);
+      display:flex;flex-direction:column;justify-content:space-between}
+.tapa h1{font-size:clamp(30px,7.4vw,86px);font-weight:700;line-height:1.02;
+         letter-spacing:.02em;text-transform:uppercase}
+.tapa .qué{font-size:clamp(13px,1.5vw,17px);max-width:52ch;margin-top:clamp(18px,3vw,34px)}
+.tapa .datos{font-size:12px;line-height:1.9}
+.tapa .regla{border:0;border-top:1px dashed rgba(255,255,255,.34);margin:clamp(18px,3vw,30px) 0}
+.tapa .pie{display:flex;flex-wrap:wrap;gap:6px 28px;font-size:11.5px;color:rgba(255,255,255,.72)}
+
+/* ---- nav ---- */
+nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+nav .in{max-width:var(--col);margin:0 auto;padding:11px clamp(16px,4vw,40px);
+        display:flex;flex-wrap:nowrap;align-items:baseline;gap:22px;font-size:11.5px;
+        overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+nav .in::-webkit-scrollbar{display:none}
+nav a{white-space:nowrap}
+nav .yo{white-space:nowrap}
+nav .yo{font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-right:auto;color:var(--ink)}
+nav a{text-decoration:none;color:var(--soft)}
+nav a:hover{color:var(--ink)}
+nav .hash{color:#a8a8a8}
+
+/* ---- secciones ---- */
+main{max-width:var(--col);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+section{padding:clamp(52px,9vw,110px) 0;border-bottom:1px dashed var(--linea)}
+section:last-child{border-bottom:0}
+.sec{margin-bottom:clamp(28px,5vw,52px)}
+h2{font-size:clamp(17px,2.6vw,27px);font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+.meta{font-size:11.5px;color:var(--soft);margin-top:9px;letter-spacing:.02em}
+.bajada{max-width:62ch;margin-top:16px;font-size:13px}
+.cuenta-sec{font-size:11px;color:var(--soft);margin-top:14px;padding-top:9px;
+            border-top:1px solid var(--linea);display:inline-block;min-width:150px}
+h3{background:var(--campo);color:var(--sobrecampo);
+   /* sangra a todo el ancho pero el texto cae en el borde de la columna */
+   margin-inline:calc(50% - 50vw);
+   padding-block:15px;
+   padding-inline:calc(50vw - 50% + clamp(16px,4vw,40px));
+   margin-block:clamp(34px,5vw,54px) clamp(22px,3vw,34px);
+   font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.035em;
+   display:flex;align-items:baseline;gap:11px}
+.piezas + h3{margin-top:clamp(66px,9vw,112px)}
+h3 .barra{color:rgba(255,255,255,.5);font-weight:400}
+.vacio{color:var(--soft);font-size:13px;margin-top:clamp(34px,5vw,54px)}
+
+/* ---- piezas: proporcion real, nada recortado ---- */
+.piezas{display:flex;flex-direction:column;gap:0}
+.pieza{display:block}
+.lupa img{margin:0;vertical-align:top}
+.lupa{padding:0;border:0;background:#fafafa;cursor:zoom-in;display:block;line-height:0}
+.lupa img{width:100%;height:auto;display:block}
+.falta{background:var(--campo);color:var(--sobrecampo);padding:0 6px}
+
+/* ---- grilla de dibujos: cada uno con su epigrafe ---- */
+.grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
+        gap:clamp(24px,3.4vw,46px) clamp(20px,2.6vw,36px)}
+.grilla figure{display:flex;flex-direction:column;gap:11px;margin:0}
+.grilla .lupa{height:clamp(148px,22vh,236px);display:flex;align-items:center;
+              justify-content:center;background:none;border:0;padding:0;cursor:zoom-in}
+.grilla .lupa img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.grilla figcaption{font-size:10.5px;color:var(--soft);letter-spacing:.03em;line-height:1.5}
+.grilla + h3{margin-top:clamp(66px,9vw,112px)}
+
+/* ---- embed: la pieza viva, a todo el ancho ---- */
+.embed{position:relative;margin-inline:calc(50% - 50vw);width:100vw;
+       height:clamp(300px,74vh,720px);background:#fff;overflow:hidden;
+       border-block:1px solid var(--linea)}
+.embed iframe{width:100%;height:100%;border:0;display:block;pointer-events:none}
+.embed .sobre{position:absolute;inset:0;display:flex;align-items:flex-end;
+              justify-content:flex-end;padding:14px 16px;border:0;background:none;
+              font-family:inherit;cursor:zoom-in}
+.embed .sobre span{background:var(--campo);color:var(--sobrecampo);font-size:11px;
+                   padding:6px 10px;letter-spacing:.02em}
+.embed .sobre:hover span{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+/* a pantalla completa: la pista se puede recorrer a mano y se sale con Esc */
+.embed:fullscreen{height:100%;margin:0;width:100%;border:0}
+.embed:fullscreen iframe{pointer-events:auto}
+.embed:fullscreen .sobre{inset:auto 0 0 auto;padding:16px 18px;cursor:default}
+.embed.plena{position:fixed;inset:0;z-index:95;height:100%;width:100%;margin:0;border:0}
+.embed.plena iframe{pointer-events:auto}
+.embed .cerrar{position:absolute;top:14px;right:16px;display:none;background:var(--campo);
+               color:var(--sobrecampo);border:0;font-family:inherit;font-size:11px;padding:6px 10px;
+               cursor:pointer;z-index:2}
+.embed:fullscreen .cerrar,.embed.plena .cerrar{display:block}
+.embed:fullscreen .sobre span,.embed.plena .sobre span{display:none}
+
+/* ---- visor tamano real ---- */
+.visor{position:fixed;inset:0;z-index:90;background:rgba(255,255,255,.98);
+       display:none;overflow:auto;cursor:zoom-out;padding:44px 0}
+.visor.on{display:block}
+.visor img{display:block;margin:0 auto;max-width:none}
+.visor .x{position:fixed;top:12px;right:16px;font-size:11.5px;color:var(--soft);
+          background:#fff;border:1px solid var(--linea);padding:5px 10px;cursor:pointer}
+footer{max-width:var(--col);margin:0 auto;padding:40px clamp(16px,4vw,40px) 80px;
+       font-size:11px;color:var(--soft);border-top:1px solid var(--linea)}
+@media (max-width:640px){body{font-size:12.5px}.piezas{gap:26px}}
+
+/* ---- todo sobre negro ---- */
+:root{--campo:#1e1e1e;--sobrecampo:#fff;--ink:#f0eeea;--soft:#8d8d8d;--linea:#2b2b2b}
+html,body{background:#0e0e0e}
+body{color:var(--ink)}
+nav{background:rgba(14,14,14,.94);border-bottom:1px solid var(--linea)}
+nav .hash{color:#5f5f5f}
+.tapa{background:#0e0e0e;color:var(--ink)}
+.tapa .regla{border-top:1px dashed rgba(255,255,255,.26)}
+.tapa .pie{color:rgba(255,255,255,.66)}
+h3{box-shadow:inset 0 1px 0 #343434,inset 0 -1px 0 #343434}
+section{border-bottom-color:var(--linea)}
+.cuenta-sec{border-top-color:var(--linea)}
+.lupa{background:#161616}
+.grilla .lupa{background:none}
+.visor{background:rgba(14,14,14,.985)}
+.visor .x{background:#1a1a1a;border-color:var(--linea);color:var(--ink)}
+.falta{background:#f0eeea;color:#111}
+.embed{background:#0e0e0e;border-color:var(--linea)}
+.embed .sobre span,.embed .cerrar{background:#f0eeea;color:#111}
+.embed .sobre:hover span{background:#0e0e0e;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+footer{border-top-color:var(--linea)}
+</style>
+</head>
+<body>
+
+<div class="tapa">
+  <div class="datos">MAIA CHEB TERRAB<br>DISEÑADORA GRÁFICA (FADU-UBA) · BUENOS AIRES</div>
+  <div>
+    <h1>Portfolio</h1>
+    <p class="qué">Diseño identidades y universos visuales para artistas, proyectos culturales
+    y productoras audiovisuales. Mi práctica cruza diseño, imagen, fotografía y escritura.</p>
+    <hr class="regla">
+    <div class="pie">
+      <span>maiucheb@gmail.com</span><span>+54 11 6946-3209</span>
+      <span>behance.net/maiacheb</span>
+    </div>
+  </div>
+  <div class="datos">CLÍNICA DE DISEÑO · INSTITUTO PROA<br>SEPTIEMBRE 2026</div>
+</div>
+
+<nav><div class="in"><span class="yo">Maia Cheb Terrab</span><a href="#bestiario"><span class="hash">##</span> Bestiario</a><a href="#salto-de-fe"><span class="hash">##</span> Salto de Fe</a><a href="#manela"><span class="hash">##</span> Manela</a><a href="#espacios"><span class="hash">##</span> Espacios</a><a href="#medios"><span class="hash">##</span> Medios públicos</a></div></nav>
+
+<main>
+<section id="bestiario">
+  <header class="sec">
+    <h2><span class="hash">##</span> Bestiario</h2>
+    <div class="meta">@ proyecto propio  ·  [2026]</div>
+    <p class="bajada">Dibujos que hice en la infancia, lápiz y crayón sobre papel. De esa letra salió <i>Maia</i>, un alfabeto propio. Las imágenes son representaciones de esos mismos dibujos llevadas a otras técnicas.</p>
+    <div class="cuenta-sec">13 piezas</div>
+  </header>
+  <h3><span class="barra">/</span> Dibujos de la infancia</h3><div class="grilla"><figure><button class="lupa" data-src="assets/00a-dibujos/01.jpg?v=daf109b3" data-w="1600" data-h="1387" aria-label="Ver Mamá en grande"><img src="assets/00a-dibujos/01.jpg?v=daf109b3" width="1600" height="1387" loading="lazy" decoding="async" alt=""></button><figcaption>Mamá</figcaption></figure><figure><button class="lupa" data-src="assets/00a-dibujos/02.jpg?v=04dffa4e" data-w="1600" data-h="994" aria-label="Ver Maia en grande"><img src="assets/00a-dibujos/02.jpg?v=04dffa4e" width="1600" height="994" loading="lazy" decoding="async" alt=""></button><figcaption>Maia</figcaption></figure><figure><button class="lupa" data-src="assets/00a-dibujos/03.jpg?v=7a1ea42c" data-w="1360" data-h="1600" aria-label="Ver Amor en grande"><img src="assets/00a-dibujos/03.jpg?v=7a1ea42c" width="1360" height="1600" loading="lazy" decoding="async" alt=""></button><figcaption>Amor</figcaption></figure><figure><button class="lupa" data-src="assets/00a-dibujos/04.jpg?v=7a4fe6d5" data-w="1600" data-h="941" aria-label="Ver Casa en grande"><img src="assets/00a-dibujos/04.jpg?v=7a4fe6d5" width="1600" height="941" loading="lazy" decoding="async" alt=""></button><figcaption>Casa</figcaption></figure><figure><button class="lupa" data-src="assets/00a-dibujos/05.jpg?v=ae72088b" data-w="1600" data-h="1108" aria-label="Ver La familia uniida de un hilo en grande"><img src="assets/00a-dibujos/05.jpg?v=ae72088b" width="1600" height="1108" loading="lazy" decoding="async" alt=""></button><figcaption>La familia uniida de un hilo</figcaption></figure><figure><button class="lupa" data-src="assets/00a-dibujos/06.jpg?v=a391d1fd" data-w="1600" data-h="1416" aria-label="Ver caos en grande"><img src="assets/00a-dibujos/06.jpg?v=a391d1fd" width="1600" height="1416" loading="lazy" decoding="async" alt=""></button><figcaption>caos</figcaption></figure><figure><button class="lupa" data-src="assets/00a-dibujos/07.jpg?v=6df3753a" data-w="1187" data-h="1600" aria-label="Ver Muerte en grande"><img src="assets/00a-dibujos/07.jpg?v=6df3753a" width="1187" height="1600" loading="lazy" decoding="async" alt=""></button><figcaption>Muerte</figcaption></figure></div><h3><span class="barra">/</span> Alfabeto</h3><div class="piezas"><figure class="pieza" data-pieza="00b-alfabeto/01" data-px="2400×1350"><button class="lupa" data-src="assets/00b-alfabeto/01.jpg?v=05888132" data-w="2400" data-h="1350" aria-label="Ver la pieza 01 en grande"><img src="assets/00b-alfabeto/01.jpg?v=05888132" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00b-alfabeto/02" data-px="2400×1697"><button class="lupa" data-src="assets/00b-alfabeto/02.jpg?v=332d3302" data-w="2400" data-h="1697" aria-label="Ver la pieza 02 en grande"><img src="assets/00b-alfabeto/02.jpg?v=332d3302" width="2400" height="1697" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00b-alfabeto/03" data-px="2400×2010"><button class="lupa" data-src="assets/00b-alfabeto/03.jpg?v=226f5163" data-w="2400" data-h="2010" aria-label="Ver la pieza 03 en grande"><img src="assets/00b-alfabeto/03.jpg?v=226f5163" width="2400" height="2010" loading="lazy" decoding="async" alt=""></button></figure></div><h3><span class="barra">/</span> Imágenes</h3><div class="piezas"><figure class="pieza" data-pieza="00d-imagenes/01" data-px="2912×1632"><button class="lupa" data-src="assets/00d-imagenes/01.jpg?v=d4c7d10d" data-w="2400" data-h="1345" aria-label="Ver la pieza 01 en grande"><img src="assets/00d-imagenes/01.jpg?v=d4c7d10d" width="2400" height="1345" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00d-imagenes/02" data-px="2912×1632"><button class="lupa" data-src="assets/00d-imagenes/02.jpg?v=e618c39a" data-w="2400" data-h="1345" aria-label="Ver la pieza 02 en grande"><img src="assets/00d-imagenes/02.jpg?v=e618c39a" width="2400" height="1345" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00d-imagenes/03" data-px="2912×1632"><button class="lupa" data-src="assets/00d-imagenes/03.jpg?v=070ac040" data-w="2400" data-h="1345" aria-label="Ver la pieza 03 en grande"><img src="assets/00d-imagenes/03.jpg?v=070ac040" width="2400" height="1345" loading="lazy" decoding="async" alt=""></button></figure></div>
+</section>
+<section id="salto-de-fe">
+  <header class="sec">
+    <h2><span class="hash">##</span> Salto de Fe</h2>
+    <div class="meta">@ maiucheb-oss.github.io/salto-de-fe  ·  [2025]</div>
+    <p class="bajada">Colección de imágenes de señales encontradas en lo cotidiano. Las fotos se recorren de corrido, como una sola imagen que avanza.</p>
+    <div class="cuenta-sec">50 fotos · se mueve sola</div>
+  </header>
+  <div class="embed">
+      <iframe src="https://maiucheb-oss.github.io/salto-de-fe/" loading="lazy" title="Salto de Fe"
+              scrolling="no" tabindex="-1"></iframe>
+      <button class="sobre" type="button"><span>ver a pantalla completa</span></button>
+      <button class="cerrar" type="button">salir ✕</button>
+    </div>
+</section>
+<section id="manela">
+  <header class="sec">
+    <h2><span class="hash">##</span> Cátedra de Diseño Editorial Manela</h2>
+    <div class="meta">@ FADU, UBA  ·  [2023]</div>
+    <p class="bajada">Trabajos de diseño editorial para la cátedra: una colección de fascículos, una colección de libros y una plaquette sobre Georges Perec.</p>
+    <div class="cuenta-sec">24 piezas</div>
+  </header>
+  <h3><span class="barra">/</span> Fascículos coleccionables</h3><div class="piezas"><figure class="pieza" data-pieza="02-fasciculos-coleccionables/01" data-px="1920×1080"><button class="lupa" data-src="assets/02-fasciculos-coleccionables/01.jpg?v=753d64c0" data-w="2400" data-h="1350" aria-label="Ver la pieza 01 en grande"><img src="assets/02-fasciculos-coleccionables/01.jpg?v=753d64c0" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/02" data-px="1920×958"><button class="lupa" data-src="assets/02-fasciculos-coleccionables/02.jpg?v=651d8aaa" data-w="2400" data-h="1197" aria-label="Ver la pieza 02 en grande"><img src="assets/02-fasciculos-coleccionables/02.jpg?v=651d8aaa" width="2400" height="1197" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/03" data-px="1920×1080" data-gif><button class="lupa" data-src="assets/02-fasciculos-coleccionables/03.gif?v=b677b67f" data-w="1200" data-h="675" aria-label="Ver la pieza 03 en grande"><img src="assets/02-fasciculos-coleccionables/03.gif?v=b677b67f" width="1200" height="675" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/04" data-px="1920×958"><button class="lupa" data-src="assets/02-fasciculos-coleccionables/04.jpg?v=bc02084c" data-w="2400" data-h="1197" aria-label="Ver la pieza 04 en grande"><img src="assets/02-fasciculos-coleccionables/04.jpg?v=bc02084c" width="2400" height="1197" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/05" data-px="3840×1914"><button class="lupa" data-src="assets/02-fasciculos-coleccionables/05.jpg?v=592f394f" data-w="2400" data-h="1196" aria-label="Ver la pieza 05 en grande"><img src="assets/02-fasciculos-coleccionables/05.jpg?v=592f394f" width="2400" height="1196" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/06" data-px="1920×1080" data-gif><button class="lupa" data-src="assets/02-fasciculos-coleccionables/06.gif?v=3ad3bb64" data-w="1200" data-h="675" aria-label="Ver la pieza 06 en grande"><img src="assets/02-fasciculos-coleccionables/06.gif?v=3ad3bb64" width="1200" height="675" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/07" data-px="3840×1914"><button class="lupa" data-src="assets/02-fasciculos-coleccionables/07.jpg?v=5357b29f" data-w="2400" data-h="1196" aria-label="Ver la pieza 07 en grande"><img src="assets/02-fasciculos-coleccionables/07.jpg?v=5357b29f" width="2400" height="1196" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/08" data-px="3840×4938"><button class="lupa" data-src="assets/02-fasciculos-coleccionables/08.jpg?v=b9747968" data-w="1866" data-h="2400" aria-label="Ver la pieza 08 en grande"><img src="assets/02-fasciculos-coleccionables/08.jpg?v=b9747968" width="1866" height="2400" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/09" data-px="1920×1080" data-gif><button class="lupa" data-src="assets/02-fasciculos-coleccionables/09.gif?v=0fedafb9" data-w="1200" data-h="675" aria-label="Ver la pieza 09 en grande"><img src="assets/02-fasciculos-coleccionables/09.gif?v=0fedafb9" width="1200" height="675" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/10" data-px="1920×956"><button class="lupa" data-src="assets/02-fasciculos-coleccionables/10.jpg?v=f93429ae" data-w="2400" data-h="1195" aria-label="Ver la pieza 10 en grande"><img src="assets/02-fasciculos-coleccionables/10.jpg?v=f93429ae" width="2400" height="1195" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/11" data-px="1920×1080"><button class="lupa" data-src="assets/02-fasciculos-coleccionables/11.jpg?v=aee7a392" data-w="2400" data-h="1350" aria-label="Ver la pieza 11 en grande"><img src="assets/02-fasciculos-coleccionables/11.jpg?v=aee7a392" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="02-fasciculos-coleccionables/12" data-px="1920×450"><button class="lupa" data-src="assets/02-fasciculos-coleccionables/12.jpg?v=fd6851fd" data-w="2400" data-h="562" aria-label="Ver la pieza 12 en grande"><img src="assets/02-fasciculos-coleccionables/12.jpg?v=fd6851fd" width="2400" height="562" loading="lazy" decoding="async" alt=""></button></figure></div><h3><span class="barra">/</span> Colección de libros</h3><div class="piezas"><figure class="pieza" data-pieza="05-coleccion-de-libros/01" data-px="5838×4392"><button class="lupa" data-src="assets/05-coleccion-de-libros/01.jpg?v=25e42fb7" data-w="2400" data-h="1805" aria-label="Ver la pieza 01 en grande"><img src="assets/05-coleccion-de-libros/01.jpg?v=25e42fb7" width="2400" height="1805" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="05-coleccion-de-libros/02" data-px="5869×2671"><button class="lupa" data-src="assets/05-coleccion-de-libros/02.jpg?v=a363a2a6" data-w="2400" data-h="1092" aria-label="Ver la pieza 02 en grande"><img src="assets/05-coleccion-de-libros/02.jpg?v=a363a2a6" width="2400" height="1092" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="05-coleccion-de-libros/03" data-px="5834×2558" data-gif><button class="lupa" data-src="assets/05-coleccion-de-libros/03.gif?v=6023067a" data-w="3840" data-h="1684" aria-label="Ver la pieza 03 en grande"><img src="assets/05-coleccion-de-libros/03.gif?v=6023067a" width="3840" height="1684" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="05-coleccion-de-libros/04" data-px="5835×5848"><button class="lupa" data-src="assets/05-coleccion-de-libros/04.jpg?v=4a431625" data-w="2394" data-h="2400" aria-label="Ver la pieza 04 en grande"><img src="assets/05-coleccion-de-libros/04.jpg?v=4a431625" width="2394" height="2400" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="05-coleccion-de-libros/05" data-px="5835×6661"><button class="lupa" data-src="assets/05-coleccion-de-libros/05.jpg?v=4b67ca07" data-w="2102" data-h="2400" aria-label="Ver la pieza 05 en grande"><img src="assets/05-coleccion-de-libros/05.jpg?v=4b67ca07" width="2102" height="2400" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="05-coleccion-de-libros/06" data-px="5834×7986"><button class="lupa" data-src="assets/05-coleccion-de-libros/06.jpg?v=2343c18c" data-w="1753" data-h="2400" aria-label="Ver la pieza 06 en grande"><img src="assets/05-coleccion-de-libros/06.jpg?v=2343c18c" width="1753" height="2400" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="05-coleccion-de-libros/07" data-px="5834×4428"><button class="lupa" data-src="assets/05-coleccion-de-libros/07.jpg?v=844d6c02" data-w="2400" data-h="1821" aria-label="Ver la pieza 07 en grande"><img src="assets/05-coleccion-de-libros/07.jpg?v=844d6c02" width="2400" height="1821" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="05-coleccion-de-libros/08" data-px="5852×7048"><button class="lupa" data-src="assets/05-coleccion-de-libros/08.jpg?v=db571799" data-w="1992" data-h="2400" aria-label="Ver la pieza 08 en grande"><img src="assets/05-coleccion-de-libros/08.jpg?v=db571799" width="1992" height="2400" loading="lazy" decoding="async" alt=""></button></figure></div><h3><span class="barra">/</span> Plaquette Georges Perec</h3><div class="piezas"><figure class="pieza" data-pieza="06-plaquette-perec/01" data-px="2000×1500"><button class="lupa" data-src="assets/06-plaquette-perec/01.jpg?v=0f247b81" data-w="2400" data-h="1800" aria-label="Ver la pieza 01 en grande"><img src="assets/06-plaquette-perec/01.jpg?v=0f247b81" width="2400" height="1800" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="06-plaquette-perec/02" data-px="2000×1500" data-gif><button class="lupa" data-src="assets/06-plaquette-perec/02.gif?v=ded6d67c" data-w="2000" data-h="1500" aria-label="Ver la pieza 02 en grande"><img src="assets/06-plaquette-perec/02.gif?v=ded6d67c" width="2000" height="1500" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="06-plaquette-perec/03" data-px="2000×1500"><button class="lupa" data-src="assets/06-plaquette-perec/03.jpg?v=cdc414a9" data-w="2400" data-h="1800" aria-label="Ver la pieza 03 en grande"><img src="assets/06-plaquette-perec/03.jpg?v=cdc414a9" width="2400" height="1800" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="06-plaquette-perec/04" data-px="8000×13391"><button class="lupa" data-src="assets/06-plaquette-perec/04.jpg?v=81a386ce" data-w="1433" data-h="2400" aria-label="Ver la pieza 04 en grande"><img src="assets/06-plaquette-perec/04.jpg?v=81a386ce" width="1433" height="2400" loading="lazy" decoding="async" alt=""></button></figure></div>
+</section>
+<section id="espacios">
+  <header class="sec">
+    <h2><span class="hash">##</span> Espacios</h2>
+    <div class="meta">@ MACBA  ·  [2021]</div>
+    <p class="bajada">Identidad para una exposición de arte: sistema visual, piezas de comunicación y su aplicación en el espacio.</p>
+    <div class="cuenta-sec">10 piezas</div>
+  </header>
+  <h3><span class="barra">/</span> Identidad para una exposición de arte</h3><div class="piezas"><figure class="pieza" data-pieza="04-identidad-exposicion-arte/01" data-px="2381×1683"><button class="lupa" data-src="assets/04-identidad-exposicion-arte/01.jpg?v=96519dd8" data-w="2400" data-h="1696" aria-label="Ver la pieza 01 en grande"><img src="assets/04-identidad-exposicion-arte/01.jpg?v=96519dd8" width="2400" height="1696" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="04-identidad-exposicion-arte/02" data-px="2381×1683"><button class="lupa" data-src="assets/04-identidad-exposicion-arte/02.jpg?v=03d5e9f8" data-w="2400" data-h="1696" aria-label="Ver la pieza 02 en grande"><img src="assets/04-identidad-exposicion-arte/02.jpg?v=03d5e9f8" width="2400" height="1696" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="04-identidad-exposicion-arte/03" data-px="2381×1683"><button class="lupa" data-src="assets/04-identidad-exposicion-arte/03.jpg?v=90ccfaa9" data-w="2400" data-h="1696" aria-label="Ver la pieza 03 en grande"><img src="assets/04-identidad-exposicion-arte/03.jpg?v=90ccfaa9" width="2400" height="1696" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="04-identidad-exposicion-arte/04" data-px="2381×1683"><button class="lupa" data-src="assets/04-identidad-exposicion-arte/04.jpg?v=6bd83e40" data-w="2400" data-h="1696" aria-label="Ver la pieza 04 en grande"><img src="assets/04-identidad-exposicion-arte/04.jpg?v=6bd83e40" width="2400" height="1696" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="04-identidad-exposicion-arte/05" data-px="2381×1683"><button class="lupa" data-src="assets/04-identidad-exposicion-arte/05.jpg?v=b4ad04dd" data-w="2400" data-h="1696" aria-label="Ver la pieza 05 en grande"><img src="assets/04-identidad-exposicion-arte/05.jpg?v=b4ad04dd" width="2400" height="1696" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="04-identidad-exposicion-arte/06" data-px="2381×1683"><button class="lupa" data-src="assets/04-identidad-exposicion-arte/06.jpg?v=0c08cc81" data-w="2400" data-h="1696" aria-label="Ver la pieza 06 en grande"><img src="assets/04-identidad-exposicion-arte/06.jpg?v=0c08cc81" width="2400" height="1696" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="04-identidad-exposicion-arte/07" data-px="2381×1683"><button class="lupa" data-src="assets/04-identidad-exposicion-arte/07.jpg?v=9a28c18f" data-w="2400" data-h="1696" aria-label="Ver la pieza 07 en grande"><img src="assets/04-identidad-exposicion-arte/07.jpg?v=9a28c18f" width="2400" height="1696" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="04-identidad-exposicion-arte/08" data-px="2381×1683"><button class="lupa" data-src="assets/04-identidad-exposicion-arte/08.jpg?v=7da9fc88" data-w="2400" data-h="1696" aria-label="Ver la pieza 08 en grande"><img src="assets/04-identidad-exposicion-arte/08.jpg?v=7da9fc88" width="2400" height="1696" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="04-identidad-exposicion-arte/09" data-px="2381×1683"><button class="lupa" data-src="assets/04-identidad-exposicion-arte/09.jpg?v=627ccd69" data-w="2400" data-h="1696" aria-label="Ver la pieza 09 en grande"><img src="assets/04-identidad-exposicion-arte/09.jpg?v=627ccd69" width="2400" height="1696" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="04-identidad-exposicion-arte/10" data-px="2381×1683"><button class="lupa" data-src="assets/04-identidad-exposicion-arte/10.jpg?v=2c31f362" data-w="2400" data-h="1696" aria-label="Ver la pieza 10 en grande"><img src="assets/04-identidad-exposicion-arte/10.jpg?v=2c31f362" width="2400" height="1696" loading="lazy" decoding="async" alt=""></button></figure></div>
+</section>
+<section id="medios">
+  <header class="sec">
+    <h2><span class="hash">##</span> Diseño estratégico en medios públicos</h2>
+    <div class="meta"><span class="falta">[ falta ]</span></div>
+    <p class="bajada">Estrategia de comunicación e identidad digital para TV Pública y Radio Nacional: teaser, campaña, piezas institucionales y sistema para redes.</p>
+    <div class="cuenta-sec">20 piezas</div>
+  </header>
+  <div class="piezas"><figure class="pieza" data-pieza="01-medios-publicos/01" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/01.jpg?v=4817f911" data-w="2400" data-h="1350" aria-label="Ver la pieza 01 en grande"><img src="assets/01-medios-publicos/01.jpg?v=4817f911" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/02" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/02.jpg?v=77a411fd" data-w="2400" data-h="1350" aria-label="Ver la pieza 02 en grande"><img src="assets/01-medios-publicos/02.jpg?v=77a411fd" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/03" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/03.jpg?v=91059789" data-w="2400" data-h="1350" aria-label="Ver la pieza 03 en grande"><img src="assets/01-medios-publicos/03.jpg?v=91059789" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/04" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/04.jpg?v=dfc9ad6d" data-w="2400" data-h="1350" aria-label="Ver la pieza 04 en grande"><img src="assets/01-medios-publicos/04.jpg?v=dfc9ad6d" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/05" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/05.jpg?v=7ba9ad4c" data-w="2400" data-h="1350" aria-label="Ver la pieza 05 en grande"><img src="assets/01-medios-publicos/05.jpg?v=7ba9ad4c" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/06" data-px="2389×1920" data-gif><button class="lupa" data-src="assets/01-medios-publicos/06.gif?v=bfc46dc1" data-w="2389" data-h="1920" aria-label="Ver la pieza 06 en grande"><img src="assets/01-medios-publicos/06.gif?v=bfc46dc1" width="2389" height="1920" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/07" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/07.jpg?v=9a040181" data-w="2400" data-h="1350" aria-label="Ver la pieza 07 en grande"><img src="assets/01-medios-publicos/07.jpg?v=9a040181" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/08" data-px="3413×1920" data-gif><button class="lupa" data-src="assets/01-medios-publicos/08.gif?v=e61869f1" data-w="3413" data-h="1920" aria-label="Ver la pieza 08 en grande"><img src="assets/01-medios-publicos/08.gif?v=e61869f1" width="3413" height="1920" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/09" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/09.jpg?v=ec225e90" data-w="2400" data-h="1350" aria-label="Ver la pieza 09 en grande"><img src="assets/01-medios-publicos/09.jpg?v=ec225e90" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/10" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/10.jpg?v=56857dde" data-w="2400" data-h="1350" aria-label="Ver la pieza 10 en grande"><img src="assets/01-medios-publicos/10.jpg?v=56857dde" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/11" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/11.jpg?v=2ac8c251" data-w="2400" data-h="1350" aria-label="Ver la pieza 11 en grande"><img src="assets/01-medios-publicos/11.jpg?v=2ac8c251" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/12" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/12.jpg?v=48846ae3" data-w="2400" data-h="1350" aria-label="Ver la pieza 12 en grande"><img src="assets/01-medios-publicos/12.jpg?v=48846ae3" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/13" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/13.jpg?v=1ca41b71" data-w="2400" data-h="1350" aria-label="Ver la pieza 13 en grande"><img src="assets/01-medios-publicos/13.jpg?v=1ca41b71" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/14" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/14.jpg?v=24235a6f" data-w="2400" data-h="1350" aria-label="Ver la pieza 14 en grande"><img src="assets/01-medios-publicos/14.jpg?v=24235a6f" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/15" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/15.jpg?v=c9cc7a05" data-w="2400" data-h="1350" aria-label="Ver la pieza 15 en grande"><img src="assets/01-medios-publicos/15.jpg?v=c9cc7a05" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/16" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/16.jpg?v=ecd615bd" data-w="2400" data-h="1350" aria-label="Ver la pieza 16 en grande"><img src="assets/01-medios-publicos/16.jpg?v=ecd615bd" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/17" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/17.jpg?v=43d02427" data-w="2400" data-h="1350" aria-label="Ver la pieza 17 en grande"><img src="assets/01-medios-publicos/17.jpg?v=43d02427" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/18" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/18.jpg?v=93a012a3" data-w="2400" data-h="1350" aria-label="Ver la pieza 18 en grande"><img src="assets/01-medios-publicos/18.jpg?v=93a012a3" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/19" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/19.jpg?v=515ec8ac" data-w="2400" data-h="1350" aria-label="Ver la pieza 19 en grande"><img src="assets/01-medios-publicos/19.jpg?v=515ec8ac" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/20" data-px="1920×1080" data-gif><button class="lupa" data-src="assets/01-medios-publicos/20.gif?v=519fbb6a" data-w="600" data-h="338" aria-label="Ver la pieza 20 en grande"><img src="assets/01-medios-publicos/20.gif?v=519fbb6a" width="600" height="338" loading="lazy" decoding="async" alt=""></button></figure></div>
+</section></main>
+
+<footer>Las piezas se ven en su proporción real. Hacé clic en cualquiera para abrirla en grande.</footer>
+
+<div class="visor"><button class="x">cerrar ✕</button><img alt=""></div>
+<script>
+const visor = document.querySelector('.visor'), vimg = visor.querySelector('img');
+document.querySelectorAll('.lupa').forEach(b => b.addEventListener('click', () => {
+  vimg.src = b.dataset.src; vimg.width = b.dataset.w; vimg.height = b.dataset.h;
+  visor.classList.add('on'); visor.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}));
+function cerrar(){ visor.classList.remove('on'); vimg.removeAttribute('src');
+  document.body.style.overflow = ''; }
+visor.addEventListener('click', cerrar);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
+
+// el sitio embebido se auto-scrollea una sola vez y para al final:
+// lo recargamos cada vez que la seccion vuelve a entrar en pantalla, asi siempre se ve moviendose
+const emb = document.querySelector('.embed');
+if (emb) {
+  const f = emb.querySelector('iframe');
+  let salio = false;
+  new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) salio = true;
+    else if (salio && !emb.classList.contains('plena') && !document.fullscreenElement) {
+      salio = false; f.src = f.src;
+    }
+  }), { threshold: 0.2 }).observe(emb);
+
+  // pantalla completa en el lugar: nunca se sale del portfolio
+  const abrir = () => {
+    if (emb.requestFullscreen) {
+      emb.requestFullscreen().catch(() => emb.classList.add('plena'));
+    } else {
+      emb.classList.add('plena');
+    }
+    document.body.style.overflow = 'hidden';
+  };
+  const cerrarPlena = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    emb.classList.remove('plena');
+    document.body.style.overflow = '';
+  };
+  emb.querySelector('.sobre').addEventListener('click', abrir);
+  emb.querySelector('.cerrar').addEventListener('click', e => { e.stopPropagation(); cerrarPlena(); });
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) document.body.style.overflow = '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && emb.classList.contains('plena')) cerrarPlena();
+  });
+}
+</script>
+</body>
+</html>

@@ -4,7 +4,10 @@
 El color quedó afuera a propósito: primero la estructura. --campo es el negro de
 la tapa, las bandas y los avisos; si más adelante entra un color, se cambia ahí.
 """
-import json, pathlib, html
+import hashlib, json, pathlib, html, sys
+
+NEGRO = "negro" in sys.argv[1:]
+SALIDA = "index-negro.html" if NEGRO else "index.html"
 
 AQUI = pathlib.Path(__file__).resolve().parent
 WEB  = AQUI.parent
@@ -50,6 +53,15 @@ SECCIONES = [
   "proyectos": [("01-medios-publicos", None, None)]},
 ]
 
+def ver(src):
+    """src + ?v=<hash>. Sin esto el navegador sirve la version cacheada
+    cuando se regenera un asset con el mismo nombre."""
+    f = WEB / src
+    if not f.exists():
+        return src
+    return f"{src}?v={hashlib.md5(f.read_bytes()).hexdigest()[:8]}"
+
+
 GRILLA = {"00a-dibujos"}
 
 
@@ -58,9 +70,9 @@ def grilla(slug):
     for a in by.get(slug, []):
         out.append(
           f'<figure>'
-          f'<button class="lupa" data-src="{a["src"]}" data-w="{a["w"]}" data-h="{a["h"]}" '
+          f'<button class="lupa" data-src="{ver(a["src"])}" data-w="{a["w"]}" data-h="{a["h"]}" '
           f'aria-label="Ver {html.escape(a.get("cap", ""))} en grande">'
-          f'<img src="{a["src"]}" width="{a["w"]}" height="{a["h"]}" loading="lazy" '
+          f'<img src="{ver(a["src"])}" width="{a["w"]}" height="{a["h"]}" loading="lazy" '
           f'decoding="async" alt=""></button>'
           f'<figcaption>{html.escape(a.get("cap", ""))}</figcaption></figure>')
     return f'<div class="grilla">{"".join(out)}</div>'
@@ -72,9 +84,9 @@ def piezas(slug):
             out.append(
           f'<figure class="pieza" data-pieza="{a["proj"]}/{a["idx"]}" '
           f'data-px="{a["ow"]}×{a["oh"]}"{" data-gif" if a["gif"] else ""}>'
-          f'<button class="lupa" data-src="{a["src"]}" data-w="{a["w"]}" data-h="{a["h"]}" '
+          f'<button class="lupa" data-src="{ver(a["src"])}" data-w="{a["w"]}" data-h="{a["h"]}" '
           f'aria-label="Ver la pieza {a["idx"]} en grande">'
-          f'<img src="{a["src"]}" width="{a["w"]}" height="{a["h"]}" loading="lazy" decoding="async" alt="">'
+          f'<img src="{ver(a["src"])}" width="{a["w"]}" height="{a["h"]}" loading="lazy" decoding="async" alt="">'
           f'</button>'
           f'</figure>')
     return "".join(out)
@@ -225,6 +237,30 @@ footer{max-width:var(--col);margin:0 auto;padding:40px clamp(16px,4vw,40px) 80px
 @media (max-width:640px){body{font-size:12.5px}.piezas{gap:26px}}
 """
 
+OSCURO = """
+/* ---- todo sobre negro ---- */
+:root{--campo:#1e1e1e;--sobrecampo:#fff;--ink:#f0eeea;--soft:#8d8d8d;--linea:#2b2b2b}
+html,body{background:#0e0e0e}
+body{color:var(--ink)}
+nav{background:rgba(14,14,14,.94);border-bottom:1px solid var(--linea)}
+nav .hash{color:#5f5f5f}
+.tapa{background:#0e0e0e;color:var(--ink)}
+.tapa .regla{border-top:1px dashed rgba(255,255,255,.26)}
+.tapa .pie{color:rgba(255,255,255,.66)}
+h3{box-shadow:inset 0 1px 0 #343434,inset 0 -1px 0 #343434}
+section{border-bottom-color:var(--linea)}
+.cuenta-sec{border-top-color:var(--linea)}
+.lupa{background:#161616}
+.grilla .lupa{background:none}
+.visor{background:rgba(14,14,14,.985)}
+.visor .x{background:#1a1a1a;border-color:var(--linea);color:var(--ink)}
+.falta{background:#f0eeea;color:#111}
+.embed{background:#0e0e0e;border-color:var(--linea)}
+.embed .sobre span,.embed .cerrar{background:#f0eeea;color:#111}
+.embed .sobre:hover span{background:#0e0e0e;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+footer{border-top-color:var(--linea)}
+"""
+
 JS = """
 const visor = document.querySelector('.visor'), vimg = visor.querySelector('img');
 document.querySelectorAll('.lupa').forEach(b => b.addEventListener('click', () => {
@@ -282,7 +318,7 @@ doc = f"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Maia Cheb Terrab — Portfolio</title>
-<style>{CSS}</style>
+<style>{CSS}{OSCURO if NEGRO else ""}</style>
 </head>
 <body>
 
@@ -312,5 +348,5 @@ doc = f"""<!doctype html>
 </body>
 </html>"""
 
-(WEB / "index.html").write_text(doc, encoding="utf-8")
-print("index.html escrito ·", round(len(doc)/1024, 1), "KB ·", len(assets), "piezas")
+(WEB / SALIDA).write_text(doc, encoding="utf-8")
+print(f"{SALIDA} escrito ·", round(len(doc)/1024, 1), "KB ·", len(assets), "piezas")
