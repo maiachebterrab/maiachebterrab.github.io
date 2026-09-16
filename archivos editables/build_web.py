@@ -28,16 +28,25 @@ SECCIONES = [
   "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
   "proyectos": []},
  {"id": "paradigma", "num": "01", "titulo": "Paradigma", "nav": "Paradigma", "meta": "@ PARADIGMA  ·  [2024 — 2026]",
-  "bajada": None, "proyectos": []},
+  "bajada": "Diseño gráfico y motion para la identidad digital de productoras audiovisuales "
+            "como Landia, Isla, Immigrant y Stink México. Adaptación de sistemas visuales a "
+            "web y redes, con foco en el craft: tipografía, color y detalle.",
+  "proyectos": []},
  {"id": "manela", "num": "02", "titulo": "Cátedra de Diseño Editorial Manela", "nav": "Manela",
-  "meta": "@ FADU, UBA  ·  [2023]", "bajada": None,
+  "meta": "@ FADU, UBA  ·  [2023]",
+  "bajada": "Trabajos de diseño editorial para la cátedra: una colección de fascículos, "
+            "una colección de libros y una plaquette sobre Georges Perec.",
   "proyectos": [("02-fasciculos-coleccionables", "Fascículos coleccionables", None),
                 ("05-coleccion-de-libros",       "Colección de libros",       None),
                 ("06-plaquette-perec",           "Plaquette Georges Perec",   None)]},
- {"id": "espacios", "num": "03", "titulo": "Espacios", "nav": "Espacios", "meta": None, "bajada": None,
+ {"id": "espacios", "num": "03", "titulo": "Espacios", "nav": "Espacios", "meta": None,
+  "bajada": "Identidad para una exposición de arte: sistema visual, piezas de comunicación "
+            "y su aplicación en el espacio.",
   "proyectos": [("04-identidad-exposicion-arte", "Identidad para una exposición de arte", None)]},
  {"id": "medios", "num": "04", "titulo": "Diseño estratégico en medios públicos", "nav": "Medios públicos",
-  "meta": None, "bajada": None,
+  "meta": None,
+  "bajada": "Estrategia de comunicación e identidad digital para TV Pública y Radio Nacional: "
+            "teaser, campaña, piezas institucionales y sistema para redes.",
   "proyectos": [("01-medios-publicos", None, None)]},
 ]
 
