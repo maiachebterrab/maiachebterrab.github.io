@@ -184,7 +184,7 @@ CSS = """
 /* Todo en Geist Mono, como el CV. La jerarquia la dan cuerpo, tracking y caja,
    no un cambio de familia. El negro es la base; --papel concentra el fondo. */
 :root{--papel:#0d0c0b;--tinta:#ece8e1;--suave:#8d867e;--linea:#262320;
-      --col:1180px;--medida:66ch;--gut:clamp(18px,4.2vw,44px)}
+      --col:1600px;--medida:66ch;--gut:clamp(18px,4.2vw,44px)}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{background:var(--papel);color:var(--tinta);
@@ -201,6 +201,9 @@ img{display:block}
 /* ---- caratula ---- */
 .tapa{min-height:100vh;padding:clamp(26px,5vw,74px) var(--gut);display:flex;
       flex-direction:column;justify-content:space-between}
+/* los hijos de la tapa comparten la columna de main, si no la tapa arranca
+   pegada al borde y el resto del portfolio aparece hundido hacia adentro */
+.tapa>*{width:100%;max-width:calc(var(--col) - 2*var(--gut));margin-inline:auto}
 .tapa h1{font-weight:700;font-size:clamp(32px,7.6vw,94px);line-height:1.02;
          letter-spacing:.02em;text-transform:uppercase}
 .tapa .qué{font-size:clamp(13px,1.45vw,16px);line-height:1.66;max-width:54ch;
@@ -234,7 +237,7 @@ h2 .hash{color:var(--suave);font-weight:400}
 .cuenta-sec{margin-top:clamp(20px,2.6vw,30px);display:inline-block}
 
 /* separador de proyecto: un filete a todo el ancho y el nombre en serif */
-h3{margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50% + var(--gut));
+h3{margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50%);
    margin-block:clamp(58px,8vw,108px) clamp(22px,3vw,36px);
    padding-top:clamp(14px,1.8vw,20px);border-top:1px solid var(--linea);
    font-weight:700;font-size:clamp(13px,1.6vw,17px);letter-spacing:.05em;
