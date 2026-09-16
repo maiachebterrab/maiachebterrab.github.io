@@ -61,7 +61,7 @@ h3{background:var(--verde);color:var(--ink);
    display:flex;align-items:baseline;gap:11px}
 .piezas + h3{margin-top:clamp(66px,9vw,112px)}
 h3 .barra{color:rgba(17,17,17,.45);font-weight:400}
-.vacio{color:var(--soft);font-size:13px}
+.vacio{color:var(--soft);font-size:13px;margin-top:clamp(34px,5vw,54px)}
 
 /* ---- piezas: proporcion real, nada recortado ---- */
 .piezas{display:flex;flex-direction:column;gap:0}
@@ -77,10 +77,22 @@ h3 .barra{color:rgba(17,17,17,.45);font-weight:400}
        border-block:1px solid var(--linea)}
 .embed iframe{width:100%;height:100%;border:0;display:block;pointer-events:none}
 .embed .sobre{position:absolute;inset:0;display:flex;align-items:flex-end;
-              justify-content:flex-end;padding:14px 16px;text-decoration:none}
+              justify-content:flex-end;padding:14px 16px;border:0;background:none;
+              font-family:inherit;cursor:zoom-in}
 .embed .sobre span{background:var(--verde);color:var(--ink);font-size:11px;
                    padding:6px 10px;letter-spacing:.02em}
 .embed .sobre:hover span{background:var(--ink);color:var(--verde)}
+/* a pantalla completa: la pista se puede recorrer a mano y se sale con Esc */
+.embed:fullscreen{height:100%;margin:0;width:100%;border:0}
+.embed:fullscreen iframe{pointer-events:auto}
+.embed:fullscreen .sobre{inset:auto 0 0 auto;padding:16px 18px;cursor:default}
+.embed.plena{position:fixed;inset:0;z-index:95;height:100%;width:100%;margin:0;border:0}
+.embed.plena iframe{pointer-events:auto}
+.embed .cerrar{position:absolute;top:14px;right:16px;display:none;background:var(--verde);
+               color:var(--ink);border:0;font-family:inherit;font-size:11px;padding:6px 10px;
+               cursor:pointer;z-index:2}
+.embed:fullscreen .cerrar,.embed.plena .cerrar{display:block}
+.embed:fullscreen .sobre span,.embed.plena .sobre span{display:none}
 
 /* ---- visor tamano real ---- */
 .visor{position:fixed;inset:0;z-index:90;background:rgba(255,255,255,.98);
@@ -111,9 +123,18 @@ footer{max-width:var(--col);margin:0 auto;padding:40px clamp(16px,4vw,40px) 80px
   <div class="datos">CLÍNICA DE DISEÑO · INSTITUTO PROA<br>SEPTIEMBRE 2026</div>
 </div>
 
-<nav><div class="in"><span class="yo">Maia Cheb Terrab</span><a href="#salto-de-fe"><span class="hash">##</span> Salto de Fe</a><a href="#paradigma"><span class="hash">##</span> Paradigma</a><a href="#manela"><span class="hash">##</span> Manela</a><a href="#espacios"><span class="hash">##</span> Espacios</a><a href="#medios"><span class="hash">##</span> Medios públicos</a></div></nav>
+<nav><div class="in"><span class="yo">Maia Cheb Terrab</span><a href="#las-casas"><span class="hash">##</span> Las casas no vuelan</a><a href="#salto-de-fe"><span class="hash">##</span> Salto de Fe</a><a href="#paradigma"><span class="hash">##</span> Paradigma</a><a href="#manela"><span class="hash">##</span> Manela</a><a href="#espacios"><span class="hash">##</span> Espacios</a><a href="#medios"><span class="hash">##</span> Medios públicos</a></div></nav>
 
 <main>
+<section id="las-casas">
+  <header class="sec">
+    <h2><span class="hash">##</span> Las casas no vuelan</h2>
+    <div class="meta">@ proyecto propio  ·  [2026]</div>
+    <p class="bajada">Fanzine autobiográfico a partir de dibujos que hice en la infancia, lápiz y crayón sobre papel. De esa misma letra salió <i>Maia</i>, un alfabeto propio con el que están compuestos los títulos.</p>
+    <div class="cuenta-sec">14 piezas</div>
+  </header>
+  <h3><span class="barra">/</span> Dibujos de la infancia</h3><div class="piezas"><figure class="pieza" data-pieza="00a-dibujos/01" data-px="1697×2400"><button class="lupa" data-src="assets/00a-dibujos/01.jpg" data-w="1697" data-h="2400" aria-label="Ver la pieza 01 en grande"><img src="assets/00a-dibujos/01.jpg" width="1697" height="2400" loading="lazy" decoding="async" alt=""></button></figure></div><h3><span class="barra">/</span> Alfabeto Maia</h3><div class="piezas"><figure class="pieza" data-pieza="00b-alfabeto/01" data-px="2400×1697"><button class="lupa" data-src="assets/00b-alfabeto/01.jpg" data-w="2400" data-h="1697" aria-label="Ver la pieza 01 en grande"><img src="assets/00b-alfabeto/01.jpg" width="2400" height="1697" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00b-alfabeto/02" data-px="2400×1697"><button class="lupa" data-src="assets/00b-alfabeto/02.jpg" data-w="2400" data-h="1697" aria-label="Ver la pieza 02 en grande"><img src="assets/00b-alfabeto/02.jpg" width="2400" height="1697" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00b-alfabeto/03" data-px="2400×1697"><button class="lupa" data-src="assets/00b-alfabeto/03.jpg" data-w="2400" data-h="1697" aria-label="Ver la pieza 03 en grande"><img src="assets/00b-alfabeto/03.jpg" width="2400" height="1697" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00b-alfabeto/04" data-px="2400×1697"><button class="lupa" data-src="assets/00b-alfabeto/04.jpg" data-w="2400" data-h="1697" aria-label="Ver la pieza 04 en grande"><img src="assets/00b-alfabeto/04.jpg" width="2400" height="1697" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00b-alfabeto/05" data-px="2400×1697"><button class="lupa" data-src="assets/00b-alfabeto/05.jpg" data-w="2400" data-h="1697" aria-label="Ver la pieza 05 en grande"><img src="assets/00b-alfabeto/05.jpg" width="2400" height="1697" loading="lazy" decoding="async" alt=""></button></figure></div><h3><span class="barra">/</span> Fanzine</h3><div class="piezas"><figure class="pieza" data-pieza="00c-fanzine/01" data-px="1534×2400"><button class="lupa" data-src="assets/00c-fanzine/01.jpg" data-w="1534" data-h="2400" aria-label="Ver la pieza 01 en grande"><img src="assets/00c-fanzine/01.jpg" width="1534" height="2400" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00c-fanzine/02" data-px="2400×1879"><button class="lupa" data-src="assets/00c-fanzine/02.jpg" data-w="2400" data-h="1879" aria-label="Ver la pieza 02 en grande"><img src="assets/00c-fanzine/02.jpg" width="2400" height="1879" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00c-fanzine/03" data-px="2400×1879"><button class="lupa" data-src="assets/00c-fanzine/03.jpg" data-w="2400" data-h="1879" aria-label="Ver la pieza 03 en grande"><img src="assets/00c-fanzine/03.jpg" width="2400" height="1879" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00c-fanzine/04" data-px="2400×1879"><button class="lupa" data-src="assets/00c-fanzine/04.jpg" data-w="2400" data-h="1879" aria-label="Ver la pieza 04 en grande"><img src="assets/00c-fanzine/04.jpg" width="2400" height="1879" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00c-fanzine/05" data-px="2400×1879"><button class="lupa" data-src="assets/00c-fanzine/05.jpg" data-w="2400" data-h="1879" aria-label="Ver la pieza 05 en grande"><img src="assets/00c-fanzine/05.jpg" width="2400" height="1879" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00c-fanzine/06" data-px="2400×1879"><button class="lupa" data-src="assets/00c-fanzine/06.jpg" data-w="2400" data-h="1879" aria-label="Ver la pieza 06 en grande"><img src="assets/00c-fanzine/06.jpg" width="2400" height="1879" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00c-fanzine/07" data-px="2400×1879"><button class="lupa" data-src="assets/00c-fanzine/07.jpg" data-w="2400" data-h="1879" aria-label="Ver la pieza 07 en grande"><img src="assets/00c-fanzine/07.jpg" width="2400" height="1879" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="00c-fanzine/08" data-px="1534×2400"><button class="lupa" data-src="assets/00c-fanzine/08.jpg" data-w="1534" data-h="2400" aria-label="Ver la pieza 08 en grande"><img src="assets/00c-fanzine/08.jpg" width="1534" height="2400" loading="lazy" decoding="async" alt=""></button></figure></div><p class="vacio">&gt; <span class="falta">[ falta ]</span> Imágenes que parten de los dibujos</p>
+</section>
 <section id="salto-de-fe">
   <header class="sec">
     <h2><span class="hash">##</span> Salto de Fe</h2>
@@ -124,8 +145,8 @@ footer{max-width:var(--col);margin:0 auto;padding:40px clamp(16px,4vw,40px) 80px
   <div class="embed">
       <iframe src="https://maiucheb-oss.github.io/salto-de-fe/" loading="lazy" title="Salto de Fe"
               scrolling="no" tabindex="-1"></iframe>
-      <a class="sobre" href="https://maiucheb-oss.github.io/salto-de-fe/" target="_blank" rel="noopener">
-        <span>ver a pantalla completa ↗</span></a>
+      <button class="sobre" type="button"><span>ver a pantalla completa</span></button>
+      <button class="cerrar" type="button">salir ✕</button>
     </div>
 </section>
 <section id="paradigma">
@@ -188,8 +209,33 @@ if (emb) {
   let salio = false;
   new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) salio = true;
-    else if (salio) { salio = false; f.src = f.src; }
+    else if (salio && !emb.classList.contains('plena') && !document.fullscreenElement) {
+      salio = false; f.src = f.src;
+    }
   }), { threshold: 0.2 }).observe(emb);
+
+  // pantalla completa en el lugar: nunca se sale del portfolio
+  const abrir = () => {
+    if (emb.requestFullscreen) {
+      emb.requestFullscreen().catch(() => emb.classList.add('plena'));
+    } else {
+      emb.classList.add('plena');
+    }
+    document.body.style.overflow = 'hidden';
+  };
+  const cerrarPlena = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    emb.classList.remove('plena');
+    document.body.style.overflow = '';
+  };
+  emb.querySelector('.sobre').addEventListener('click', abrir);
+  emb.querySelector('.cerrar').addEventListener('click', e => { e.stopPropagation(); cerrarPlena(); });
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) document.body.style.overflow = '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && emb.classList.contains('plena')) cerrarPlena();
+  });
 }
 </script>
 </body>

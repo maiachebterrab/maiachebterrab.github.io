@@ -592,5 +592,159 @@
   "kb": 763,
   "ow": 8000,
   "oh": 13391
+ },
+ {
+  "proj": "00a-dibujos",
+  "idx": "01",
+  "gif": false,
+  "src": "assets/00a-dibujos/01.jpg",
+  "w": 1697,
+  "h": 2400,
+  "kb": 538,
+  "ow": 1697,
+  "oh": 2400
+ },
+ {
+  "proj": "00b-alfabeto",
+  "idx": "01",
+  "gif": false,
+  "src": "assets/00b-alfabeto/01.jpg",
+  "w": 2400,
+  "h": 1697,
+  "kb": 201,
+  "ow": 2400,
+  "oh": 1697
+ },
+ {
+  "proj": "00b-alfabeto",
+  "idx": "02",
+  "gif": false,
+  "src": "assets/00b-alfabeto/02.jpg",
+  "w": 2400,
+  "h": 1697,
+  "kb": 205,
+  "ow": 2400,
+  "oh": 1697
+ },
+ {
+  "proj": "00b-alfabeto",
+  "idx": "03",
+  "gif": false,
+  "src": "assets/00b-alfabeto/03.jpg",
+  "w": 2400,
+  "h": 1697,
+  "kb": 280,
+  "ow": 2400,
+  "oh": 1697
+ },
+ {
+  "proj": "00b-alfabeto",
+  "idx": "04",
+  "gif": false,
+  "src": "assets/00b-alfabeto/04.jpg",
+  "w": 2400,
+  "h": 1697,
+  "kb": 289,
+  "ow": 2400,
+  "oh": 1697
+ },
+ {
+  "proj": "00b-alfabeto",
+  "idx": "05",
+  "gif": false,
+  "src": "assets/00b-alfabeto/05.jpg",
+  "w": 2400,
+  "h": 1697,
+  "kb": 319,
+  "ow": 2400,
+  "oh": 1697
+ },
+ {
+  "proj": "00c-fanzine",
+  "idx": "01",
+  "gif": false,
+  "src": "assets/00c-fanzine/01.jpg",
+  "w": 1534,
+  "h": 2400,
+  "kb": 186,
+  "ow": 1534,
+  "oh": 2400
+ },
+ {
+  "proj": "00c-fanzine",
+  "idx": "02",
+  "gif": false,
+  "src": "assets/00c-fanzine/02.jpg",
+  "w": 2400,
+  "h": 1879,
+  "kb": 707,
+  "ow": 2400,
+  "oh": 1879
+ },
+ {
+  "proj": "00c-fanzine",
+  "idx": "03",
+  "gif": false,
+  "src": "assets/00c-fanzine/03.jpg",
+  "w": 2400,
+  "h": 1879,
+  "kb": 596,
+  "ow": 2400,
+  "oh": 1879
+ },
+ {
+  "proj": "00c-fanzine",
+  "idx": "04",
+  "gif": false,
+  "src": "assets/00c-fanzine/04.jpg",
+  "w": 2400,
+  "h": 1879,
+  "kb": 389,
+  "ow": 2400,
+  "oh": 1879
+ },
+ {
+  "proj": "00c-fanzine",
+  "idx": "05",
+  "gif": false,
+  "src": "assets/00c-fanzine/05.jpg",
+  "w": 2400,
+  "h": 1879,
+  "kb": 533,
+  "ow": 2400,
+  "oh": 1879
+ },
+ {
+  "proj": "00c-fanzine",
+  "idx": "06",
+  "gif": false,
+  "src": "assets/00c-fanzine/06.jpg",
+  "w": 2400,
+  "h": 1879,
+  "kb": 628,
+  "ow": 2400,
+  "oh": 1879
+ },
+ {
+  "proj": "00c-fanzine",
+  "idx": "07",
+  "gif": false,
+  "src": "assets/00c-fanzine/07.jpg",
+  "w": 2400,
+  "h": 1879,
+  "kb": 894,
+  "ow": 2400,
+  "oh": 1879
+ },
+ {
+  "proj": "00c-fanzine",
+  "idx": "08",
+  "gif": false,
+  "src": "assets/00c-fanzine/08.jpg",
+  "w": 1534,
+  "h": 2400,
+  "kb": 158,
+  "ow": 1534,
+  "oh": 2400
  }
 ]

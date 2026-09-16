@@ -13,6 +13,15 @@ for v in by.values(): v.sort(key=lambda a: int(a["idx"]))
 
 # id, titulo, meta (None = pendiente), bajada (None = pendiente), proyectos
 SECCIONES = [
+ {"id": "las-casas", "num": "01", "titulo": "Las casas no vuelan", "nav": "Las casas no vuelan",
+  "meta": "@ proyecto propio  ·  [2026]",
+  "bajada": "Fanzine autobiográfico a partir de dibujos que hice en la infancia, "
+            "lápiz y crayón sobre papel. De esa misma letra salió <i>Maia</i>, un "
+            "alfabeto propio con el que están compuestos los títulos.",
+  "falta_piezas": ["Imágenes que parten de los dibujos"],
+  "proyectos": [("00a-dibujos",  "Dibujos de la infancia", None),
+                ("00b-alfabeto", "Alfabeto Maia",          None),
+                ("00c-fanzine",  "Fanzine",                None)]},
  {"id": "salto-de-fe", "num": "01", "titulo": "Salto de Fe", "nav": "Salto de Fe",
   "meta": "@ maiucheb-oss.github.io/salto-de-fe", "fecha_falta": True,
   "bajada": "Colección de imágenes de señales encontradas en lo cotidiano. "
@@ -55,12 +64,14 @@ for s in SECCIONES:
         if sub:
             cuerpo.append(f'<h3><span class="barra">/</span> {html.escape(sub)}</h3>')
         cuerpo.append(f'<div class="piezas">{piezas(slug)}</div>')
+    for pend in s.get("falta_piezas", []):
+        cuerpo.append(f'<p class="vacio">&gt; {PENDIENTE} {html.escape(pend)}</p>')
     if s.get("embed"):
         cuerpo.append(f'''<div class="embed">
       <iframe src="{s['embed']}" loading="lazy" title="{html.escape(s['titulo'])}"
               scrolling="no" tabindex="-1"></iframe>
-      <a class="sobre" href="{s['embed']}" target="_blank" rel="noopener">
-        <span>ver a pantalla completa ↗</span></a>
+      <button class="sobre" type="button"><span>ver a pantalla completa</span></button>
+      <button class="cerrar" type="button">salir ✕</button>
     </div>''')
     elif not s["proyectos"]:
         cuerpo.append('<p class="vacio">&gt; Piezas por sumar.</p>')
@@ -131,7 +142,7 @@ h3{background:var(--verde);color:var(--ink);
    display:flex;align-items:baseline;gap:11px}
 .piezas + h3{margin-top:clamp(66px,9vw,112px)}
 h3 .barra{color:rgba(17,17,17,.45);font-weight:400}
-.vacio{color:var(--soft);font-size:13px}
+.vacio{color:var(--soft);font-size:13px;margin-top:clamp(34px,5vw,54px)}
 
 /* ---- piezas: proporcion real, nada recortado ---- */
 .piezas{display:flex;flex-direction:column;gap:0}
@@ -147,10 +158,22 @@ h3 .barra{color:rgba(17,17,17,.45);font-weight:400}
        border-block:1px solid var(--linea)}
 .embed iframe{width:100%;height:100%;border:0;display:block;pointer-events:none}
 .embed .sobre{position:absolute;inset:0;display:flex;align-items:flex-end;
-              justify-content:flex-end;padding:14px 16px;text-decoration:none}
+              justify-content:flex-end;padding:14px 16px;border:0;background:none;
+              font-family:inherit;cursor:zoom-in}
 .embed .sobre span{background:var(--verde);color:var(--ink);font-size:11px;
                    padding:6px 10px;letter-spacing:.02em}
 .embed .sobre:hover span{background:var(--ink);color:var(--verde)}
+/* a pantalla completa: la pista se puede recorrer a mano y se sale con Esc */
+.embed:fullscreen{height:100%;margin:0;width:100%;border:0}
+.embed:fullscreen iframe{pointer-events:auto}
+.embed:fullscreen .sobre{inset:auto 0 0 auto;padding:16px 18px;cursor:default}
+.embed.plena{position:fixed;inset:0;z-index:95;height:100%;width:100%;margin:0;border:0}
+.embed.plena iframe{pointer-events:auto}
+.embed .cerrar{position:absolute;top:14px;right:16px;display:none;background:var(--verde);
+               color:var(--ink);border:0;font-family:inherit;font-size:11px;padding:6px 10px;
+               cursor:pointer;z-index:2}
+.embed:fullscreen .cerrar,.embed.plena .cerrar{display:block}
+.embed:fullscreen .sobre span,.embed.plena .sobre span{display:none}
 
 /* ---- visor tamano real ---- */
 .visor{position:fixed;inset:0;z-index:90;background:rgba(255,255,255,.98);
@@ -184,8 +207,33 @@ if (emb) {
   let salio = false;
   new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) salio = true;
-    else if (salio) { salio = false; f.src = f.src; }
+    else if (salio && !emb.classList.contains('plena') && !document.fullscreenElement) {
+      salio = false; f.src = f.src;
+    }
   }), { threshold: 0.2 }).observe(emb);
+
+  // pantalla completa en el lugar: nunca se sale del portfolio
+  const abrir = () => {
+    if (emb.requestFullscreen) {
+      emb.requestFullscreen().catch(() => emb.classList.add('plena'));
+    } else {
+      emb.classList.add('plena');
+    }
+    document.body.style.overflow = 'hidden';
+  };
+  const cerrarPlena = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    emb.classList.remove('plena');
+    document.body.style.overflow = '';
+  };
+  emb.querySelector('.sobre').addEventListener('click', abrir);
+  emb.querySelector('.cerrar').addEventListener('click', e => { e.stopPropagation(); cerrarPlena(); });
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) document.body.style.overflow = '';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && emb.classList.contains('plena')) cerrarPlena();
+  });
 }
 """
 
