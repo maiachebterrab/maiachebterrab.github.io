@@ -148,8 +148,6 @@ def piezas(slug):
 bloques, nav = [], []
 for s in SECCIONES:
     nav.append(f'<a href="#{s["id"]}"><span class="hash">##</span> {html.escape(s["nav"])}</a>')
-    n = sum(len(PARES) * 2 if p[0] == "@pares" else
-            len(by.get(p[0], [])) for p in s["proyectos"])
     cuerpo = []
     for slug, sub, baj in s["proyectos"]:
         if sub:
@@ -177,7 +175,6 @@ for s in SECCIONES:
     <h2><span class="hash">##</span> {html.escape(s['titulo'])}</h2>
     <div class="meta">{(s['meta'] or PENDIENTE) + ('  ·  ' + PENDIENTE if s.get('fecha_falta') else '')}</div>
     <p class="bajada">{s['bajada'] or ('&gt; ' + PENDIENTE)}</p>
-    <div class="cuenta-sec">{('50 fotos · se mueve sola' if s.get('embed') else str(n) + ' piezas')}</div>
   </header>
   {''.join(cuerpo)}
 </section>""")
@@ -198,7 +195,7 @@ a{color:inherit}
 img{display:block}
 
 /* etiqueta: el registro de ficha, en mono */
-.etq,.meta,.cuenta-sec,.tapa .datos,.tapa .pie,nav .in,figcaption,.vacio,footer,h3 .barra{
+.etq,.meta,.tapa .datos,.tapa .pie,nav .in,figcaption,.vacio,footer,h3 .barra{
   font-family:"Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.13em;
   text-transform:uppercase;color:var(--suave);line-height:1.8}
 
@@ -238,7 +235,6 @@ h2 .hash{color:var(--suave);font-weight:400}
 .meta{margin-top:clamp(14px,1.8vw,22px)}
 .bajada{max-width:var(--medida);margin-top:clamp(18px,2.4vw,30px);
         font-size:13px;line-height:1.72;color:rgba(236,232,225,.82)}
-.cuenta-sec{margin-top:clamp(20px,2.6vw,30px);display:inline-block}
 
 /* separador de proyecto: un filete a todo el ancho y el nombre en serif */
 h3{margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50%);
@@ -262,7 +258,7 @@ h3 .barra{flex:none}
 
 /* ---- pares: el dibujo apoyado sobre la imagen, abajo a la derecha.
        El margen blanco lo separa de la foto y lo lee como pieza aparte. ---- */
-.pares{display:flex;flex-direction:column;gap:clamp(40px,6vw,92px)}
+.pares{display:flex;flex-direction:column;gap:0}
 .par-obra{position:relative}
 .obra .lupa{background:#151311}
 .fuente{position:absolute;z-index:2;
@@ -275,7 +271,7 @@ h3 .barra{flex:none}
 /* rotulo en la letra propia, arriba a la izquierda, opuesto al dibujo */
 .rotulo{position:absolute;z-index:2;display:flex;align-items:flex-end;
         gap:calc(var(--alto) * .12);
-        --alto:clamp(15px,2.15vw,34px);
+        --alto:clamp(10px,1.12vw,15px);
         top:clamp(14px,2.2vw,34px);left:clamp(14px,2.2vw,34px);
         max-width:62%;flex-wrap:wrap;row-gap:calc(var(--alto) * .42);
         pointer-events:none}
@@ -446,7 +442,7 @@ doc = f"""<!doctype html>
 
 <main>{''.join(bloques)}</main>
 
-<footer>Las piezas se ven en su proporción real. Hacé clic en cualquiera para abrirla en grande.</footer>
+<footer>Clic en cualquier pieza para abrirla en tamaño completo.</footer>
 
 <div class="visor"><button class="x">cerrar ✕</button><img alt=""></div>
 <script>{JS}</script>
