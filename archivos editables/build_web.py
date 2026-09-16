@@ -421,10 +421,8 @@ doc = f"""<!doctype html>
     <hr class="regla">
     <div class="pie">
       <span>maiucheb@gmail.com</span><span>+54 11 6946-3209</span>
-      <span>behance.net/maiacheb</span>
     </div>
   </div>
-  <div class="datos">CLÍNICA DE DISEÑO · INSTITUTO PROA<br>SEPTIEMBRE 2026</div>
 </div>
 
 <nav><div class="in"><span class="yo">Maia Cheb Terrab</span>{''.join(nav)}</div></nav>
