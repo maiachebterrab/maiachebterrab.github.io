@@ -87,9 +87,9 @@ def lupa(a, extra=""):
 
 def pares():
     out = []
-    for n, (src_dib, src_img, epi) in enumerate(PARES, 1):
+    for src_dib, src_img, epi in PARES:
         d, i = ficha(src_dib), ficha(src_img)
-        out.append(f"""<div class="par-obra p{n}">
+        out.append(f"""<div class="par-obra">
       <div class="obra">{lupa(i)}</div>
       <div class="fuente">{lupa(d)}</div>
     </div>""")
@@ -239,30 +239,17 @@ h3 .barra{flex:none}
 .lupa img{width:100%;height:auto}
 .lupa img{margin:0;vertical-align:top}
 
-/* ---- pares: el dibujo original apoyado sobre la recreacion.
-       Cada par lo ubica distinto, para que no se lea como una ficha repetida. ---- */
-.pares{display:flex;flex-direction:column;gap:clamp(46px,7vw,104px)}
+/* ---- pares: el dibujo apoyado sobre la imagen, abajo a la derecha.
+       El margen blanco lo separa de la foto y lo lee como pieza aparte. ---- */
+.pares{display:flex;flex-direction:column;gap:clamp(40px,6vw,92px)}
 .par-obra{position:relative}
 .obra .lupa{background:#151311}
-.fuente{position:absolute;z-index:2;width:clamp(86px,12.5%,164px)}
-.fuente .lupa{background:none;box-shadow:0 10px 30px rgba(0,0,0,.55)}
-
-/* 1 · colgando del borde de abajo, corrida a la izquierda */
-.par-obra.p1{padding-bottom:clamp(30px,5.2vw,86px)}
-.par-obra.p1 .fuente{left:5%;bottom:0;transform:rotate(-2.5deg)}
-/* 2 · asomando por arriba, hacia el centro */
-.par-obra.p2{padding-top:clamp(26px,4.4vw,74px)}
-.par-obra.p2 .fuente{left:42%;top:0;transform:rotate(1.8deg)}
-/* 3 · colgando abajo a la derecha */
-.par-obra.p3{padding-bottom:clamp(30px,5.2vw,86px)}
-.par-obra.p3 .fuente{right:6%;bottom:0;transform:rotate(3deg)}
-
-@media (max-width:640px){
-  .par-obra,.par-obra.p1,.par-obra.p2,.par-obra.p3{padding:0}
-  .fuente,.par-obra.p1 .fuente,.par-obra.p2 .fuente,.par-obra.p3 .fuente{
-    position:static;width:92px;margin-top:12px;transform:none}
-  .fuente .lupa{box-shadow:none}
-}
+.fuente{position:absolute;z-index:2;
+        width:clamp(78px,13.5%,170px);
+        right:clamp(14px,2.2vw,34px);bottom:clamp(14px,2.2vw,34px);
+        background:#fff;padding:clamp(5px,.62vw,9px);
+        box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.fuente .lupa{background:#fff}
 
 /* ---- grilla de dibujos ---- */
 .grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
