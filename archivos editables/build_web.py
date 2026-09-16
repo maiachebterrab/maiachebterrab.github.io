@@ -33,10 +33,10 @@ SECCIONES = [
   "meta": "@ maiucheb-oss.github.io/salto-de-fe  ·  [2025]",
   "bajada": "Recopilación de fotografías propias sacadas en lo cotidiano. El nombre viene "
             "de algo que me pasa: encuentro mensajes en lo que me rodea. Quise darles una "
-            "forma. En lo digital es una página web; en lo material, un acordeón de fotos.",
+            "forma: en lo digital, esta página web; en lo material, un acordeón de fotos "
+            "impreso como pieza editorial.",
   "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
-  "proyectos": [("@embed",      "Página web", None),
-                ("07-acordeon", "Acordeón",   None)]},
+  "proyectos": [("@embed", None, None)]},
  {"grupo": "editoriales", "id": "fasciculos", "num": "03", "titulo": "Fascículos coleccionables", "nav": "Fascículos",
   "meta": "@ Cátedra Ex-Manela, FADU  ·  [2023]",
   "bajada": "Colección de fascículos a partir de columnas y ensayos de Leila Guerriero, "
