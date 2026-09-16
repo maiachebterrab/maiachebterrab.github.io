@@ -22,7 +22,7 @@ SECCIONES = [
                 ("00b-alfabeto",  "Alfabeto",               None),
                 ("00d-imagenes",  "Imágenes",               None)]},
  {"id": "salto-de-fe", "num": "01", "titulo": "Salto de Fe", "nav": "Salto de Fe",
-  "meta": "@ maiucheb-oss.github.io/salto-de-fe", "fecha_falta": True,
+  "meta": "@ maiucheb-oss.github.io/salto-de-fe  ·  [2025]",
   "bajada": "Colección de imágenes de señales encontradas en lo cotidiano. "
             "Las fotos se recorren de corrido, como una sola imagen que avanza.",
   "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
@@ -39,7 +39,8 @@ SECCIONES = [
   "proyectos": [("02-fasciculos-coleccionables", "Fascículos coleccionables", None),
                 ("05-coleccion-de-libros",       "Colección de libros",       None),
                 ("06-plaquette-perec",           "Plaquette Georges Perec",   None)]},
- {"id": "espacios", "num": "03", "titulo": "Espacios", "nav": "Espacios", "meta": None,
+ {"id": "espacios", "num": "03", "titulo": "Espacios", "nav": "Espacios",
+  "meta": "@ MACBA  ·  [2021]",
   "bajada": "Identidad para una exposición de arte: sistema visual, piezas de comunicación "
             "y su aplicación en el espacio.",
   "proyectos": [("04-identidad-exposicion-arte", "Identidad para una exposición de arte", None)]},
