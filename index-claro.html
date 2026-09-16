@@ -50,10 +50,17 @@ nav a{text-decoration:none;white-space:nowrap;transition:color .18s}
 nav a:hover{color:var(--tinta)}
 nav .hash{color:#4d4741}
 
+/* ---- grupos: la jerarquia de arriba. Adentro no cambia nada. ---- */
+.grupo{padding-top:clamp(26px,3.4vw,46px);border-top:1px solid var(--tinta)}
+.grupo+.grupo{margin-top:clamp(70px,10vw,150px)}
+.grupo-tit{font-weight:700;font-size:clamp(26px,4.6vw,52px);line-height:1.04;
+           letter-spacing:.012em;text-transform:uppercase}
+.grupo>section:first-of-type{padding-top:clamp(44px,6.5vw,92px)}
+
 /* ---- secciones ---- */
 main{max-width:var(--col);margin:0 auto;padding:0 var(--gut)}
 section{padding:clamp(72px,11vw,152px) 0}
-section+section{border-top:1px solid var(--linea)}
+.grupo section+section{border-top:1px solid var(--linea)}
 .sec{margin-bottom:clamp(34px,5.4vw,68px)}
 h2{font-weight:700;font-size:clamp(18px,2.8vw,30px);line-height:1.22;
    letter-spacing:.015em;text-transform:uppercase}
@@ -176,16 +183,17 @@ nav .hash{color:#b4aea6}
   </div>
 </div>
 
-<nav><div class="in"><span class="yo">Maia Cheb Terrab</span><a href="#bestiario"><span class="hash">##</span> Bestiario</a><a href="#salto-de-fe"><span class="hash">##</span> Salto de Fe</a><a href="#fasciculos"><span class="hash">##</span> Fascículos</a><a href="#libros"><span class="hash">##</span> Colección de libros</a><a href="#perec"><span class="hash">##</span> Plaquette Perec</a><a href="#espacios"><span class="hash">##</span> Espacios</a><a href="#medios"><span class="hash">##</span> Medios públicos</a></div></nav>
+<nav><div class="in"><span class="yo">Maia Cheb Terrab</span><a href="#g-visuales"><span class="hash">##</span> Proyectos visuales</a><a href="#g-editoriales"><span class="hash">##</span> Proyectos editoriales</a><a href="#g-identidad"><span class="hash">##</span> Identidad institucional</a></div></nav>
 
 <main>
+<div class="grupo" id="g-visuales"><div class="grupo-tit" role="heading" aria-level="2">Proyectos visuales</div>
 <section id="bestiario">
   <header class="sec">
     <h2><span class="hash">##</span> Bestiario</h2>
     <div class="meta">@ Creadores de Imágenes, Julia Sbriller  ·  [2026]</div>
     <p class="bajada">Proyecto realizado en el marco de Creadores de Imágenes. Parte de los dibujos y la letra de mi infancia para llevarlos a otros universos: reformular hoy, con otras técnicas, lo que dibujé de chica.</p>
   </header>
-  <div class="pares"><div class="par-obra">
+  <h3><span class="barra">/</span> Recreación de los dibujos</h3><div class="pares"><div class="par-obra">
       <div class="obra"><button class="lupa" data-src="assets/00d-imagenes/01.jpg?v=d4c7d10d" data-w="2400" data-h="1345"><img src="assets/00d-imagenes/01.jpg?v=d4c7d10d" width="2400" height="1345" loading="lazy" decoding="async" alt=""></button></div>
       <div class="rotulo">Mi casa</div>
       <div class="fuente"><button class="lupa" data-src="assets/00a-dibujos/04.jpg?v=7a4fe6d5" data-w="1600" data-h="941"><img src="assets/00a-dibujos/04.jpg?v=7a4fe6d5" width="1600" height="941" loading="lazy" decoding="async" alt=""></button></div>
@@ -212,6 +220,8 @@ nav .hash{color:#b4aea6}
       <button class="cerrar" type="button">salir ✕</button>
     </div>
 </section>
+</div>
+<div class="grupo" id="g-editoriales"><div class="grupo-tit" role="heading" aria-level="2">Proyectos editoriales</div>
 <section id="fasciculos">
   <header class="sec">
     <h2><span class="hash">##</span> Fascículos coleccionables</h2>
@@ -236,6 +246,8 @@ nav .hash{color:#b4aea6}
   </header>
   <div class="piezas"><figure class="pieza" data-pieza="06-plaquette-perec/01" data-px="2000×1500"><button class="lupa" data-src="assets/06-plaquette-perec/01.jpg?v=0f247b81" data-w="2400" data-h="1800" aria-label="Ver la pieza 01 en grande"><img src="assets/06-plaquette-perec/01.jpg?v=0f247b81" width="2400" height="1800" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="06-plaquette-perec/02" data-px="2000×1500" data-gif><button class="lupa" data-src="assets/06-plaquette-perec/02.gif?v=ded6d67c" data-w="2000" data-h="1500" aria-label="Ver la pieza 02 en grande"><img src="assets/06-plaquette-perec/02.gif?v=ded6d67c" width="2000" height="1500" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="06-plaquette-perec/03" data-px="2000×1500"><button class="lupa" data-src="assets/06-plaquette-perec/03.jpg?v=cdc414a9" data-w="2400" data-h="1800" aria-label="Ver la pieza 03 en grande"><img src="assets/06-plaquette-perec/03.jpg?v=cdc414a9" width="2400" height="1800" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="06-plaquette-perec/04" data-px="8000×13391"><button class="lupa" data-src="assets/06-plaquette-perec/04.jpg?v=81a386ce" data-w="1433" data-h="2400" aria-label="Ver la pieza 04 en grande"><img src="assets/06-plaquette-perec/04.jpg?v=81a386ce" width="1433" height="2400" loading="lazy" decoding="async" alt=""></button></figure></div>
 </section>
+</div>
+<div class="grupo" id="g-identidad"><div class="grupo-tit" role="heading" aria-level="2">Identidad institucional</div>
 <section id="espacios">
   <header class="sec">
     <h2><span class="hash">##</span> Espacios</h2>
@@ -251,7 +263,8 @@ nav .hash{color:#b4aea6}
     <p class="bajada">Estrategia de comunicación e identidad digital para TV Pública y Radio Nacional: teaser, campaña, piezas institucionales y sistema para redes.</p>
   </header>
   <div class="piezas"><figure class="pieza" data-pieza="01-medios-publicos/01" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/01.jpg?v=4817f911" data-w="2400" data-h="1350" aria-label="Ver la pieza 01 en grande"><img src="assets/01-medios-publicos/01.jpg?v=4817f911" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/02" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/02.jpg?v=77a411fd" data-w="2400" data-h="1350" aria-label="Ver la pieza 02 en grande"><img src="assets/01-medios-publicos/02.jpg?v=77a411fd" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/03" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/03.jpg?v=91059789" data-w="2400" data-h="1350" aria-label="Ver la pieza 03 en grande"><img src="assets/01-medios-publicos/03.jpg?v=91059789" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/04" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/04.jpg?v=dfc9ad6d" data-w="2400" data-h="1350" aria-label="Ver la pieza 04 en grande"><img src="assets/01-medios-publicos/04.jpg?v=dfc9ad6d" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/05" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/05.jpg?v=7ba9ad4c" data-w="2400" data-h="1350" aria-label="Ver la pieza 05 en grande"><img src="assets/01-medios-publicos/05.jpg?v=7ba9ad4c" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/06" data-px="2389×1920" data-gif><button class="lupa" data-src="assets/01-medios-publicos/06.gif?v=bfc46dc1" data-w="2389" data-h="1920" aria-label="Ver la pieza 06 en grande"><img src="assets/01-medios-publicos/06.gif?v=bfc46dc1" width="2389" height="1920" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/07" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/07.jpg?v=9a040181" data-w="2400" data-h="1350" aria-label="Ver la pieza 07 en grande"><img src="assets/01-medios-publicos/07.jpg?v=9a040181" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/08" data-px="3413×1920" data-gif><button class="lupa" data-src="assets/01-medios-publicos/08.gif?v=e61869f1" data-w="3413" data-h="1920" aria-label="Ver la pieza 08 en grande"><img src="assets/01-medios-publicos/08.gif?v=e61869f1" width="3413" height="1920" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/09" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/09.jpg?v=ec225e90" data-w="2400" data-h="1350" aria-label="Ver la pieza 09 en grande"><img src="assets/01-medios-publicos/09.jpg?v=ec225e90" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/10" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/10.jpg?v=56857dde" data-w="2400" data-h="1350" aria-label="Ver la pieza 10 en grande"><img src="assets/01-medios-publicos/10.jpg?v=56857dde" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/11" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/11.jpg?v=2ac8c251" data-w="2400" data-h="1350" aria-label="Ver la pieza 11 en grande"><img src="assets/01-medios-publicos/11.jpg?v=2ac8c251" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/12" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/12.jpg?v=48846ae3" data-w="2400" data-h="1350" aria-label="Ver la pieza 12 en grande"><img src="assets/01-medios-publicos/12.jpg?v=48846ae3" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/13" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/13.jpg?v=1ca41b71" data-w="2400" data-h="1350" aria-label="Ver la pieza 13 en grande"><img src="assets/01-medios-publicos/13.jpg?v=1ca41b71" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/14" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/14.jpg?v=24235a6f" data-w="2400" data-h="1350" aria-label="Ver la pieza 14 en grande"><img src="assets/01-medios-publicos/14.jpg?v=24235a6f" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/15" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/15.jpg?v=c9cc7a05" data-w="2400" data-h="1350" aria-label="Ver la pieza 15 en grande"><img src="assets/01-medios-publicos/15.jpg?v=c9cc7a05" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/16" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/16.jpg?v=ecd615bd" data-w="2400" data-h="1350" aria-label="Ver la pieza 16 en grande"><img src="assets/01-medios-publicos/16.jpg?v=ecd615bd" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/17" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/17.jpg?v=43d02427" data-w="2400" data-h="1350" aria-label="Ver la pieza 17 en grande"><img src="assets/01-medios-publicos/17.jpg?v=43d02427" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/18" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/18.jpg?v=93a012a3" data-w="2400" data-h="1350" aria-label="Ver la pieza 18 en grande"><img src="assets/01-medios-publicos/18.jpg?v=93a012a3" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/19" data-px="7680×4320"><button class="lupa" data-src="assets/01-medios-publicos/19.jpg?v=515ec8ac" data-w="2400" data-h="1350" aria-label="Ver la pieza 19 en grande"><img src="assets/01-medios-publicos/19.jpg?v=515ec8ac" width="2400" height="1350" loading="lazy" decoding="async" alt=""></button></figure><figure class="pieza" data-pieza="01-medios-publicos/20" data-px="1920×1080" data-gif><button class="lupa" data-src="assets/01-medios-publicos/20.gif?v=519fbb6a" data-w="600" data-h="338" aria-label="Ver la pieza 20 en grande"><img src="assets/01-medios-publicos/20.gif?v=519fbb6a" width="600" height="338" loading="lazy" decoding="async" alt=""></button></figure></div>
-</section></main>
+</section>
+</div></main>
 
 <footer>Clic en cualquier pieza para abrirla en tamaño completo.</footer>
 

@@ -22,39 +22,39 @@ for v in by.values(): v.sort(key=lambda a: int(a["idx"]))
 
 # id, titulo, meta (None = pendiente), bajada (None = pendiente), proyectos
 SECCIONES = [
- {"id": "bestiario", "num": "01", "titulo": "Bestiario", "nav": "Bestiario",
+ {"grupo": "visuales", "id": "bestiario", "num": "01", "titulo": "Bestiario", "nav": "Bestiario",
   "meta": "@ Creadores de Imágenes, Julia Sbriller  ·  [2026]",
   "bajada": "Proyecto realizado en el marco de Creadores de Imágenes. Parte de los dibujos "
             "y la letra de mi infancia para llevarlos a otros universos: reformular hoy, con "
             "otras técnicas, lo que dibujé de chica.",
-  "proyectos": [("@pares",       None,                         None),
+  "proyectos": [("@pares",       "Recreación de los dibujos", None),
                 ("00b-alfabeto", "Alfabeto",                   None)]},
- {"id": "salto-de-fe", "num": "02", "titulo": "Salto de Fe", "nav": "Salto de Fe",
+ {"grupo": "visuales", "id": "salto-de-fe", "num": "02", "titulo": "Salto de Fe", "nav": "Salto de Fe",
   "meta": "@ maiucheb-oss.github.io/salto-de-fe  ·  [2025]",
   "bajada": "Recopilación de fotografías propias sacadas en lo cotidiano. El nombre viene "
             "de algo que me pasa: encuentro mensajes en lo que me rodea. Quise darles una "
             "forma. En lo digital es una página web; en lo material, un acordeón de fotos.",
   "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
   "proyectos": []},
- {"id": "fasciculos", "num": "03", "titulo": "Fascículos coleccionables", "nav": "Fascículos",
+ {"grupo": "editoriales", "id": "fasciculos", "num": "03", "titulo": "Fascículos coleccionables", "nav": "Fascículos",
   "meta": "@ Cátedra Ex-Manela, FADU  ·  [2023]",
   "bajada": "Colección de fascículos a partir de columnas y ensayos de Leila Guerriero, "
             "María Moreno y Juan Forn.",
   "proyectos": [("02-fasciculos-coleccionables", None, None)]},
- {"id": "libros", "num": "04", "titulo": "Colección de libros", "nav": "Colección de libros",
+ {"grupo": "editoriales", "id": "libros", "num": "04", "titulo": "Colección de libros", "nav": "Colección de libros",
   "meta": "@ Cátedra Ex-Manela, FADU  ·  [2024]",
   "bajada": "Colección de libros para las obras completas de Samanta Schweblin.",
   "proyectos": [("05-coleccion-de-libros", None, None)]},
- {"id": "perec", "num": "05", "titulo": "Plaquette Georges Perec", "nav": "Plaquette Perec",
+ {"grupo": "editoriales", "id": "perec", "num": "05", "titulo": "Plaquette Georges Perec", "nav": "Plaquette Perec",
   "meta": "@ Cátedra Ex-Manela, FADU  ·  [2023]",
   "bajada": "Plaquette a partir de un fragmento de <i>Pensar/Clasificar</i>, de Georges Perec.",
   "proyectos": [("06-plaquette-perec", None, None)]},
- {"id": "espacios", "num": "03", "titulo": "Espacios", "nav": "Espacios",
+ {"grupo": "identidad", "id": "espacios", "num": "06", "titulo": "Espacios", "nav": "Espacios",
   "meta": "@ MACBA  ·  [2021]",
   "bajada": "Identidad para una exposición de arte: sistema visual, piezas de comunicación "
             "y su aplicación en el espacio.",
   "proyectos": [("04-identidad-exposicion-arte", "Identidad para una exposición de arte", None)]},
- {"id": "medios", "num": "04", "titulo": "Diseño estratégico en medios públicos", "nav": "Medios públicos",
+ {"grupo": "identidad", "id": "medios", "num": "07", "titulo": "Diseño estratégico en medios públicos", "nav": "Medios públicos",
   "meta": None,
   "bajada": "Estrategia de comunicación e identidad digital para TV Pública y Radio Nacional: "
             "teaser, campaña, piezas institucionales y sistema para redes.",
@@ -137,9 +137,24 @@ def piezas(slug):
           f'</figure>')
     return "".join(out)
 
+GRUPOS = [("visuales",    "Proyectos visuales"),
+          ("editoriales", "Proyectos editoriales"),
+          ("identidad",   "Identidad institucional")]
+
 bloques, nav = [], []
+for gid, gtit in GRUPOS:
+    nav.append(f'<a href="#g-{gid}"><span class="hash">##</span> {html.escape(gtit)}</a>')
+
+grupo_abierto = None
 for s in SECCIONES:
-    nav.append(f'<a href="#{s["id"]}"><span class="hash">##</span> {html.escape(s["nav"])}</a>')
+    if s["grupo"] != grupo_abierto:
+        if grupo_abierto is not None:
+            bloques.append("\n</div>")
+        gtit = dict(GRUPOS)[s["grupo"]]
+        bloques.append(f'\n<div class="grupo" id="g-{s["grupo"]}">'
+                       f'<div class="grupo-tit" role="heading" aria-level="2">'
+                       f'{html.escape(gtit)}</div>')
+        grupo_abierto = s["grupo"]
     cuerpo = []
     for slug, sub, baj in s["proyectos"]:
         if sub:
@@ -170,6 +185,8 @@ for s in SECCIONES:
   </header>
   {''.join(cuerpo)}
 </section>""")
+if grupo_abierto is not None:
+    bloques.append("\n</div>")
 
 CSS = """
 @font-face{font-family:"Mono";src:url("assets/fonts/GeistMono-Regular.ttf");font-weight:400;font-display:swap}
@@ -216,10 +233,17 @@ nav a{text-decoration:none;white-space:nowrap;transition:color .18s}
 nav a:hover{color:var(--tinta)}
 nav .hash{color:#4d4741}
 
+/* ---- grupos: la jerarquia de arriba. Adentro no cambia nada. ---- */
+.grupo{padding-top:clamp(26px,3.4vw,46px);border-top:1px solid var(--tinta)}
+.grupo+.grupo{margin-top:clamp(70px,10vw,150px)}
+.grupo-tit{font-weight:700;font-size:clamp(26px,4.6vw,52px);line-height:1.04;
+           letter-spacing:.012em;text-transform:uppercase}
+.grupo>section:first-of-type{padding-top:clamp(44px,6.5vw,92px)}
+
 /* ---- secciones ---- */
 main{max-width:var(--col);margin:0 auto;padding:0 var(--gut)}
 section{padding:clamp(72px,11vw,152px) 0}
-section+section{border-top:1px solid var(--linea)}
+.grupo section+section{border-top:1px solid var(--linea)}
 .sec{margin-bottom:clamp(34px,5.4vw,68px)}
 h2{font-weight:700;font-size:clamp(18px,2.8vw,30px);line-height:1.22;
    letter-spacing:.015em;text-transform:uppercase}
