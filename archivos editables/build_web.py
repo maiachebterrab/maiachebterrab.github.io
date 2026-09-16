@@ -13,6 +13,12 @@ for v in by.values(): v.sort(key=lambda a: int(a["idx"]))
 
 # id, titulo, meta (None = pendiente), bajada (None = pendiente), proyectos
 SECCIONES = [
+ {"id": "salto-de-fe", "num": "01", "titulo": "Salto de Fe", "nav": "Salto de Fe",
+  "meta": "@ maiucheb-oss.github.io/salto-de-fe", "fecha_falta": True,
+  "bajada": "Colección de imágenes de señales encontradas en lo cotidiano. "
+            "Las fotos se recorren de corrido, como una sola imagen que avanza.",
+  "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
+  "proyectos": []},
  {"id": "paradigma", "num": "01", "titulo": "Paradigma", "nav": "Paradigma", "meta": "@ PARADIGMA  ·  [2024 — 2026]",
   "bajada": None, "proyectos": []},
  {"id": "manela", "num": "02", "titulo": "Cátedra de Diseño Editorial Manela", "nav": "Manela",
@@ -49,15 +55,22 @@ for s in SECCIONES:
         if sub:
             cuerpo.append(f'<h3><span class="barra">/</span> {html.escape(sub)}</h3>')
         cuerpo.append(f'<div class="piezas">{piezas(slug)}</div>')
-    if not s["proyectos"]:
+    if s.get("embed"):
+        cuerpo.append(f'''<div class="embed">
+      <iframe src="{s['embed']}" loading="lazy" title="{html.escape(s['titulo'])}"
+              scrolling="no" tabindex="-1"></iframe>
+      <a class="sobre" href="{s['embed']}" target="_blank" rel="noopener">
+        <span>ver a pantalla completa ↗</span></a>
+    </div>''')
+    elif not s["proyectos"]:
         cuerpo.append('<p class="vacio">&gt; Piezas por sumar.</p>')
     bloques.append(f"""
 <section id="{s['id']}">
   <header class="sec">
     <h2><span class="hash">##</span> {html.escape(s['titulo'])}</h2>
-    <div class="meta">{s['meta'] or PENDIENTE}</div>
+    <div class="meta">{(s['meta'] or PENDIENTE) + ('  ·  ' + PENDIENTE if s.get('fecha_falta') else '')}</div>
     <p class="bajada">{s['bajada'] or ('&gt; ' + PENDIENTE)}</p>
-    <div class="cuenta-sec">{n} piezas</div>
+    <div class="cuenta-sec">{('50 fotos · se mueve sola' if s.get('embed') else str(n) + ' piezas')}</div>
   </header>
   {''.join(cuerpo)}
 </section>""")
@@ -128,6 +141,17 @@ h3 .barra{color:rgba(17,17,17,.45);font-weight:400}
 .lupa img{width:100%;height:auto;display:block}
 .falta{background:var(--verde);color:var(--ink);padding:0 6px}
 
+/* ---- embed: la pieza viva, a todo el ancho ---- */
+.embed{position:relative;margin-inline:calc(50% - 50vw);width:100vw;
+       height:clamp(300px,74vh,720px);background:#fff;overflow:hidden;
+       border-block:1px solid var(--linea)}
+.embed iframe{width:100%;height:100%;border:0;display:block;pointer-events:none}
+.embed .sobre{position:absolute;inset:0;display:flex;align-items:flex-end;
+              justify-content:flex-end;padding:14px 16px;text-decoration:none}
+.embed .sobre span{background:var(--verde);color:var(--ink);font-size:11px;
+                   padding:6px 10px;letter-spacing:.02em}
+.embed .sobre:hover span{background:var(--ink);color:var(--verde)}
+
 /* ---- visor tamano real ---- */
 .visor{position:fixed;inset:0;z-index:90;background:rgba(255,255,255,.98);
        display:none;overflow:auto;cursor:zoom-out;padding:44px 0}
@@ -151,6 +175,18 @@ function cerrar(){ visor.classList.remove('on'); vimg.removeAttribute('src');
   document.body.style.overflow = ''; }
 visor.addEventListener('click', cerrar);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
+
+// el sitio embebido se auto-scrollea una sola vez y para al final:
+// lo recargamos cada vez que la seccion vuelve a entrar en pantalla, asi siempre se ve moviendose
+const emb = document.querySelector('.embed');
+if (emb) {
+  const f = emb.querySelector('iframe');
+  let salio = false;
+  new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) salio = true;
+    else if (salio) { salio = false; f.src = f.src; }
+  }), { threshold: 0.2 }).observe(emb);
+}
 """
 
 doc = f"""<!doctype html>

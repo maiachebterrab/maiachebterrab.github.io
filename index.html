@@ -71,6 +71,17 @@ h3 .barra{color:rgba(17,17,17,.45);font-weight:400}
 .lupa img{width:100%;height:auto;display:block}
 .falta{background:var(--verde);color:var(--ink);padding:0 6px}
 
+/* ---- embed: la pieza viva, a todo el ancho ---- */
+.embed{position:relative;margin-inline:calc(50% - 50vw);width:100vw;
+       height:clamp(300px,74vh,720px);background:#fff;overflow:hidden;
+       border-block:1px solid var(--linea)}
+.embed iframe{width:100%;height:100%;border:0;display:block;pointer-events:none}
+.embed .sobre{position:absolute;inset:0;display:flex;align-items:flex-end;
+              justify-content:flex-end;padding:14px 16px;text-decoration:none}
+.embed .sobre span{background:var(--verde);color:var(--ink);font-size:11px;
+                   padding:6px 10px;letter-spacing:.02em}
+.embed .sobre:hover span{background:var(--ink);color:var(--verde)}
+
 /* ---- visor tamano real ---- */
 .visor{position:fixed;inset:0;z-index:90;background:rgba(255,255,255,.98);
        display:none;overflow:auto;cursor:zoom-out;padding:44px 0}
@@ -100,9 +111,23 @@ footer{max-width:var(--col);margin:0 auto;padding:40px clamp(16px,4vw,40px) 80px
   <div class="datos">CLÍNICA DE DISEÑO · INSTITUTO PROA<br>SEPTIEMBRE 2026</div>
 </div>
 
-<nav><div class="in"><span class="yo">Maia Cheb Terrab</span><a href="#paradigma"><span class="hash">##</span> Paradigma</a><a href="#manela"><span class="hash">##</span> Manela</a><a href="#espacios"><span class="hash">##</span> Espacios</a><a href="#medios"><span class="hash">##</span> Medios públicos</a></div></nav>
+<nav><div class="in"><span class="yo">Maia Cheb Terrab</span><a href="#salto-de-fe"><span class="hash">##</span> Salto de Fe</a><a href="#paradigma"><span class="hash">##</span> Paradigma</a><a href="#manela"><span class="hash">##</span> Manela</a><a href="#espacios"><span class="hash">##</span> Espacios</a><a href="#medios"><span class="hash">##</span> Medios públicos</a></div></nav>
 
 <main>
+<section id="salto-de-fe">
+  <header class="sec">
+    <h2><span class="hash">##</span> Salto de Fe</h2>
+    <div class="meta">@ maiucheb-oss.github.io/salto-de-fe  ·  <span class="falta">[ falta ]</span></div>
+    <p class="bajada">Colección de imágenes de señales encontradas en lo cotidiano. Las fotos se recorren de corrido, como una sola imagen que avanza.</p>
+    <div class="cuenta-sec">50 fotos · se mueve sola</div>
+  </header>
+  <div class="embed">
+      <iframe src="https://maiucheb-oss.github.io/salto-de-fe/" loading="lazy" title="Salto de Fe"
+              scrolling="no" tabindex="-1"></iframe>
+      <a class="sobre" href="https://maiucheb-oss.github.io/salto-de-fe/" target="_blank" rel="noopener">
+        <span>ver a pantalla completa ↗</span></a>
+    </div>
+</section>
 <section id="paradigma">
   <header class="sec">
     <h2><span class="hash">##</span> Paradigma</h2>
@@ -154,6 +179,18 @@ function cerrar(){ visor.classList.remove('on'); vimg.removeAttribute('src');
   document.body.style.overflow = ''; }
 visor.addEventListener('click', cerrar);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
+
+// el sitio embebido se auto-scrollea una sola vez y para al final:
+// lo recargamos cada vez que la seccion vuelve a entrar en pantalla, asi siempre se ve moviendose
+const emb = document.querySelector('.embed');
+if (emb) {
+  const f = emb.querySelector('iframe');
+  let salio = false;
+  new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) salio = true;
+    else if (salio) { salio = false; f.src = f.src; }
+  }), { threshold: 0.2 }).observe(emb);
+}
 </script>
 </body>
 </html>
