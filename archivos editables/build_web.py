@@ -20,14 +20,14 @@ for v in by.values(): v.sort(key=lambda a: int(a["idx"]))
 
 # id, titulo, meta (None = pendiente), bajada (None = pendiente), proyectos
 SECCIONES = [
- {"id": "bestiario", "num": "01", "titulo": "Bestiario", "nav": "Bestiario",
-  "meta": "@ proyecto propio  ·  [2026]",
-  "bajada": "Dibujos que hice en la infancia, lápiz y crayón sobre papel. De esa "
-            "letra salió <i>Maia</i>, un alfabeto propio. Las imágenes son "
-            "representaciones de esos mismos dibujos llevadas a otras técnicas.",
-  "proyectos": [("00a-dibujos",   "Dibujos de la infancia", None),
-                ("00b-alfabeto",  "Alfabeto",               None),
-                ("00d-imagenes",  "Imágenes",               None)]},
+ {"id": "infancia", "num": "01", "titulo": "Infancia", "nav": "Infancia",
+  "meta": "@ Creadores de Imágenes, Julia Sbriller  ·  [2026]",
+  "bajada": "Proyecto realizado en el marco de Creadores de Imágenes. Parte de los dibujos "
+            "y la letra de mi infancia para llevarlos a otros universos: reformular hoy, con "
+            "otras técnicas, lo que dibujé de chica.",
+  "proyectos": [("@pares",       "Los dibujos y sus imágenes", None),
+                ("00b-alfabeto", "Alfabeto",                   None),
+                ("@resto",       "Otros dibujos",              None)]},
  {"id": "salto-de-fe", "num": "01", "titulo": "Salto de Fe", "nav": "Salto de Fe",
   "meta": "@ maiucheb-oss.github.io/salto-de-fe  ·  [2025]",
   "bajada": "Colección de imágenes de señales encontradas en lo cotidiano. "
@@ -64,6 +64,51 @@ def ver(src):
 
 GRILLA = {"00a-dibujos"}
 
+# dibujo original  ->  imagen que lo reformula, en el orden que va en la página
+PARES = [
+    ("assets/00a-dibujos/04.jpg", "assets/00d-imagenes/01.jpg", "Casa"),
+    ("assets/00a-dibujos/02.jpg", "assets/00d-imagenes/02.jpg", "Maia"),
+    ("assets/00a-dibujos/05.jpg", "assets/00d-imagenes/03.jpg", "La familia uniida de un hilo"),
+]
+# los dibujos que todavía no tienen imagen
+RESTO = ["assets/00a-dibujos/01.jpg", "assets/00a-dibujos/03.jpg",
+         "assets/00a-dibujos/06.jpg", "assets/00a-dibujos/07.jpg"]
+
+
+def ficha(src):
+    for a in assets:
+        if a["src"] == src:
+            return a
+    raise KeyError(src)
+
+
+def lupa(a, extra=""):
+    return (f'<button class="lupa"{extra} data-src="{ver(a["src"])}" '
+            f'data-w="{a["w"]}" data-h="{a["h"]}">'
+            f'<img src="{ver(a["src"])}" width="{a["w"]}" height="{a["h"]}" '
+            f'loading="lazy" decoding="async" alt=""></button>')
+
+
+def pares():
+    out = []
+    for src_dib, src_img, epi in PARES:
+        d, i = ficha(src_dib), ficha(src_img)
+        out.append(f"""<div class="par-obra">
+      <div class="fuente">{lupa(d)}<span class="epi">{html.escape(epi)}</span></div>
+      <div class="obra">{lupa(i)}</div>
+    </div>""")
+    return f'<div class="pares">{"".join(out)}</div>'
+
+
+def resto():
+    celdas = []
+    for src in RESTO:
+        a = ficha(src)
+        celdas.append(f'<figure>{lupa(a)}'
+                      f'<figcaption>{html.escape(a.get("cap", ""))}</figcaption></figure>')
+    return f'<div class="grilla">{"".join(celdas)}</div>'
+
+
 
 def grilla(slug):
     out = []
@@ -94,12 +139,18 @@ def piezas(slug):
 bloques, nav = [], []
 for s in SECCIONES:
     nav.append(f'<a href="#{s["id"]}"><span class="hash">##</span> {html.escape(s["nav"])}</a>')
-    n = sum(len(by.get(p[0], [])) for p in s["proyectos"])
+    n = sum(len(PARES) * 2 if p[0] == "@pares" else
+            len(RESTO) if p[0] == "@resto" else
+            len(by.get(p[0], [])) for p in s["proyectos"])
     cuerpo = []
     for slug, sub, baj in s["proyectos"]:
         if sub:
             cuerpo.append(f'<h3><span class="barra">/</span> {html.escape(sub)}</h3>')
-        if slug in GRILLA:
+        if slug == "@pares":
+            cuerpo.append(pares())
+        elif slug == "@resto":
+            cuerpo.append(resto())
+        elif slug in GRILLA:
             cuerpo.append(grilla(slug))
         else:
             cuerpo.append(f'<div class="piezas">{piezas(slug)}</div>')
@@ -191,6 +242,22 @@ h3 .barra{color:rgba(255,255,255,.5);font-weight:400}
 .lupa{padding:0;border:0;background:#fafafa;cursor:zoom-in;display:block;line-height:0}
 .lupa img{width:100%;height:auto;display:block}
 .falta{background:var(--campo);color:var(--sobrecampo);padding:0 6px}
+
+/* ---- pares: el dibujo original al costado de la imagen que lo reformula ---- */
+.pares{display:flex;flex-direction:column;gap:clamp(44px,7vw,86px)}
+.par-obra{display:grid;grid-template-columns:clamp(110px,14%,168px) 1fr;
+          gap:clamp(16px,2.4vw,32px);align-items:start}
+.fuente{display:flex;flex-direction:column;gap:9px;padding-top:2px}
+.fuente .lupa{background:none;border:0;padding:0;cursor:zoom-in;display:block;line-height:0}
+.fuente .lupa img{width:100%;height:auto;display:block}
+.fuente .epi{font-size:10px;color:var(--soft);letter-spacing:.03em;line-height:1.45}
+.obra .lupa{background:#fafafa;border:0;padding:0;cursor:zoom-in;display:block;line-height:0}
+.obra .lupa img{width:100%;height:auto;display:block}
+@media (max-width:620px){
+  .par-obra{grid-template-columns:1fr;gap:14px}
+  .fuente{flex-direction:row;align-items:flex-end;gap:12px}
+  .fuente .lupa{width:88px;flex:none}
+}
 
 /* ---- grilla de dibujos: cada uno con su epigrafe ---- */
 .grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
