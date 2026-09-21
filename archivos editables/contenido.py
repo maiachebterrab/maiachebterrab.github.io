@@ -2,6 +2,10 @@
 """Los textos y el orden del portfolio. Lo leen build_web.py y build_pdf.py,
 así que editar acá alcanza para que cambien la web y el PDF a la vez."""
 
+PRESENTACION = ("Diseño identidades y universos visuales para artistas, proyectos "
+                "culturales y productoras audiovisuales. Mi práctica cruza diseño, "
+                "imagen, fotografía y cultura.")
+
 GRUPOS = [("visuales",    "Proyectos visuales"),
           ("editoriales", "Proyectos editoriales"),
           ("identidad",   "Identidad institucional")]
@@ -20,8 +24,8 @@ SECCIONES = [
   "bajada": "Proyecto realizado en el marco de Destructores de Imágenes. Partiendo de los "
             "dibujos y la caligrafía de mi infancia con la idea de llevarlos a otros "
             "universos: reformular hoy, con otras técnicas, lo que dibujé de chica.",
-  "proyectos": [("@pares",       "Imágenes", None),
-                ("00b-alfabeto", "Alfabeto", None)]},
+  # El alfabeto de Bestiario quedó afuera: esa letra ya no existe (20/9/2026).
+  "proyectos": [("@pares", "Imágenes", None)]},
  {"grupo": "visuales", "id": "salto-de-fe", "num": "02", "titulo": "Salto de Fe",
   "nav": "Salto de Fe",
   "meta": "@ Creadores de Imágenes  ·  [2026]",

@@ -6,11 +6,13 @@ la tapa, las bandas y los avisos; si más adelante entra un color, se cambia ah�
 """
 import hashlib, json, pathlib, html, sys
 
-from contenido import GRUPOS, PARES, SECCIONES
+from contenido import GRUPOS, PARES, SECCIONES, PRESENTACION
 
 CLARA = "claro" in sys.argv[1:]
 SANS  = "sans" in sys.argv[1:]
-SALIDA = ("index-sans.html" if SANS else
+EDIT  = "editorial" in sys.argv[1:]
+SALIDA = ("index-editorial.html" if EDIT else
+          "index-sans.html" if SANS else
           "index-claro.html" if CLARA else "index.html")
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
@@ -333,6 +335,103 @@ nav .hash{color:#b4aea6}
 .embed{background:var(--papel)}
 """
 
+EDITORIAL_CSS = """
+/* ---- version editorial: blanca, chica, dos familias ----
+   Referencia: miasoifer.com. Ahi la pagina es blanca, el cuerpo vive entre 13 y
+   15px y la unica nota expresiva es el logotipo a mano. Aca hacemos lo mismo con
+   lo que Maia ya tiene: Saol Text para los titulos (lo serif que respira) y TWK
+   Lausanne para todo lo demas (la neo-grotesca neutra, en lugar de Neue Haas).
+   La Mono sale: era el gesto que hacia ruido. */
+@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-Regular.otf") format("opentype");
+           font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-RegularItalic.otf") format("opentype");
+           font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-Medium.otf") format("opentype");
+           font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-300.otf") format("opentype");
+           font-weight:300;font-display:swap}
+@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-400.otf") format("opentype");
+           font-weight:400;font-display:swap}
+@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-500.otf") format("opentype");
+           font-weight:500;font-display:swap}
+
+/* blanco de verdad, y una columna mas angosta: 1600 era ancho de galeria */
+:root{--papel:#fff;--tinta:#131211;--suave:#8b8781;--linea:#e6e3de;
+      --col:1340px;--medida:58ch;--gut:clamp(16px,3.2vw,36px)}
+body{font-family:"Lausanne","Helvetica Neue",Arial,sans-serif;font-size:13.5px;
+     line-height:1.55;letter-spacing:0;font-weight:400}
+
+/* la ficha deja de gritar: minuscula, sin tracking, gris */
+.etq,.meta,.tapa .datos,.tapa .pie,nav .in,figcaption,.vacio,footer,h3 .barra{
+  font-family:"Lausanne","Helvetica Neue",Arial,sans-serif;font-size:11.5px;
+  letter-spacing:0;text-transform:none;line-height:1.5;color:var(--suave)}
+
+/* ---- tapa: deja de ocupar una pantalla entera ---- */
+.tapa{min-height:0;padding:clamp(18px,2.6vw,30px) var(--gut) clamp(46px,7vw,92px);
+      display:block}
+.tapa h1{font-family:"Saol",Georgia,serif;font-weight:400;text-transform:none;
+         font-size:clamp(28px,4.2vw,50px);line-height:1.04;letter-spacing:-.012em;
+         margin-top:clamp(52px,9vw,124px)}
+.tapa .qué{font-size:13.5px;line-height:1.3;max-width:48ch;
+           margin-top:clamp(14px,1.8vw,22px);color:rgba(19,18,17,.72)}
+.tapa .regla{margin:clamp(28px,4vw,46px) 0}
+.tapa .pie{gap:4px 24px}
+
+/* ---- nav: palabras, nada mas ---- */
+nav .in{padding:11px var(--gut);gap:22px}
+nav .hash{display:none}
+nav .yo{color:var(--tinta)}
+
+/* ---- grupos: el titulo grande pasa a ser un rotulo ---- */
+.grupo{border-top:1px solid var(--linea);padding-top:clamp(12px,1.4vw,16px)}
+.grupo+.grupo{margin-top:clamp(56px,7vw,104px)}
+/* mismo criterio que en el indice: el titulo del grupo se lee como su entrada
+   del menu, no como un rotulo de archivo */
+.grupo-tit{font-family:"Lausanne","Helvetica Neue",Arial,sans-serif;font-weight:400;
+           font-size:13.5px;line-height:1.55;letter-spacing:0;text-transform:none;
+           color:var(--suave)}
+.grupo>section:first-of-type{padding-top:clamp(30px,4.2vw,58px)}
+
+/* ---- secciones: la mitad de aire, el titulo en serif ---- */
+section{padding:clamp(44px,5.6vw,84px) 0}
+.sec{margin-bottom:clamp(24px,3.2vw,42px)}
+h2{font-family:"Saol",Georgia,serif;font-weight:400;text-transform:none;
+   font-size:clamp(20px,2.3vw,29px);line-height:1.14;letter-spacing:-.008em}
+h2 .hash{display:none}
+.meta{margin-top:clamp(9px,1.1vw,13px)}
+/* interlineado de los parrafos: 130% */
+.bajada{font-size:13.5px;line-height:1.3;max-width:var(--medida);
+        margin-top:clamp(14px,1.7vw,20px);color:rgba(19,18,17,.74)}
+
+/* separador de pieza: italica chica, sin versalita ni tracking */
+h3{font-family:"Saol",Georgia,serif;font-style:italic;font-weight:400;
+   text-transform:none;letter-spacing:0;font-size:clamp(14px,1.35vw,17px);
+   margin-block:clamp(40px,5.2vw,74px) clamp(14px,1.8vw,22px);gap:10px}
+h3 .barra{font-style:normal}
+
+/* ---- imagenes sobre papel, no sobre carbon ---- */
+.lupa,.obra .lupa{background:#f3f1ee}
+.rotulo{color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.55);background:none;padding:0;
+        font-family:"Lausanne","Helvetica Neue",Arial,sans-serif;
+        font-size:11.5px;letter-spacing:0;text-transform:none;font-weight:400}
+.fuente{box-shadow:0 8px 24px rgba(0,0,0,.14)}
+.grilla{grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+        gap:clamp(20px,2.6vw,36px) clamp(16px,2vw,28px)}
+.grilla .lupa{height:clamp(120px,17vh,190px)}
+.grilla figcaption{font-size:11px;line-height:1.45}
+
+/* ---- avisos y visor ---- */
+.falta{background:var(--tinta);color:#fff;padding:1px 6px;letter-spacing:0}
+.visor{background:rgba(255,255,255,.99)}
+.visor .x{background:#fff;border:1px solid var(--linea);font-family:"Lausanne",sans-serif;
+          font-size:11px;letter-spacing:0;text-transform:none}
+.embed .sobre span,.embed .cerrar{font-family:"Lausanne",sans-serif;font-size:11px;
+                                  letter-spacing:0;text-transform:none}
+footer{padding-bottom:clamp(56px,7vw,92px)}
+.pie-dat{gap:4px 22px}
+@media (max-width:640px){body{font-size:13px}}
+"""
+
 JS = """
 const visor = document.querySelector('.visor'), vimg = visor.querySelector('img');
 document.querySelectorAll('.lupa').forEach(b => b.addEventListener('click', () => {
@@ -407,7 +506,7 @@ doc = f"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">{GFONTS if SANS else ""}
 <title>Maia Cheb Terrab — Portfolio</title>
-<style>{CSS}{CLARO if CLARA else ""}{SANS_CSS if SANS else ""}</style>
+<style>{CSS}{CLARO if (CLARA or EDIT) else ""}{SANS_CSS if SANS else ""}{EDITORIAL_CSS if EDIT else ""}</style>
 </head>
 <body>
 
@@ -415,8 +514,7 @@ doc = f"""<!doctype html>
   <div class="datos">MAIA CHEB TERRAB<br>DISEÑADORA GRÁFICA (FADU-UBA) · BUENOS AIRES</div>
   <div>
     <h1>Portfolio</h1>
-    <p class="qué">Diseño identidades y universos visuales para artistas, proyectos culturales
-    y productoras audiovisuales. Mi práctica cruza diseño, imagen, fotografía y escritura.</p>
+    <p class="qué">{PRESENTACION}</p>
     <hr class="regla">
     <div class="pie">
       <span>maiucheb@gmail.com</span><span>+54 11 6946-3209</span>

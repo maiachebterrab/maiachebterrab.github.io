@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Carrusel</title>
+<style>
+@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-Regular.otf") format("opentype");
+           font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-RegularItalic.otf") format("opentype");
+           font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-300.otf") format("opentype");
+           font-weight:300;font-display:swap}
+@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-400.otf") format("opentype");
+           font-weight:400;font-display:swap}
+@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-500.otf") format("opentype");
+           font-weight:500;font-display:swap}
+
+:root{--papel:#fff;--tinta:#131211;--suave:#8b8781;--linea:#e6e3de;
+      --gut:clamp(16px,3.2vw,36px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--papel);color:var(--tinta);
+     font-family:"Lausanne","Helvetica Neue",Arial,sans-serif;
+     font-size:13.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block}
+
+/* ---- nav: el nombre a la izquierda, las tres secciones a la derecha ---- */
+nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(10px)}
+nav .in{display:flex;align-items:baseline;gap:22px;padding:14px var(--gut)}
+nav .yo{margin-right:auto}
+nav a{color:var(--suave);transition:color .18s}
+nav a:hover,nav .yo{color:var(--tinta)}
+
+main{padding:clamp(28px,4vw,52px) var(--gut) clamp(70px,9vw,120px)}
+.intro{max-width:46ch;margin-bottom:clamp(40px,6vw,86px)}
+.intro h1{font-family:"Saol",Georgia,serif;font-weight:400;
+          font-size:clamp(26px,3.6vw,42px);line-height:1.06;letter-spacing:-.012em}
+/* interlineado de los parrafos: 130% */
+.intro p{margin-top:14px;color:rgba(19,18,17,.72);line-height:1.3}
+
+.banda+.banda{margin-top:clamp(46px,6vw,84px)}
+/* el titulo de cada banda se lee igual que su entrada en el menu: Lausanne
+   13,5px en gris, caja normal, sin tracking. El filete pasa a ser fino para no
+   pesar mas que el titulo. */
+.banda>h2{font-size:13.5px;font-weight:400;letter-spacing:0;text-transform:none;
+          line-height:1.55;color:var(--suave);padding-top:12px;
+          border-top:1px solid var(--linea);margin-bottom:clamp(18px,2.4vw,28px)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+       gap:clamp(24px,3vw,42px) clamp(16px,1.8vw,26px)}
+.card{display:block}
+/* 4px: lo justo para que la esquina no quede cruda, sin que se note redondeada */
+.card .foto{background:#f3f1ee;aspect-ratio:16/10;overflow:hidden;border-radius:4px}
+.card .foto img{width:100%;height:100%;object-fit:cover;
+                transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.card:hover .foto img{transform:scale(1.02)}
+.card .pie{display:flex;justify-content:space-between;gap:12px;
+           margin-top:9px;font-size:11.5px;color:var(--suave)}
+.card .pie .n{color:var(--tinta);flex:1}
+.card .pie .a{flex:none}
+.card .pie .t{flex:none;text-align:right;min-width:9em}
+.vacia .foto{display:flex;align-items:center;justify-content:center;
+             border:1px dashed var(--linea);background:none;color:var(--suave);
+             font-size:11.5px}
+
+/* ---- carrusel de posteos: scroll-snap, sin libreria ----
+   La pista es un scroll horizontal con scroll-snap-type:x mandatory; cada
+   slide se imanta con scroll-snap-align:center. Asi funciona igual con el
+   trackpad, con el dedo en el celular y con las flechas, que solo hacen
+   scrollBy del ancho de un slide. El recurso es de julidalmasso.com/design. */
+.clientes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+          gap:clamp(22px,2.6vw,36px) clamp(14px,1.6vw,24px);
+          padding:clamp(28px,4vw,52px) var(--gut) clamp(70px,9vw,120px)}
+.post{position:relative}
+.pista{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+       scroll-behavior:smooth;aspect-ratio:4/5;background:#f3f1ee;
+       border-radius:4px;scrollbar-width:none;-ms-overflow-style:none}
+.pista::-webkit-scrollbar{display:none}
+.pista>img,.pista>video{flex:0 0 100%;width:100%;height:100%;object-fit:cover;
+           scroll-snap-align:start;scroll-snap-stop:always}
+.post .flecha{position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+              width:30px;height:30px;border:0;border-radius:50%;cursor:pointer;
+              background:rgba(255,255,255,.72);color:#131211;font-size:13px;
+              line-height:1;display:grid;place-items:center;opacity:0;
+              transition:opacity .2s}
+.post:hover .flecha{opacity:1}
+.post .flecha:hover{background:#fff}
+.post .flecha[disabled]{opacity:0!important;pointer-events:none}
+.post .ant{left:9px}
+.post .sig{right:9px}
+.post .puntos{position:absolute;bottom:9px;left:0;right:0;z-index:2;
+              display:flex;justify-content:center;gap:5px;pointer-events:none}
+.post .puntos i{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.5)}
+.post .puntos i.on{background:#fff}
+.post .pie{display:flex;justify-content:space-between;gap:10px;margin-top:8px;
+           font-size:11.5px;color:var(--suave)}
+.post .pie .n{color:var(--tinta)}
+</style>
+</head>
+<body>
+<nav><div class="in"><a class="yo" href="index.html">Maia Cheb Terrab</a><a href="index.html#visuales">Proyectos visuales</a><a href="index.html#editoriales">Proyectos editoriales</a><a href="index.html#identidad">Identidad institucional</a></div></nav><main style="padding-bottom:0"><div class="intro"><h1>Carrusel</h1><p>Prueba del recurso con imágenes prestadas de Medios públicos. Se desliza con el dedo, el trackpad o las flechas; cada slide se imanta. Cuando lleguen las piezas de Paradigma va igual, una carpeta por cliente.</p></div></main>
+<div class="clientes"><div class="post"><div class="pista"><img src="assets/01-medios-publicos/01.jpg?v=4817f911" alt="" loading="lazy"><img src="assets/01-medios-publicos/02.jpg?v=77a411fd" alt="" loading="lazy"><img src="assets/01-medios-publicos/03.jpg?v=91059789" alt="" loading="lazy"><img src="assets/01-medios-publicos/04.jpg?v=dfc9ad6d" alt="" loading="lazy"></div><button class="flecha ant" aria-label="Anterior">‹</button><button class="flecha sig" aria-label="Siguiente">›</button><div class="puntos"><i></i><i></i><i></i><i></i></div><div class="pie"><span class="n">Posteo 1</span><span>demo</span></div></div><div class="post"><div class="pista"><img src="assets/01-medios-publicos/05.jpg?v=7ba9ad4c" alt="" loading="lazy"><img src="assets/01-medios-publicos/06.gif?v=bfc46dc1" alt="" loading="lazy"><img src="assets/01-medios-publicos/07.jpg?v=9a040181" alt="" loading="lazy"><img src="assets/01-medios-publicos/08.gif?v=e61869f1" alt="" loading="lazy"></div><button class="flecha ant" aria-label="Anterior">‹</button><button class="flecha sig" aria-label="Siguiente">›</button><div class="puntos"><i></i><i></i><i></i><i></i></div><div class="pie"><span class="n">Posteo 2</span><span>demo</span></div></div><div class="post"><div class="pista"><img src="assets/01-medios-publicos/09.jpg?v=ec225e90" alt="" loading="lazy"><img src="assets/01-medios-publicos/10.jpg?v=56857dde" alt="" loading="lazy"><img src="assets/01-medios-publicos/11.jpg?v=2ac8c251" alt="" loading="lazy"><img src="assets/01-medios-publicos/12.jpg?v=48846ae3" alt="" loading="lazy"></div><button class="flecha ant" aria-label="Anterior">‹</button><button class="flecha sig" aria-label="Siguiente">›</button><div class="puntos"><i></i><i></i><i></i><i></i></div><div class="pie"><span class="n">Posteo 3</span><span>demo</span></div></div><div class="post"><div class="pista"><img src="assets/01-medios-publicos/13.jpg?v=1ca41b71" alt="" loading="lazy"><img src="assets/01-medios-publicos/14.jpg?v=24235a6f" alt="" loading="lazy"><img src="assets/01-medios-publicos/15.jpg?v=c9cc7a05" alt="" loading="lazy"><img src="assets/01-medios-publicos/16.jpg?v=ecd615bd" alt="" loading="lazy"></div><button class="flecha ant" aria-label="Anterior">‹</button><button class="flecha sig" aria-label="Siguiente">›</button><div class="puntos"><i></i><i></i><i></i><i></i></div><div class="pie"><span class="n">Posteo 4</span><span>demo</span></div></div></div>
+<script>
+document.querySelectorAll('.post').forEach(post=>{
+  const pista=post.querySelector('.pista'),
+        slides=[...pista.children],
+        puntos=[...post.querySelectorAll('.puntos i')],
+        ant=post.querySelector('.ant'), sig=post.querySelector('.sig');
+  let i=0;
+  // Con scroll-snap mandatory, scrollBy() y scrollTo() pelean con el snap y
+  // quedan a mitad de camino. scrollIntoView sobre el slide cae justo.
+  const ir=n=>{i=Math.max(0,Math.min(slides.length-1,n));
+    // behavior:'smooth' no anima dentro de un contenedor con snap mandatory
+    // (Chrome cancela la animacion y no se mueve). Con 'instant' cae justo.
+    // El deslizado con el dedo o el trackpad sigue siendo nativo y suave.
+    slides[i].scrollIntoView({inline:'start',block:'nearest',behavior:'instant'});
+    pintar();};
+  function pintar(){
+    puntos.forEach((p,n)=>p.classList.toggle('on',n===i));
+    ant.disabled = i===0;
+    sig.disabled = i===slides.length-1;
+  }
+  ant.addEventListener('click',()=>ir(i-1));
+  sig.addEventListener('click',()=>ir(i+1));
+  // el dedo y el trackpad scrollean solos: leemos donde quedo y sincronizamos
+  pista.addEventListener('scroll',()=>{clearTimeout(pista._t);
+    pista._t=setTimeout(()=>{
+      i=Math.round(pista.scrollLeft/(pista.clientWidth||1));pintar();},90);});
+  new ResizeObserver(()=>slides[i].scrollIntoView(
+      {inline:'start',block:'nearest',behavior:'instant'})).observe(pista);
+  pintar();
+});
+</script>
+</body>
+</html>

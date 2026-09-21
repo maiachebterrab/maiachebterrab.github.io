@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Fascículos coleccionables — Maia Cheb Terrab</title>
+<style>
+@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-Regular.otf") format("opentype");
+           font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-RegularItalic.otf") format("opentype");
+           font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-300.otf") format("opentype");
+           font-weight:300;font-display:swap}
+@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-400.otf") format("opentype");
+           font-weight:400;font-display:swap}
+@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-500.otf") format("opentype");
+           font-weight:500;font-display:swap}
+
+:root{--papel:#fff;--tinta:#131211;--suave:#8b8781;--linea:#e6e3de;
+      --gut:clamp(16px,3.2vw,36px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--papel);color:var(--tinta);
+     font-family:"Lausanne","Helvetica Neue",Arial,sans-serif;
+     font-size:13.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block}
+
+/* ---- nav: el nombre a la izquierda, las tres secciones a la derecha ---- */
+nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(10px)}
+nav .in{display:flex;align-items:baseline;gap:22px;padding:14px var(--gut)}
+nav .yo{margin-right:auto}
+nav a{color:var(--suave);transition:color .18s}
+nav a:hover,nav .yo{color:var(--tinta)}
+
+/* ---- dos columnas: la izquierda no se mueve, la derecha scrollea ---- */
+.ficha{display:grid;grid-template-columns:minmax(280px,30%) 1fr;
+       gap:clamp(20px,3vw,44px);padding:0 var(--gut) clamp(70px,9vw,120px);
+       align-items:start}
+.info{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;
+      padding:clamp(44px,7vw,104px) 0 clamp(22px,3vw,34px)}
+.info h1{font-family:"Saol",Georgia,serif;font-weight:400;
+         font-size:clamp(22px,2.4vw,30px);line-height:1.12;letter-spacing:-.008em}
+.info .meta{margin-top:6px;font-size:11.5px;color:var(--suave)}
+.info .raya{margin:clamp(18px,2.4vw,28px) 0;color:var(--suave)}
+.info .bajada{max-width:42ch;color:rgba(19,18,17,.74);line-height:1.3}
+.info .abajo{margin-top:auto;padding-top:34px;display:flex;
+             justify-content:space-between;align-items:baseline;gap:16px}
+.info .abajo a{font-family:"Saol",Georgia,serif;font-size:16px}
+.info .abajo a:hover{opacity:.55}
+
+.media{padding-top:clamp(44px,7vw,104px);display:flex;flex-direction:column;gap:0}
+.media .lupa{padding:0;border:0;background:#f3f1ee;cursor:zoom-in;display:block;
+             width:100%;line-height:0}
+.media .lupa img{width:100%;height:auto;vertical-align:top}
+.par{position:relative}
+.par .fuente{position:absolute;z-index:2;width:clamp(72px,14%,160px);
+             right:clamp(12px,1.8vw,26px);bottom:clamp(12px,1.8vw,26px);
+             background:#fff;padding:clamp(4px,.55vw,8px);
+             box-shadow:0 8px 24px rgba(0,0,0,.14)}
+.par .rotulo{position:absolute;z-index:2;top:clamp(12px,1.8vw,26px);
+             left:clamp(12px,1.8vw,26px);font-size:11.5px;color:#fff;
+             text-shadow:0 1px 12px rgba(0,0,0,.55);pointer-events:none}
+.embed{position:relative;height:clamp(300px,74vh,700px);
+       border:1px solid var(--linea);overflow:hidden}
+.embed iframe{width:100%;height:100%;border:0;display:block}
+
+.visor{position:fixed;inset:0;z-index:90;background:rgba(255,255,255,.99);
+       display:none;overflow:auto;cursor:zoom-out;padding:52px 0}
+.visor.on{display:block}
+.visor img{margin:0 auto;max-width:none}
+
+@media (max-width:860px){
+  .ficha{grid-template-columns:1fr}
+  .info{position:static;min-height:0;padding-bottom:30px}
+  .media{padding-top:0}
+}
+</style>
+</head>
+<body>
+<nav><div class="in"><a class="yo" href="index.html">Maia Cheb Terrab</a><a href="index.html#visuales">Proyectos visuales</a><a href="index.html#editoriales">Proyectos editoriales</a><a href="index.html#identidad">Identidad institucional</a></div></nav><div class="ficha">
+  <aside class="info">
+    <h1>Fascículos coleccionables</h1>
+    <div class="meta">@ Cátedra Ex-Manela, FADU  ·  [2023]</div>
+    <div class="raya">—</div>
+    <div class="bajada">Colección de fascículos coleccionables a partir de columnas y ensayos de Leila Guerriero, María Moreno y Juan Forn.</div>
+    <div class="abajo"><a href="index.html">← Índice</a><a href="p-libros.html">Colección de libros →</a></div>
+  </aside>
+  <div class="media"><button class="lupa" data-src="assets/02-fasciculos-coleccionables/01.jpg?v=753d64c0" data-w="1920" data-h="1080"><img src="assets/02-fasciculos-coleccionables/01.jpg?v=753d64c0" width="2400" height="1350" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/02.jpg?v=651d8aaa" data-w="1920" data-h="958"><img src="assets/02-fasciculos-coleccionables/02.jpg?v=651d8aaa" width="2400" height="1197" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/03.gif?v=b677b67f" data-w="1920" data-h="1080"><img src="assets/02-fasciculos-coleccionables/03.gif?v=b677b67f" width="1200" height="675" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/04.jpg?v=bc02084c" data-w="1920" data-h="958"><img src="assets/02-fasciculos-coleccionables/04.jpg?v=bc02084c" width="2400" height="1197" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/05.jpg?v=592f394f" data-w="3840" data-h="1914"><img src="assets/02-fasciculos-coleccionables/05.jpg?v=592f394f" width="2400" height="1196" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/06.gif?v=3ad3bb64" data-w="1920" data-h="1080"><img src="assets/02-fasciculos-coleccionables/06.gif?v=3ad3bb64" width="1200" height="675" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/07.jpg?v=5357b29f" data-w="3840" data-h="1914"><img src="assets/02-fasciculos-coleccionables/07.jpg?v=5357b29f" width="2400" height="1196" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/08.jpg?v=b9747968" data-w="3840" data-h="4938"><img src="assets/02-fasciculos-coleccionables/08.jpg?v=b9747968" width="1866" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/09.gif?v=0fedafb9" data-w="1920" data-h="1080"><img src="assets/02-fasciculos-coleccionables/09.gif?v=0fedafb9" width="1200" height="675" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/10.jpg?v=f93429ae" data-w="1920" data-h="956"><img src="assets/02-fasciculos-coleccionables/10.jpg?v=f93429ae" width="2400" height="1195" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/11.jpg?v=aee7a392" data-w="1920" data-h="1080"><img src="assets/02-fasciculos-coleccionables/11.jpg?v=aee7a392" width="2400" height="1350" alt="" loading="lazy"></button><button class="lupa" data-src="assets/02-fasciculos-coleccionables/12.jpg?v=fd6851fd" data-w="1920" data-h="450"><img src="assets/02-fasciculos-coleccionables/12.jpg?v=fd6851fd" width="2400" height="562" alt="" loading="lazy"></button></div>
+</div>
+<div class="visor"><img alt=""></div>
+<script>
+const visor=document.querySelector('.visor'),vimg=visor.querySelector('img');
+document.querySelectorAll('.lupa').forEach(b=>b.addEventListener('click',()=>{
+  vimg.src=b.dataset.src;vimg.width=b.dataset.w;vimg.height=b.dataset.h;
+  visor.classList.add('on');visor.scrollTop=0;document.body.style.overflow='hidden';}));
+const cerrar=()=>{visor.classList.remove('on');vimg.removeAttribute('src');
+  document.body.style.overflow='';};
+visor.addEventListener('click',cerrar);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrar();});
+</script>
+</body>
+</html>
