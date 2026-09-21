@@ -283,7 +283,14 @@ def cabeza(titulo, css):
 
 def card(sec):
     t = tapa(sec)
-    foto = (f'<div class="foto"><img src="{ver(t["src"])}" width="{t["w"]}" '
+    # la card usa la miniatura de 680px si existe; si no, el original
+    src = t["src"] if t else None
+    if src:
+        from hacer_miniaturas import mini
+        chico = mini(src)
+        if (WEB / chico).exists():
+            src = chico
+    foto = (f'<div class="foto"><img src="{ver(src)}" width="{t["w"]}" '
             f'height="{t["h"]}" alt="" loading="lazy"></div>') if t else \
            '<div class="foto">sin tapa todavía</div>'
     return (f'<a class="card" href="p-{sec["id"]}.html">{foto}'
