@@ -1,6 +1,6 @@
 # Portfolio — Maia Cheb Terrab
 
-Web del portfolio. Se publica en https://maiucheb-oss.github.io/portfolio/
+Web del portfolio. Se publica en https://maiachebterrab.github.io/
 
 - `index.html` — la página, autocontenida (CSS y JS inline, fuentes en `assets/fonts/`).
 - `assets/<proyecto>/` — las piezas optimizadas para web. Los originales en resolución

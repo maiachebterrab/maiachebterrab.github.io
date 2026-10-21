@@ -18,8 +18,8 @@ import pathlib, subprocess, sys, urllib.parse
 AQUI   = pathlib.Path(__file__).resolve().parent
 WEB    = AQUI.parent
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-URL    = "https://maiucheb-oss.github.io/portfolio/"
-VISIBLE = "maiucheb-oss.github.io/portfolio"
+URL    = "https://maiachebterrab.github.io/"
+VISIBLE = "maiachebterrab.github.io"
 F      = "file:///Users/maiacheb/Library/Fonts/"
 
 NEGRO = "negro" in sys.argv[1:]

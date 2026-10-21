@@ -33,7 +33,7 @@ SECCIONES = [
             "Sbriller. Recopilación de fotografías propias sacadas en lo cotidiano. El nombre "
             "viene de algo que me sucede recurrentemente, el encuentro de mensajes oraculares "
             "en lo que me rodea.",
-  "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
+  "embed": "https://maiachebterrab.github.io/salto-de-fe/",
   "proyectos": [("@embed", None, None)]},
  {"grupo": "visuales", "id": "corazon", "num": "08", "titulo": "Corazón",
   "nav": "Corazón",
