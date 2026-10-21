@@ -35,6 +35,40 @@ SECCIONES = [
             "en lo que me rodea.",
   "embed": "https://maiucheb-oss.github.io/salto-de-fe/",
   "proyectos": [("@embed", None, None)]},
+ {"grupo": "visuales", "id": "corazon", "num": "08", "titulo": "Corazón",
+  "nav": "Corazón",
+  # Fotos de Descargas/AMORYCORAZONES (21/10/2026). Sin contexto ni año por ahora.
+  "meta": "",
+  "bajada": "Corazones y palabras de amor encontrados en la calle.",
+  # son casi todas verticales: van en grilla de 3 en vez de una abajo de otra
+  "grilla": 3,
+  # la tapa es el cartel de AMOR (Untitled-3-09), no la primera foto
+  "portada": "assets/09-corazon/23.jpg",
+  "proyectos": [("09-corazon", None, None)]},
+ {"grupo": "visuales", "id": "reached", "num": "09", "titulo": "You've Reached the End",
+  "nav": "You've Reached the End",
+  # Video en el canal de Nikolas Schneider (21/10/2026). Sin contexto ni año por ahora.
+  "meta": "",
+  "bajada": "<p>Me pasa algo muy raro desde chica, que tiene que ver con una vida que "
+            "transcurre adentro de mis sueños. Los recuerdo con mucha lucidez y, de alguna "
+            "manera, aunque la mayoría de ellos sean pesadillas, aprendí a disfrutarlos y a "
+            "sentirlos cada vez más como una película que pasa adentro mío.</p>"
+            "<p><i>You’ve reached the end</i> nació de esos sueños. A partir de las primeras "
+            "imágenes creadas con inteligencia artificial, con Nico empezamos a crear prompts, "
+            "jugando entre descripciones directas y frases sueltas que funcionaban como "
+            "oráculos.</p>"
+            "<p>Con distintas herramientas fuimos entrenando al modelo de imágenes hasta dar "
+            "con una estética onírica, oscura y perturbadora que imitaba casi a la perfección "
+            "su origen. Cada imagen alimentaba a la siguiente, hasta volverse escenas que "
+            "parecían soñarse solas.</p>"
+            "<p>De ahí surgieron los videos, que fueron dando espacio a este viaje entre lo "
+            "irreal y lo real. Lo que vemos acá es apenas un portal.</p>",
+  "embed": "https://www.youtube-nocookie.com/embed/JxvT7eyOc_M?rel=0",
+  # tapa: Dorso Espiral.jpg (en la carpeta del proyecto), no el cuadro de YouTube
+  "tapa": "10-reached",
+  # el video es 4:3; con el 16:9 por defecto quedaban barras negras a los costados
+  "proporcion": "4/3",
+  "proyectos": [("@embed", None, None)]},
  {"grupo": "editoriales", "id": "fasciculos", "num": "03", "titulo": "Fascículos coleccionables", "nav": "Fascículos",
   "meta": "@ Cátedra Ex-Manela, FADU  ·  [2023]",
   "bajada": "Colección de fascículos coleccionables a partir de columnas y ensayos de "

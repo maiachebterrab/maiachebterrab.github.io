@@ -60,7 +60,11 @@ def piezas_de(sec):
 
 
 def tapa(sec):
-    """La imagen de la card. La primera pieza que sea imagen."""
+    """La imagen de la card: la de "portada" si la hay; si no, la primera
+    pieza que sea imagen."""
+    elegida = next((x for x in assets if x["src"] == sec.get("portada")), None)
+    if elegida:
+        return elegida
     for tipo, a, _b, _c in piezas_de(sec):
         if tipo == "img":
             return a
@@ -68,8 +72,9 @@ def tapa(sec):
             for x in assets:
                 if x["src"] == a:
                     return x
-    # un proyecto que solo tiene embed: el acordeón hace de tapa
-    return (by.get("07-acordeon") or [None])[0]
+    # un proyecto que solo tiene embed: la tapa sale de "tapa" (por defecto,
+    # el acordeón de Salto de Fe)
+    return (by.get(sec.get("tapa", "07-acordeon")) or [None])[0]
 
 
 # ---------------------------------------------------------------- estilos
@@ -140,6 +145,7 @@ FICHA_CSS = """
 .info .meta{color:var(--suave)}
 .info .raya{margin:clamp(18px,2.4vw,28px) 0;color:var(--suave)}
 .info .bajada{max-width:46ch;color:rgba(19,18,17,.74)}
+.info .bajada p+p{margin-top:1em}
 .info .abajo{margin-top:auto;padding-top:34px;display:flex;
              justify-content:space-between;align-items:baseline;gap:16px}
 .info .abajo a:hover{opacity:.55}
@@ -156,9 +162,15 @@ FICHA_CSS = """
 .par .rotulo{position:absolute;z-index:2;top:clamp(12px,1.8vw,26px);
              left:clamp(12px,1.8vw,26px);color:#fff;
              text-shadow:0 1px 12px rgba(0,0,0,.55);pointer-events:none}
+/* grilla para proyectos de fotos verticales: columnas tipo muro, cada foto
+   con su proporcion, sin recortar */
+.media.grilla{display:block;column-gap:clamp(8px,1vw,14px)}
+.media.grilla .lupa{break-inside:avoid;margin-bottom:clamp(8px,1vw,14px)}
 .embed{position:relative;height:clamp(300px,74vh,700px);
        border:1px solid var(--linea);overflow:hidden}
 .embed iframe{width:100%;height:100%;border:0;display:block}
+/* video de YouTube: 16:9 y sin filete, que el reproductor ya tiene su marco */
+.embed.video{height:auto;aspect-ratio:16/9;border:0;background:#000}
 
 .visor{position:fixed;inset:0;z-index:90;background:rgba(255,255,255,.99);
        display:none;overflow:auto;cursor:zoom-out;padding:52px 0}
@@ -169,6 +181,7 @@ FICHA_CSS = """
   .ficha{grid-template-columns:1fr}
   .info{position:static;min-height:0;padding-bottom:30px}
   .media{padding-top:0}
+  .media.grilla{columns:2!important}
 }
 """
 
@@ -280,9 +293,10 @@ def card(sec):
     foto = (f'<div class="foto"><img src="{ver(src)}" width="{t["w"]}" '
             f'height="{t["h"]}" alt="" loading="lazy"></div>') if t else \
            '<div class="foto">sin tapa todavía</div>'
+    a = anio(sec["meta"])
     return (f'<a class="card" href="p-{sec["id"]}.html">{foto}'
             f'<div class="pie"><span class="n">{sec["titulo"]}</span>'
-            f'<span class="a">({anio(sec["meta"])})</span>'
+            f'<span class="a">{f"({a})" if a else ""}</span>'
             f'<span class="t">({NOMBRE_GRUPO[sec["grupo"]]})</span></div></a>')
 
 
@@ -329,15 +343,27 @@ def media(sec):
                 adentro += f'<span class="fuente">{lupa(dib)}</span>'
             fila.append(f'<div class="par">{adentro}</div>')
         elif tipo == "embed":
-            fila.append(f'<div class="embed"><iframe src="{a}" loading="lazy" '
-                        f'title="Salto de Fe"></iframe></div>')
+            if "youtube" in a:
+                # "proporcion": la del video, para que no queden barras negras
+                prop = sec.get("proporcion", "16/9")
+                fila.append(f'<div class="embed video" style="aspect-ratio:{prop}">'
+                            f'<iframe src="{a}" loading="lazy" '
+                            f'title="{html.escape(sec["titulo"])}" allow="autoplay; '
+                            f'encrypted-media; picture-in-picture; fullscreen" '
+                            f'referrerpolicy="strict-origin-when-cross-origin" '
+                            f'allowfullscreen></iframe></div>')
+            else:
+                fila.append(f'<div class="embed"><iframe src="{a}" loading="lazy" '
+                            f'title="{html.escape(sec["titulo"])}"></iframe></div>')
     return "".join(fila)
 
 
 def ficha(sec, siguiente):
     sig = (f'<a href="p-{siguiente["id"]}.html">{siguiente["titulo"]} →</a>'
            if siguiente else '<span></span>')
-    doc = (cabeza(f'{sec["titulo"]} — Maia Cheb Terrab', FICHA_CSS) + nav() +
+    n = sec.get("grilla")
+    grilla = f' grilla" style="columns:{n}' if n else ""
+    doc =(cabeza(f'{sec["titulo"]} — Maia Cheb Terrab', FICHA_CSS) + nav() +
            f'''<div class="ficha">
   <aside class="info">
     <h1>{sec["titulo"]}</h1>
@@ -346,7 +372,7 @@ def ficha(sec, siguiente):
     <div class="bajada">{sec["bajada"]}</div>
     <div class="abajo"><a href="index.html">← Índice</a>{sig}</div>
   </aside>
-  <div class="media">{media(sec)}</div>
+  <div class="media{grilla}">{media(sec)}</div>
 </div>
 <div class="visor"><img alt=""></div>
 <script>{VISOR_JS}</script>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Corazón — Maia Cheb Terrab</title>
+<style>
+/* Helvetica Neue del sistema. En Windows cae en Arial: falta resolver una
+   webfont (TeX Gyre Heros o licencia de Nimbus Sans) antes de publicar. */
+
+:root{--papel:#fff;--tinta:#131211;--suave:#8b8781;--linea:#e6e3de;
+      --gut:clamp(16px,3.2vw,36px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--papel);color:var(--tinta);
+     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:500;
+     font-size:12px;line-height:1.3;letter-spacing:0;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block}
+
+/* ---- nav: el nombre a la izquierda, las tres secciones a la derecha ---- */
+nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(10px)}
+nav .in{display:flex;align-items:baseline;gap:22px;padding:14px var(--gut)}
+nav .yo{margin-right:auto}
+nav a{color:var(--suave);transition:color .18s}
+nav a:hover,nav .yo{color:var(--tinta)}
+
+/* ---- dos columnas: la izquierda no se mueve, la derecha scrollea ---- */
+.ficha{display:grid;grid-template-columns:minmax(280px,30%) 1fr;
+       gap:clamp(20px,3vw,44px);padding:0 var(--gut) clamp(70px,9vw,120px);
+       align-items:start}
+.info{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;
+      padding:clamp(44px,7vw,104px) 0 clamp(22px,3vw,34px)}
+.info h1{font:inherit}
+.info .meta{color:var(--suave)}
+.info .raya{margin:clamp(18px,2.4vw,28px) 0;color:var(--suave)}
+.info .bajada{max-width:46ch;color:rgba(19,18,17,.74)}
+.info .bajada p+p{margin-top:1em}
+.info .abajo{margin-top:auto;padding-top:34px;display:flex;
+             justify-content:space-between;align-items:baseline;gap:16px}
+.info .abajo a:hover{opacity:.55}
+
+.media{padding-top:clamp(44px,7vw,104px);display:flex;flex-direction:column;gap:0}
+.media .lupa{padding:0;border:0;background:#f3f1ee;cursor:zoom-in;display:block;
+             width:100%;line-height:0}
+.media .lupa img{width:100%;height:auto;vertical-align:top}
+.par{position:relative}
+.par .fuente{position:absolute;z-index:2;width:clamp(72px,14%,160px);
+             right:clamp(12px,1.8vw,26px);bottom:clamp(12px,1.8vw,26px);
+             background:#fff;padding:clamp(4px,.55vw,8px);
+             box-shadow:0 8px 24px rgba(0,0,0,.14)}
+.par .rotulo{position:absolute;z-index:2;top:clamp(12px,1.8vw,26px);
+             left:clamp(12px,1.8vw,26px);color:#fff;
+             text-shadow:0 1px 12px rgba(0,0,0,.55);pointer-events:none}
+/* grilla para proyectos de fotos verticales: columnas tipo muro, cada foto
+   con su proporcion, sin recortar */
+.media.grilla{display:block;column-gap:clamp(8px,1vw,14px)}
+.media.grilla .lupa{break-inside:avoid;margin-bottom:clamp(8px,1vw,14px)}
+.embed{position:relative;height:clamp(300px,74vh,700px);
+       border:1px solid var(--linea);overflow:hidden}
+.embed iframe{width:100%;height:100%;border:0;display:block}
+/* video de YouTube: 16:9 y sin filete, que el reproductor ya tiene su marco */
+.embed.video{height:auto;aspect-ratio:16/9;border:0;background:#000}
+
+.visor{position:fixed;inset:0;z-index:90;background:rgba(255,255,255,.99);
+       display:none;overflow:auto;cursor:zoom-out;padding:52px 0}
+.visor.on{display:block}
+.visor img{margin:0 auto;max-width:none}
+
+@media (max-width:860px){
+  .ficha{grid-template-columns:1fr}
+  .info{position:static;min-height:0;padding-bottom:30px}
+  .media{padding-top:0}
+  .media.grilla{columns:2!important}
+}
+</style>
+</head>
+<body>
+<nav><div class="in"><a class="yo" href="index.html">Maia Cheb Terrab</a><a href="index.html#visuales">Proyectos visuales</a><a href="index.html#editoriales">Proyectos editoriales</a><a href="index.html#identidad">Identidad institucional</a></div></nav><div class="ficha">
+  <aside class="info">
+    <h1>Corazón</h1>
+    <div class="meta"></div>
+    <div class="raya">—</div>
+    <div class="bajada">Corazones y palabras de amor encontrados en la calle.</div>
+    <div class="abajo"><a href="index.html">← Índice</a><a href="p-reached.html">You've Reached the End →</a></div>
+  </aside>
+  <div class="media grilla" style="columns:3"><button class="lupa" data-src="assets/09-corazon/01.jpg?v=57c69bc4" data-w="6774" data-h="4492"><img src="assets/09-corazon/01.jpg?v=57c69bc4" width="2400" height="1591" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/02.jpg?v=78bda70c" data-w="4492" data-h="6774"><img src="assets/09-corazon/02.jpg?v=78bda70c" width="1591" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/03.jpg?v=15794773" data-w="1170" data-h="2080"><img src="assets/09-corazon/03.jpg?v=15794773" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/04.jpg?v=909b0731" data-w="1170" data-h="2080"><img src="assets/09-corazon/04.jpg?v=909b0731" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/05.jpg?v=e3c9de53" data-w="1158" data-h="1691"><img src="assets/09-corazon/05.jpg?v=e3c9de53" width="1643" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/06.jpg?v=c7c0a2c5" data-w="1158" data-h="2059"><img src="assets/09-corazon/06.jpg?v=c7c0a2c5" width="1349" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/07.jpg?v=1d5ba6b2" data-w="1206" data-h="2144"><img src="assets/09-corazon/07.jpg?v=1d5ba6b2" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/08.jpg?v=b7dc0df3" data-w="1284" data-h="2282"><img src="assets/09-corazon/08.jpg?v=b7dc0df3" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/09.jpg?v=afcda11d" data-w="1170" data-h="2080"><img src="assets/09-corazon/09.jpg?v=afcda11d" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/10.jpg?v=fd2177a5" data-w="1284" data-h="2282"><img src="assets/09-corazon/10.jpg?v=fd2177a5" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/11.jpg?v=2a5f4dc4" data-w="1206" data-h="2144"><img src="assets/09-corazon/11.jpg?v=2a5f4dc4" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/12.jpg?v=8d6e23f3" data-w="1170" data-h="2080"><img src="assets/09-corazon/12.jpg?v=8d6e23f3" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/13.jpg?v=e10d6293" data-w="2160" data-h="3840"><img src="assets/09-corazon/13.jpg?v=e10d6293" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/14.jpg?v=9f00c2c0" data-w="808" data-h="1436"><img src="assets/09-corazon/14.jpg?v=9f00c2c0" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/15.jpg?v=c0156b82" data-w="4032" data-h="3024"><img src="assets/09-corazon/15.jpg?v=c0156b82" width="2400" height="1800" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/16.jpg?v=2c856219" data-w="4032" data-h="3024"><img src="assets/09-corazon/16.jpg?v=2c856219" width="2400" height="1800" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/17.jpg?v=d3ee94c1" data-w="5204" data-h="1674"><img src="assets/09-corazon/17.jpg?v=d3ee94c1" width="2400" height="772" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/18.jpg?v=ed1e95a4" data-w="4500" data-h="8000"><img src="assets/09-corazon/18.jpg?v=ed1e95a4" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/19.jpg?v=4c1bfc6c" data-w="4500" data-h="8000"><img src="assets/09-corazon/19.jpg?v=4c1bfc6c" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/20.jpg?v=19a627c1" data-w="4500" data-h="8000"><img src="assets/09-corazon/20.jpg?v=19a627c1" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/21.jpg?v=24ab8d4e" data-w="4500" data-h="8000"><img src="assets/09-corazon/21.jpg?v=24ab8d4e" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/22.jpg?v=245fc975" data-w="8000" data-h="4500"><img src="assets/09-corazon/22.jpg?v=245fc975" width="2400" height="1350" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/23.jpg?v=bf9ae7ad" data-w="8000" data-h="4500"><img src="assets/09-corazon/23.jpg?v=bf9ae7ad" width="2400" height="1350" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/24.jpg?v=eb5cc317" data-w="4500" data-h="8000"><img src="assets/09-corazon/24.jpg?v=eb5cc317" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/25.jpg?v=4efef707" data-w="4500" data-h="8000"><img src="assets/09-corazon/25.jpg?v=4efef707" width="1350" height="2400" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/26.jpg?v=843a82c7" data-w="8000" data-h="4500"><img src="assets/09-corazon/26.jpg?v=843a82c7" width="2400" height="1350" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/27.jpg?v=e63722a6" data-w="8000" data-h="4500"><img src="assets/09-corazon/27.jpg?v=e63722a6" width="2400" height="1350" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/28.jpg?v=f710a7f0" data-w="8000" data-h="4500"><img src="assets/09-corazon/28.jpg?v=f710a7f0" width="2400" height="1350" alt="" loading="lazy"></button><button class="lupa" data-src="assets/09-corazon/29.jpg?v=da4880dd" data-w="1920" data-h="696"><img src="assets/09-corazon/29.jpg?v=da4880dd" width="2400" height="870" alt="" loading="lazy"></button></div>
+</div>
+<div class="visor"><img alt=""></div>
+<script>
+const visor=document.querySelector('.visor'),vimg=visor.querySelector('img');
+document.querySelectorAll('.lupa').forEach(b=>b.addEventListener('click',()=>{
+  vimg.src=b.dataset.src;vimg.width=b.dataset.w;vimg.height=b.dataset.h;
+  visor.classList.add('on');visor.scrollTop=0;document.body.style.overflow='hidden';}));
+const cerrar=()=>{visor.classList.remove('on');vimg.removeAttribute('src');
+  document.body.style.overflow='';};
+visor.addEventListener('click',cerrar);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrar();});
+</script>
+</body>
+</html>
