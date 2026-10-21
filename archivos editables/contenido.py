@@ -40,8 +40,24 @@ SECCIONES = [
   # Fotos de Descargas/AMORYCORAZONES (21/10/2026). Sin contexto ni año por ahora.
   "meta": "",
   "bajada": "Corazones y palabras de amor encontrados en la calle.",
-  # son casi todas verticales: van en grilla de 3 en vez de una abajo de otra
-  "grilla": 3,
+  # Filas de distinto tamaño para darle ritmo. Cada lista es una fila; los
+  # números son los de assets/09-corazon. Una foto sola va a todo el ancho.
+  # Las palabras se reparten a lo largo: abre "A Ud. estaba esperando" y
+  # cierra "Emociones".
+  "filas": [["17"],                    # A Ud. estaba esperando
+            ["11", "06", "04"],        # SI · Ojalá · carta
+            ["22"],                    # Yo Tú Él
+            ["01", "15"],              # corazones ByN · ramas
+            ["07", "08"],              # hoja · neón en la ventana
+            ["23", "05"],              # Amor / Roma · corazón pintado
+            ["03", "10", "13"],        # zapatillas · persiana · SI en el piso
+            ["27"],                    # enamorarse
+            ["18", "19"],              # los gatos
+            ["16", "14", "20"],        # corazón de neón · luces rojas · tronco
+            ["26", "28"],              # Amor Escapes · ¿Y si?
+            ["02", "09", "12", "24"],  # hojas · enredadera · tela · piedra
+            ["21", "25"],              # sombra en el pasto · árboles
+            ["29"]],                   # Emociones
   # la tapa es el cartel de AMOR (Untitled-3-09), no la primera foto
   "portada": "assets/09-corazon/23.jpg",
   "proyectos": [("09-corazon", None, None)]},

@@ -162,10 +162,12 @@ FICHA_CSS = """
 .par .rotulo{position:absolute;z-index:2;top:clamp(12px,1.8vw,26px);
              left:clamp(12px,1.8vw,26px);color:#fff;
              text-shadow:0 1px 12px rgba(0,0,0,.55);pointer-events:none}
-/* grilla para proyectos de fotos verticales: columnas tipo muro, cada foto
-   con su proporcion, sin recortar */
-.media.grilla{display:block;column-gap:clamp(8px,1vw,14px)}
-.media.grilla .lupa{break-inside:avoid;margin-bottom:clamp(8px,1vw,14px)}
+/* filas justificadas: cada foto crece segun su proporcion (--r = ancho/alto),
+   asi todas las de una fila tienen la misma altura y llenan el ancho sin
+   recortar. Una foto sola en su fila va a todo el ancho. */
+.media.filas{gap:clamp(8px,1vw,14px)}
+.fila{display:flex;gap:clamp(8px,1vw,14px)}
+.fila .lupa{flex:var(--r) 1 0;min-width:0}
 .embed{position:relative;height:clamp(300px,74vh,700px);
        border:1px solid var(--linea);overflow:hidden}
 .embed iframe{width:100%;height:100%;border:0;display:block}
@@ -181,7 +183,6 @@ FICHA_CSS = """
   .ficha{grid-template-columns:1fr}
   .info{position:static;min-height:0;padding-bottom:30px}
   .media{padding-top:0}
-  .media.grilla{columns:2!important}
 }
 """
 
@@ -327,6 +328,15 @@ def lupa(a):
 
 
 def media(sec):
+    if sec.get("filas"):
+        # "filas": listas de números de pieza; cada lista es una fila
+        piezas = {a["idx"]: a for a in by.get(sec["proyectos"][0][0], [])}
+        return "".join(
+            '<div class="fila">' + "".join(
+                lupa(piezas[n]).replace('<button class="lupa"',
+                    f'<button class="lupa" style="--r:{piezas[n]["w"] / piezas[n]["h"]:.3f}"', 1)
+                for n in f) + '</div>'
+            for f in sec["filas"])
     fila = []
     for tipo, a, b, rot in piezas_de(sec):
         if tipo == "img":
@@ -361,8 +371,7 @@ def media(sec):
 def ficha(sec, siguiente):
     sig = (f'<a href="p-{siguiente["id"]}.html">{siguiente["titulo"]} →</a>'
            if siguiente else '<span></span>')
-    n = sec.get("grilla")
-    grilla = f' grilla" style="columns:{n}' if n else ""
+    filas = " filas" if sec.get("filas") else ""
     doc =(cabeza(f'{sec["titulo"]} — Maia Cheb Terrab', FICHA_CSS) + nav() +
            f'''<div class="ficha">
   <aside class="info">
@@ -372,7 +381,7 @@ def ficha(sec, siguiente):
     <div class="bajada">{sec["bajada"]}</div>
     <div class="abajo"><a href="index.html">← Índice</a>{sig}</div>
   </aside>
-  <div class="media{grilla}">{media(sec)}</div>
+  <div class="media{filas}">{media(sec)}</div>
 </div>
 <div class="visor"><img alt=""></div>
 <script>{VISOR_JS}</script>
