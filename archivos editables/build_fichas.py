@@ -5,8 +5,9 @@ Referencia: sofiarezs.com/projects. El índice es una grilla de cards —tapa,
 nombre, año, tipo— y adentro de cada proyecto la columna izquierda queda quieta
 con el texto mientras la derecha scrollea con las imágenes.
 
-Tipografía: la misma del index-editorial, Saol Text para titular y TWK Lausanne
-para todo lo demás. Los textos salen de contenido.py, así que se editan en un
+Tipografía: Helvetica Neue Medium a 12px para todo —títulos incluidos—, con
+interlineado de 130% y sin tracking. La jerarquía la dan el espacio y el
+lugar, no el tamaño (referencia: mestizaestudio.com). Los textos salen de contenido.py, así que se editan en un
 solo lugar para la web larga, las fichas y el PDF.
 
     python3 build_fichas.py
@@ -74,16 +75,8 @@ def tapa(sec):
 # ---------------------------------------------------------------- estilos
 
 FUENTES = """
-@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-Regular.otf") format("opentype");
-           font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Saol";src:url("assets/fonts/SaolText-RegularItalic.otf") format("opentype");
-           font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-300.otf") format("opentype");
-           font-weight:300;font-display:swap}
-@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-400.otf") format("opentype");
-           font-weight:400;font-display:swap}
-@font-face{font-family:"Lausanne";src:url("assets/fonts/TWKLausanne-500.otf") format("opentype");
-           font-weight:500;font-display:swap}
+/* Helvetica Neue del sistema. En Windows cae en Arial: falta resolver una
+   webfont (TeX Gyre Heros o licencia de Nimbus Sans) antes de publicar. */
 """
 
 BASE = FUENTES + """
@@ -92,8 +85,8 @@ BASE = FUENTES + """
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{background:var(--papel);color:var(--tinta);
-     font-family:"Lausanne","Helvetica Neue",Arial,sans-serif;
-     font-size:13.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:500;
+     font-size:12px;line-height:1.3;letter-spacing:0;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img{display:block}
 
@@ -109,17 +102,14 @@ nav a:hover,nav .yo{color:var(--tinta)}
 INDICE_CSS = """
 main{padding:clamp(28px,4vw,52px) var(--gut) clamp(70px,9vw,120px)}
 .intro{max-width:46ch;margin-bottom:clamp(40px,6vw,86px)}
-.intro h1{font-family:"Saol",Georgia,serif;font-weight:400;
-          font-size:clamp(26px,3.6vw,42px);line-height:1.06;letter-spacing:-.012em}
+.intro h1{font:inherit}
 /* interlineado de los parrafos: 130% */
 .intro p{margin-top:14px;color:rgba(19,18,17,.72);line-height:1.3}
 
 .banda+.banda{margin-top:clamp(46px,6vw,84px)}
-/* el titulo de cada banda se lee igual que su entrada en el menu: Lausanne
-   13,5px en gris, caja normal, sin tracking. El filete pasa a ser fino para no
-   pesar mas que el titulo. */
-.banda>h2{font-size:13.5px;font-weight:400;letter-spacing:0;text-transform:none;
-          line-height:1.55;color:var(--suave);padding-top:12px;
+/* el titulo de cada banda se lee igual que su entrada en el menu: mismo
+   cuerpo en gris. El filete es fino para no pesar mas que el titulo. */
+.banda>h2{font:inherit;color:var(--suave);padding-top:12px;
           border-top:1px solid var(--linea);margin-bottom:clamp(18px,2.4vw,28px)}
 
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
@@ -131,13 +121,12 @@ main{padding:clamp(28px,4vw,52px) var(--gut) clamp(70px,9vw,120px)}
                 transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .card:hover .foto img{transform:scale(1.02)}
 .card .pie{display:flex;justify-content:space-between;gap:12px;
-           margin-top:9px;font-size:11.5px;color:var(--suave)}
+           margin-top:9px;color:var(--suave)}
 .card .pie .n{color:var(--tinta);flex:1}
 .card .pie .a{flex:none}
 .card .pie .t{flex:none;text-align:right;min-width:9em}
 .vacia .foto{display:flex;align-items:center;justify-content:center;
-             border:1px dashed var(--linea);background:none;color:var(--suave);
-             font-size:11.5px}
+             border:1px dashed var(--linea);background:none;color:var(--suave)}
 """
 
 FICHA_CSS = """
@@ -147,14 +136,12 @@ FICHA_CSS = """
        align-items:start}
 .info{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;
       padding:clamp(44px,7vw,104px) 0 clamp(22px,3vw,34px)}
-.info h1{font-family:"Saol",Georgia,serif;font-weight:400;
-         font-size:clamp(22px,2.4vw,30px);line-height:1.12;letter-spacing:-.008em}
-.info .meta{margin-top:6px;font-size:11.5px;color:var(--suave)}
+.info h1{font:inherit}
+.info .meta{color:var(--suave)}
 .info .raya{margin:clamp(18px,2.4vw,28px) 0;color:var(--suave)}
-.info .bajada{max-width:42ch;color:rgba(19,18,17,.74);line-height:1.3}
+.info .bajada{max-width:46ch;color:rgba(19,18,17,.74)}
 .info .abajo{margin-top:auto;padding-top:34px;display:flex;
              justify-content:space-between;align-items:baseline;gap:16px}
-.info .abajo a{font-family:"Saol",Georgia,serif;font-size:16px}
 .info .abajo a:hover{opacity:.55}
 
 .media{padding-top:clamp(44px,7vw,104px);display:flex;flex-direction:column;gap:0}
@@ -167,7 +154,7 @@ FICHA_CSS = """
              background:#fff;padding:clamp(4px,.55vw,8px);
              box-shadow:0 8px 24px rgba(0,0,0,.14)}
 .par .rotulo{position:absolute;z-index:2;top:clamp(12px,1.8vw,26px);
-             left:clamp(12px,1.8vw,26px);font-size:11.5px;color:#fff;
+             left:clamp(12px,1.8vw,26px);color:#fff;
              text-shadow:0 1px 12px rgba(0,0,0,.55);pointer-events:none}
 .embed{position:relative;height:clamp(300px,74vh,700px);
        border:1px solid var(--linea);overflow:hidden}
@@ -228,7 +215,7 @@ CARRUSEL_CSS = """
 .post .puntos i{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.5)}
 .post .puntos i.on{background:#fff}
 .post .pie{display:flex;justify-content:space-between;gap:10px;margin-top:8px;
-           font-size:11.5px;color:var(--suave)}
+           color:var(--suave)}
 .post .pie .n{color:var(--tinta)}
 """
 

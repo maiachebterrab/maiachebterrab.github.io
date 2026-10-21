@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pruebas tipográficas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300;0,400;0,500;1,400&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;1,400&family=Inter:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--papel:#fff;--tinta:#131211;--suave:#8b8781;--linea:#e6e3de;--fondo:#f4f3f1}
+*{box-sizing:border-box;margin:0}
+body{background:var(--fondo);color:var(--tinta);font:13px/1.4 -apple-system,"Helvetica Neue",Arial,sans-serif;
+     -webkit-font-smoothing:antialiased;padding:24px 16px 80px}
+header.top{max-width:1400px;margin:0 auto 20px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline}
+header.top h1{font-size:14px;font-weight:500}
+header.top p{color:var(--suave)}
+header.top label{margin-left:auto;display:flex;gap:8px;align-items:center;cursor:pointer}
+.grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.op{background:var(--papel);font-size:var(--bs,13.5px);padding:28px 28px 40px;display:flex;flex-direction:column;gap:40px;font-family:var(--f)}
+.rot{border-bottom:1px solid var(--linea);padding-bottom:14px;font:13px/1.4 -apple-system,"Helvetica Neue",Arial,sans-serif}
+.rot b{font-weight:500}
+.rot p{color:var(--suave);font-size:12px;margin-top:4px}
+.t1,.t2{font-family:var(--f);font-weight:var(--tw,400);letter-spacing:var(--ls,-.02em);line-height:1.04}
+.t1{font-size:var(--h1,42px)}
+.t2{font-size:var(--h2,29px);line-height:1.1}
+.siempre .t1,.siempre .t2,.may .op:not(.nunca) .t1,.may .op:not(.nunca) .t2{text-transform:uppercase;letter-spacing:var(--lsU,-.01em)}
+.may .op:not(.nunca) .t1,.siempre .t1{font-size:var(--h1U,var(--h1,42px))}
+.may .op:not(.nunca) .t2,.siempre .t2{font-size:var(--h2U,var(--h2,29px))}
+.bajada{font-size:var(--bs,13.5px);font-weight:var(--bw,400);line-height:1.3;color:rgba(19,18,17,.72);max-width:40ch;margin-top:14px}
+.card img{width:100%;max-width:322px;aspect-ratio:16/10;object-fit:cover;border-radius:4px;display:block;background:#f3f1ee}
+.pie{display:flex;gap:12px;max-width:322px;margin-top:9px;font-size:var(--ps,11.5px);font-weight:var(--bw,400);color:var(--suave)}
+.pie .n{color:var(--tinta);flex:1}
+.meta{font-size:var(--ps,11.5px);font-weight:var(--bw,400);color:var(--suave);margin-top:6px}
+.raya{color:var(--suave);margin:24px 0}
+.abajo{display:flex;justify-content:space-between;max-width:410px;margin-top:36px;font-size:var(--as,15px);font-weight:var(--bw,400)}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Pruebas tipográficas — ronda 3</h1>
+  <p>Helvetica y parecidas, con títulos en mayúscula.</p>
+  <label><input type="checkbox" id="may" checked> Títulos en mayúscula</label>
+</header>
+<div class="grid may" id="grid"></div>
+<template id="tpl">
+  <section class="op">
+    <div class="rot"><b></b><p></p></div>
+    <div><div class="t1">Portfolio</div>
+      <p class="bajada">Diseño identidades y universos visuales para artistas, proyectos culturales y productoras audiovisuales. Mi práctica cruza diseño, imagen, fotografía y cultura.</p></div>
+    <div class="card"><img src="../assets/miniaturas/00d-imagenes-01.jpg" alt="">
+      <div class="pie"><span class="n">Bestiario</span><span>(2026)</span><span>(Proyectos visuales)</span></div></div>
+    <div><div class="t2">Plaquette Georges Perec</div>
+      <div class="meta">@ Cátedra Ex-Manela, FADU  ·  [2023]</div>
+      <div class="raya">—</div>
+      <p class="bajada" style="margin-top:0">Plaquette a partir de un fragmento de <i>Pensar/Clasificar</i>, de Georges Perec.</p>
+      <div class="abajo"><span>← Índice</span><span>Especies de Espacios →</span></div></div>
+  </section>
+</template>
+<script>
+const ops = [
+  {n:'I · Helvetica Neue, títulos grandes', d:'La Helvetica de verdad. Títulos en mayúscula grandes y apretados, bien suizos.',
+   v:{'--f':'"Helvetica Neue",Helvetica,Arial,sans-serif','--tw':500,'--h1U':'40px','--h2U':'26px','--lsU':'-.02em'}},
+  {n:'J · Helvetica Neue, títulos chicos', d:'Misma letra, pero el título en mayúscula chica y espaciada, como un rótulo de muestra. Más silencioso: el protagonismo es de las imágenes.',
+   v:{'--f':'"Helvetica Neue",Helvetica,Arial,sans-serif','--tw':400,'--h1U':'20px','--h2U':'15px','--lsU':'.06em'}},
+  {n:'K · Host Grotesk', d:'La pariente de Helvetica de la ronda anterior, ahora en mayúscula. Gratis y se ve igual en cualquier compu.',
+   v:{'--f':'"Host Grotesk",sans-serif','--tw':400,'--h1U':'38px','--h2U':'25px','--lsU':'-.015em'}},
+  {n:'L · Hanken Grotesk', d:'La más suave, en mayúscula y Light. Queda liviana y elegante.',
+   v:{'--f':'"Hanken Grotesk",sans-serif','--tw':300,'--h1':'44px','--h1U':'40px','--h2U':'26px','--lsU':'0em'}},
+  {n:'M · Como Mestiza: un solo tamaño', d:'Todo a 12 px en Helvetica Neue Medium (ellos usan Nimbus Sans Novus SemiBold, que es casi lo mismo). Sin títulos grandes: la jerarquía la dan el espacio y el lugar.',
+   v:{'--f':'"Helvetica Neue",Helvetica,Arial,sans-serif','--tw':500,'--bw':500,'--h1':'12px','--h2':'12px','--h1U':'12px','--h2U':'12px','--ls':'0em','--lsU':'.02em','--bs':'12px','--ps':'12px','--as':'12px'}, may:false},
+  {n:'N · Un solo tamaño, títulos en mayúscula', d:'Igual que la M, pero los títulos en mayúscula: es lo único que los distingue del resto.',
+   v:{'--f':'"Helvetica Neue",Helvetica,Arial,sans-serif','--tw':500,'--bw':500,'--h1':'12px','--h2':'12px','--h1U':'12px','--h2U':'12px','--ls':'0em','--lsU':'.03em','--bs':'12px','--ps':'12px','--as':'12px'}, may:true},
+];
+const g = document.getElementById('grid'), tpl = document.getElementById('tpl');
+for (const o of ops) {
+  const s = tpl.content.firstElementChild.cloneNode(true);
+  s.querySelector('.rot b').textContent = o.n; s.querySelector('.rot p').textContent = o.d;
+  for (const [k,v] of Object.entries(o.v)) s.style.setProperty(k, v);
+  if (o.may === true) s.classList.add('siempre'); if (o.may === false) s.classList.add('nunca');
+  g.appendChild(s);
+}
+document.getElementById('may').addEventListener('change', e => g.classList.toggle('may', e.target.checked));
+</script>
+</body>
+</html>
