@@ -80,8 +80,14 @@ def tapa(sec):
 # ---------------------------------------------------------------- estilos
 
 FUENTES = """
-/* Helvetica Neue del sistema. En Windows cae en Arial: falta resolver una
-   webfont (TeX Gyre Heros o licencia de Nimbus Sans) antes de publicar. */
+/* Helvetica Neue del sistema. Donde no esta (Windows, Android) entra TeX Gyre
+   Heros, un clon libre de Helvetica (licencia GUST). Heros no tiene Medium: la
+   Regular cubre 400-500 para que el navegador no la engorde con negrita falsa.
+   Solo se descarga si falta la Helvetica. */
+@font-face{font-family:"Heros";src:url("assets/fonts/texgyreheros-regular.otf") format("opentype");
+           font-weight:400 500;font-style:normal;font-display:swap}
+@font-face{font-family:"Heros";src:url("assets/fonts/texgyreheros-italic.otf") format("opentype");
+           font-weight:400 500;font-style:italic;font-display:swap}
 """
 
 BASE = FUENTES + """
@@ -90,7 +96,7 @@ BASE = FUENTES + """
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{background:var(--papel);color:var(--tinta);
-     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:500;
+     font-family:"Helvetica Neue",Helvetica,"Heros",Arial,sans-serif;font-weight:500;
      font-size:12px;line-height:1.3;letter-spacing:0;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img{display:block}
