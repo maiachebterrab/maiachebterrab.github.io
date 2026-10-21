@@ -1,41 +1,41 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><style>
-@font-face{font-family:"Mono";src:url("file:///Users/maiacheb/Library/Fonts/GeistMono-Regular.ttf");font-weight:400}
-@font-face{font-family:"Mono";src:url("file:///Users/maiacheb/Library/Fonts/GeistMono-Medium.ttf");font-weight:500}
-@font-face{font-family:"Mono";src:url("file:///Users/maiacheb/Library/Fonts/GeistMono-Bold.ttf");font-weight:700}
+@font-face{font-family:"Saol";src:url("file:///Users/maiacheb/Library/Fonts/SaolText-Regular.otf");font-weight:400}
+@font-face{font-family:"Saol";src:url("file:///Users/maiacheb/Library/Fonts/SaolText-RegularItalic.otf");
+           font-weight:400;font-style:italic}
+@font-face{font-family:"Lausanne";src:url("file:///Users/maiacheb/Library/Fonts/TWKLausanne-400.otf");font-weight:400}
+@font-face{font-family:"Lausanne";src:url("file:///Users/maiacheb/Library/Fonts/TWKLausanne-500.otf");font-weight:500}
 @page{size:A4;margin:0}
 *{box-sizing:border-box;margin:0}
 html,body{background:#ffffff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-body{width:210mm;height:297mm;padding:22mm 20mm 18mm;color:#141310;
-      font-family:"Mono",monospace;font-size:8.4pt;line-height:1.75;
+body{width:210mm;height:297mm;padding:22mm 20mm 18mm;color:#131211;
+      font-family:"Lausanne",sans-serif;font-size:9pt;line-height:1.3;
       display:flex;flex-direction:column}
-.etq{font-size:6.6pt;letter-spacing:.15em;text-transform:uppercase;color:#6f6a63;}
-h1{font-size:30pt;font-weight:700;letter-spacing:.02em;text-transform:uppercase;
-    line-height:1.05;margin:16mm 0 0}
-.link{margin-top:7mm;font-size:12.5pt;font-weight:500;letter-spacing:.005em;
-       word-break:break-all}
-.nota{margin-top:6mm;max-width:118mm;font-size:8.4pt;color:#141310;opacity:.9}
-hr{border:0;border-top:.5pt solid #d9d5ce;margin:12mm 0 0}
-.indice{margin-top:11mm}
-section{margin-bottom:8mm;break-inside:avoid}
-h2{font-size:6.6pt;font-weight:400;letter-spacing:.15em;text-transform:uppercase;
-    color:#6f6a63;padding-bottom:2.4mm;border-bottom:.5pt solid #d9d5ce;margin-bottom:3.4mm}
-.it{display:flex;justify-content:space-between;gap:8mm;align-items:baseline;
-     padding:1.1mm 0}
-.it .t{font-weight:500}
-.it .f{font-size:7pt;color:#6f6a63;text-align:right;white-space:nowrap}
-footer{margin-top:auto;padding-top:8mm;border-top:.5pt solid #d9d5ce;
-        display:flex;justify-content:space-between;gap:10mm;font-size:7.4pt;color:#6f6a63}
+.etq{font-size:8pt;color:#8b8781}
+h1{font-family:"Saol",serif;font-size:34pt;font-weight:400;letter-spacing:-.012em;
+    line-height:1.04;margin:42mm 0 0}
+
+/* el link es lo unico que esta hoja tiene que conseguir: subrayado, con flecha
+   y con aire alrededor. Es un <a> real, clickeable en el PDF. */
+.link{display:inline-block;margin-top:9mm;font-family:"Saol",serif;
+       font-size:17pt;line-height:1.2;color:#131211;text-decoration:underline;
+       text-underline-offset:3.5pt;text-decoration-thickness:.6pt}
+.link .flecha{font-family:"Lausanne",sans-serif;font-size:13pt;
+               text-decoration:none;display:inline-block;margin-left:2mm}
+
+.nota{margin-top:10mm;max-width:104mm;color:#8b8781}
+footer{margin-top:auto;padding-top:7mm;border-top:.5pt solid #e6e3de;
+        display:flex;justify-content:space-between;gap:10mm;
+        font-size:8pt;color:#8b8781}
 </style></head><body>
 
 <div class="etq">Maia Cheb Terrab · Diseñadora gráfica (FADU-UBA) · Buenos Aires</div>
+
 <h1>Portfolio</h1>
-<div class="link">maiucheb-oss.github.io/portfolio</div>
+<a class="link" href="https://maiucheb-oss.github.io/portfolio/">maiucheb-oss.github.io/portfolio<span class="flecha">&#8599;</span></a>
+
 <p class="nota">El portfolio es una página web. Las piezas se ven en su proporción
 real y se abren en tamaño completo, las animaciones se ven en movimiento, y
 <i>Salto de Fe</i> es una pieza web que se recorre sola.</p>
-<hr>
-
-<div class="indice"><section><h2>Proyectos visuales</h2><div class="it"><span class="t">Bestiario</span><span class="f">Destructores de Imágenes · [2026]</span></div><div class="it"><span class="t">Salto de Fe</span><span class="f">Creadores de Imágenes · [2026]</span></div></section><section><h2>Proyectos editoriales</h2><div class="it"><span class="t">Fascículos coleccionables</span><span class="f">Cátedra Ex-Manela, FADU · [2023]</span></div><div class="it"><span class="t">Colección de libros</span><span class="f">Cátedra Ex-Manela, FADU · [2024]</span></div><div class="it"><span class="t">Plaquette Georges Perec</span><span class="f">Cátedra Ex-Manela, FADU · [2023]</span></div></section><section><h2>Identidad institucional</h2><div class="it"><span class="t">Especies de Espacios</span><span class="f">Tipografía, FADU · [2021]</span></div><div class="it"><span class="t">Diseño estratégico en medios públicos</span><span class="f">Diseño Gráfico, FADU · [2023]</span></div></section></div>
 
 <footer>
   <span>maiucheb@gmail.com · +54 11 6946-3209</span>
